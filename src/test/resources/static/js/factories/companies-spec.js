@@ -42,6 +42,7 @@ describe("Factory: companies", function() {
         $httpBackend.flush();
     });
 
+
     it("should returns a company with an existing cnpj", function() {
         var company = {
             cnpj: "2903902193",
@@ -50,7 +51,7 @@ describe("Factory: companies", function() {
         var expectedResponse = 200;
         $httpBackend.expectGET('/buscar-por-cnpj?cnpj=2903902193').respond(company);
 
-        companies.getCompanyWithCnpj("2903902193").then(function(response) {
+        companies.getCompanyByCnpj("2903902193").then(function(response) {
             response.data.should.be.deep.equal(company);
         });
 

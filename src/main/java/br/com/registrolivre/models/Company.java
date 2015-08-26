@@ -57,7 +57,6 @@ public class Company {
     @Wither
     @FieldDefaults(level = PRIVATE)
     public static class Builder {
-
         Long id;
         String cnpj;
         String tradeName;
@@ -65,7 +64,7 @@ public class Company {
         Set<Document> documents;
 
         public Company build() {
-            return new Company(null, null, null, null, null);
+            return new Company();
         }
 
         public Company toModel(CompanyRepresentation representation) {
@@ -86,5 +85,4 @@ public class Company {
                     .collect(Collectors.toSet());
         }
     }
-
 }
