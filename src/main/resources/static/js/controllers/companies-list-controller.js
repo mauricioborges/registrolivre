@@ -25,7 +25,7 @@ app.controller("CompaniesListController", ["$scope", "$filter", "ngTableParams",
     init();
 
     companies.all().then(function(response){
-        if (!_.isEmpty(response)) {
+        if (!R.isEmpty(response)) {
             $scope.companies = response;
             $scope.hasCompanies = true;
             $scope.companiesNotFoundMessage = "";
