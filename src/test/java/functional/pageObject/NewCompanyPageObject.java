@@ -57,4 +57,9 @@ public class NewCompanyPageObject {
     public void submitForm() {
         driver.findElement(By.id("btn-submit")).click();
     }
+
+    public String verifyAlertMessage(){
+        driver.findElement(By.xpath("/html/body/div/div[2]/div/div/div/div/div[1]/div")).isDisplayed();
+        return driver.findElement(By.xpath("/html/body/div/div[2]/div/div/div/div/div[1]/div/strong")).getText();
+    }
 }
