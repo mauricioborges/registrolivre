@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@Configuration
+@Configuration()
 public class DataSourceConfiguration {
 
     @Bean

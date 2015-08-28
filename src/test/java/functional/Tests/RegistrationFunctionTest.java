@@ -1,5 +1,7 @@
 package functional.Tests;
 
+import br.com.registrolivre.Application;
+import functional.Database.Connection;
 import functional.pageObject.CompanyListPageObject;
 import functional.pageObject.HeaderObject;
 import functional.pageObject.NewCompanyPageObject;
@@ -7,37 +9,42 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import java.util.concurrent.TimeUnit;
 
-public class RegistrationFunctionTest {
+
+public class RegistrationFunctionTest extends InMemoryTestBase {
     static WebDriver driver;
     private NewCompanyPageObject newCompanyPageObject;
     private CompanyListPageObject companyListPageObject;
     private HeaderObject headerObject;
+    private Connection connection;
 
     @Before
     public void setUp() throws Exception {
-
         driver = new FirefoxDriver();
         newCompanyPageObject = new NewCompanyPageObject(driver);
         companyListPageObject = new CompanyListPageObject (driver);
         headerObject = new HeaderObject(driver);
-        driver.get("http://192.168.33.71:5000/#");
-
-
-       // newCompanyPageObject.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.get("http://localhost:9000/#");
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
     }
 
     @Test
     public void shouldCreateNewCompany() {
         headerObject.visitCadastrarEmpresa();
-        newCompanyPageObject.fillInCnpj("30.883.835/0001-06");
-        newCompanyPageObject.fillInName("Gama Company LTDA");
+        newCompanyPageObject.fillInCnpj("87.806.523/0001-08");
+        newCompanyPageObject.fillInName("Gama Company LTDA2");
         newCompanyPageObject.fillInSocialReason("Gama Company");
         newCompanyPageObject.fillInAddress("Rua Avelino Nascimento");
         newCompanyPageObject.fillInNumber("222");
@@ -47,10 +54,10 @@ public class RegistrationFunctionTest {
         newCompanyPageObject.fillInZipCode("39900-000");
         newCompanyPageObject.submitForm();
 
+        String verifyNomeFantasia = newCompanyPageObject.verifyAlertMessage();
 
-        headerObject.visitListarEmpresa();
-        Assert.assertEquals(headerObject.getCurrentUrl(),"http://192.168.33.71:5000/#/empresas");
-       // assertThat("Page object retornar uma lista de empresas");
+        Assert.assertEquals(verifyNomeFantasia, "Gama Company LTDA2");
+
     }
 
     @After

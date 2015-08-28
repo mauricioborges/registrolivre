@@ -48,7 +48,7 @@ public class Company {
     @Column(name = "company_name")
     String companyName;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
     Set<Document> documents = new HashSet<>();
 
     @NoArgsConstructor
