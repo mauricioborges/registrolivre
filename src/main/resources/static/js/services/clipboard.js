@@ -5,7 +5,7 @@ app.service("clipboard", [
     }
 
     this.handlePaste = function(domNode) {
-      return _.compose(domNode.val, getText);
+      return R.compose(domNode.val, getText);
     };
   }
 ]);
