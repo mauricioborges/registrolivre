@@ -53,28 +53,28 @@ Para ter uma instância do GO-CD executando no seu computador, basta executar o 
 $ ./gradlew bringUpGoServerLocally
 ```
 
-Após a inicialização da maquina, execute provisionGoServer para fazer o provisionamento da maquina, o que irá instalar e configurar todos os requisitos necessários:
+Após a inicialização da máquina, execute provisionGoServer para fazer o provisionamento da maquina, o que irá instalar e configurar todos os requisitos necessários:
 
 ```
 $ ./gradlew provisionGoServerLocally
 ```
 
-Ao fazer isso o GO-CD será configurado dentro da maquina virtual criada no step anterior, permitindo o acesso ao GO-CD através das configurações informadas no Vagrantfile na pasta infrastructure/go. Se as configurações  padrões foram mantidas, o acesso será através da url:  192.168.33.10:8153/go.
+Ao fazer isso o GO-CD será configurado dentro da máquina virtual criada no passo anterior, permitindo o acesso ao GO-CD através das configurações informadas no Vagrantfile na pasta infrastructure/go. Se as configurações padrões foram mantidas, o acesso será através da url:  192.168.33.10:8153/go.
 
-Além disso você pode destruir a maquina virtual executando o comando:
+Além disso você pode destruir a máquina virtual executando o comando:
 
 ```
 $ ./gradlew destroyGoServerLocally
 ```
 
-E a qualquer momento  verificar o status da maquina virtual usando:
+E a qualquer momento verificar o status da máquina virtual usando:
 
 ```
 $ ./gradlew statusGoServerLocally
 ```
 
 ## Permissões de acesso
-GO-CD provem duas formas para autenticação de acesso. A primeira utilizando um arquivo de configuração de senhas (no formato padrão do Apache htpasswd) ou por autenticação LDAP/ActiveDirectory. Para este projeto nós ultizaremos a primeira opção. Você pode ler mais sobre as formas de autenticação lendo a documentado do GO-CD na parte de autentication, [clicando aqui](http://www.go.cd/documentation/user/current/configuration/dev_authentication.html).
+O GO-CD provê duas formas para autenticação de acesso. A primeira utilizando um arquivo de configuração de senhas (no formato padrão do Apache htpasswd) ou por autenticação LDAP/ActiveDirectory. Para este projeto nós utilizaremos a primeira opção. Você pode saber mais sobre as formas de autenticação lendo a documentado do GO-CD na parte de autentication, [clicando aqui](http://www.go.cd/documentation/user/current/configuration/dev_authentication.html).
 
 O arquivo com as configurações de senhas pode ser encontrado em:
 
@@ -90,20 +90,20 @@ Uma vez instalado, vá até a pasta root do projeto e execute o seguinte comando
 $ htpasswd -s infrastructure/go/configurations/htpasswd "username desejado"
 
 ```
-A senha desejada será solicidada e será armazenada no arquivo htpasswd (usando hash SHA1), lembrando que será necessário executar o provisionamento da maquina virtual utilizada pelo go novamente.
+A senha desejada será solicitada e armazenada no arquivo htpasswd (usando hash SHA1), lembrando que será necessário executar o provisionamento da máquina virtual utilizada pelo go novamente.
 
 # Criar Máquina Virtual Local
 
 O ambiente local para executar a aplicação é em uma máquina virtual.
-Para criar a máquina virtual no ambiente local, executar o script abaixo:
+Para criar a máquina virtual no ambiente local, execute o script abaixo:
 
 ```
 $ ./gradlew bringUpLocalAppServer
 ```
 
-Para provisionar a máquina local, tem que configurar as variáveis de ambientes antes de executar a task "provisionLocalAppServer":
+Para provisionar a máquina local, é preciso configurar as variáveis de ambientes antes de executar a task "provisionLocalAppServer":
 
-- Gere uma SSH key para acessar a maquina virtual:
+- Gere uma SSH key para acessar a máquina virtual:
 
 ```
 $ ssh-keygen -t rsa -b 4096 -C "registrolivre"
@@ -128,7 +128,7 @@ export LOCAL_REGISTROLIVRE_IP="192.168.33.71"  # ip do vagrant box
 $ ./gradlew provisionLocalAppServer
 ```
 
-Para verificar o status da sua máquina local:
+Para verificar o status de sua máquina local:
 
 ```
 $ ./gradlew statusLocalAppServer
@@ -179,7 +179,7 @@ $ ./gradlew deployLocalAppServer
 
 ## Deploy da aplicação no ambiente local
 
-Para fazer o deploy da aplicação no ambiente local, antes tem que ter executado as tasks "bringUpLocalAppServer", "provisionLocalAppServer" e "createLocalDatabase"
+Para fazer o deploy da aplicação no ambiente local, antes você deve executar as tasks "bringUpLocalAppServer", "provisionLocalAppServer" e "createLocalDatabase"
 
 A task para efetuar o deploy da aplicação:
 
