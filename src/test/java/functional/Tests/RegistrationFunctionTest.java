@@ -1,7 +1,5 @@
 package functional.Tests;
 
-import br.com.registrolivre.Application;
-import functional.Database.Connection;
 import functional.pageObject.CompanyListPageObject;
 import functional.pageObject.HeaderObject;
 import functional.pageObject.NewCompanyPageObject;
@@ -9,15 +7,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +18,6 @@ public class RegistrationFunctionTest extends InMemoryTestBase {
     private NewCompanyPageObject newCompanyPageObject;
     private CompanyListPageObject companyListPageObject;
     private HeaderObject headerObject;
-    private Connection connection;
 
     @Before
     public void setUp() throws Exception {
