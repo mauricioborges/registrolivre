@@ -3,7 +3,7 @@ describe('MyApp Tabs', function() {
 
   scope = {
     company: {
-        cnpj: '38.366.166/0001-07'
+        cnpj: '38.366.166/0001-07',
     }
   };
 
@@ -11,9 +11,9 @@ describe('MyApp Tabs', function() {
 
   beforeEach(inject(function($rootScope, $compile) {
     elm = angular.element(
-      '<div cnpj-validation class="form-group has-feedback " id="cnpj-group" >' +
+      '<div class="form-group has-feedback " id="cnpj-group" >' +
          '<label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>' +
-         '<input class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj"' +
+         '<input cnpj-validation class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj"' +
          'autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required/>' +
       '</div>');
     scope = $rootScope;

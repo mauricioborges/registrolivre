@@ -1,7 +1,9 @@
 app.directive("cnpjValidation", ["companies", "clipboard", function(companies, clipboard) {
   return {
-    link: function(scope, element, attr, ctrl) {
-      var inputText = element.find(".form-control");
+    scope: {},
+    require: 'ngModel',
+    link: function(scope, element, attr, ngModel) {
+      ngModel.$setValidity("validandoCNPJ", false);
 
       scope.showUniqueCnpjMessage = function(){
         return scope.cnpjAlreadyExists && element.hasClass("has-error");
@@ -15,26 +17,21 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         return scope.invalidCnpj && element.hasClass("has-error");
       }
 
-      inputText.on("blur", function() {
+      element.on("blur", function() {
         scope.cnpjAlreadyExists = false;
         scope.incompleteCnpj = false;
         scope.invalidCnpj = false;
-
-        element.removeClass("has-error has-success ng-invalid ng-valid");
-        inputText.removeClass("has-error has-success ng-invalid ng-valid");
-        if(!validateCNPJ(inputText.val())) {
-          inputText.addClass("has-error ng-invalid");
-          element.addClass("has-error ng-invalid");
-        };
-
-        scope.$digest();
+        ngModel.$setValidity("validandoCNPJ", false);
+        validateCNPJ(element.val());
+        scope.$apply();
       });
 
-      inputText.on("paste", clipboard.handlePaste(inputText));
+      element.on("paste", clipboard.handlePaste(element));
 
       var validateCNPJ = function(input) {
         var cnpj = input.replace(/[^\d]+/g, "");
-
+        console.log(input);
+        console.log(cnpj);
         return isCNPJStructureValid(cnpj) &&
           firstDigitValidation(cnpj) &&
           secondDigitValidation(cnpj) &&
@@ -48,12 +45,12 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
             function(response) {
                 scope.verifingCnpj = false;
                 scope.cnpjAlreadyExists = true;
-                inputText.addClass("has-error ng-invalid");
-                element.addClass('has-error ng-invalid');
+                ngModel.$setValidity("validandoCNPJ", false);
+                console.log("oi");
             }, function(response) {
                 scope.verifingCnpj = false;
-                inputText.addClass("has-success ng-valid");
-                element.addClass('has-success ng-valid');
+                ngModel.$setValidity("validandoCNPJ", true);
+                console.log("oi?");
             })
         return true;
       }
