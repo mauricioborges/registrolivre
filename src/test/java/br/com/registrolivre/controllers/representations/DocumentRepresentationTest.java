@@ -30,7 +30,7 @@ public class DocumentRepresentationTest {
     public void shouldConvertDocumentToRepresentation() throws Exception {
         Document document = new Document(company, url);
         DocumentRepresentation documentRepresentation = new DocumentRepresentation.Builder()
-                .toRepresentantion(document);
+                .toRepresentation(document);
 
         assertThat(documentRepresentation.getUrl(), is(document.getUrl()));
     }
