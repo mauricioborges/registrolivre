@@ -24,7 +24,50 @@ describe("Controller: NewCompanyController", function() {
           name: "Example Company"
         };
         controller.createCompany(company);
+        spy.should.have.been.called.once;
+    }));
 
+    it('should show success message and clear the form after create new company', inject(function(companies, messages) {
+        var showSuccess = sinon.spy();
+        var resetForm = sinon.spy();
+        var newCompany = function(company) {
+            return {
+                then: function(successCallback, errorCallback) {
+                    successCallback();
+                }
+             };
+        };
+
+        var $scope = {};
+        var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showSuccess: showSuccess }});
+        $scope.resetForm = resetForm;
+
+        var company = {
+          cnpj: "231231",
+          name: "Example Company"
+        };
+        controller.createCompany(company);
+        showSuccess.should.have.been.called.once;
+        resetForm.should.have.been.called.once;
+    }));
+
+    it('should show danger message when server any error happens', inject(function(companies, messages) {
+        var spy = sinon.spy();
+        var newCompany = function(company) {
+            return {
+                then: function(successCallback, errorCallback) {
+                    errorCallback();
+                }
+             };
+        };
+
+        var $scope = {};
+        var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showDanger: spy }});
+        var company = {
+          cnpj: "231231",
+          name: "Example Company"
+        };
+        controller.createCompany(company);
         spy.should.have.been.called.once;
     }));
 
