@@ -15,12 +15,12 @@ public class HeaderObject {
         driver.findElement(By.xpath("/html/body/div/div[1]/nav/div/div[1]/a/")).click();
     }
 
-    public void visitCadastrarEmpresa(){
-        driver.findElement(By.xpath("/html/body/div/div[1]/nav/div/div[2]/ul/li[2]/a")).click();
+    public void visitSignUpCompany(){
+        driver.findElement(By.cssSelector("div.collapse.navbar-mobile.in > ul > li:nth-child(2) > a")).click();
     }
 
-    public void visitListarEmpresa(){
-        driver.findElement(By.xpath("/html/body/div/div[1]/nav/div/div[2]/ul/li[3]/a")).click();
+    public void visitCompanyList(){
+        driver.findElement(By.cssSelector("div.collapse.navbar-mobile.in > ul > li:nth-child(3) > a")).click();
     }
 
     public String getCurrentUrl(){

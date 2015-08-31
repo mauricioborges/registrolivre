@@ -6,10 +6,15 @@ import org.openqa.selenium.support.ui.Select;
 
 public class NewCompanyPageObject {
     protected WebDriver driver;
+    private HeaderObject headerObject;
+    private CompanyListPageObject companyListPageObject;
+
 
     public NewCompanyPageObject(WebDriver driver) {
         super();
         this.driver = driver;
+        headerObject = new HeaderObject(driver);
+        companyListPageObject = new CompanyListPageObject(driver);
     }
 
     public void visit() {
@@ -61,5 +66,28 @@ public class NewCompanyPageObject {
     public String verifyAlertMessage(){
         driver.findElement(By.xpath("/html/body/div/div[2]/div/div/div/div/div[1]/div")).isDisplayed();
         return driver.findElement(By.xpath("/html/body/div/div[2]/div/div/div/div/div[1]/div/strong")).getText();
+    }
+
+    public String fillFormtoCreateANewCompany() throws InterruptedException {
+
+        headerObject.visitSignUpCompany();
+        fillInCnpj("87.806.523/0001-08");
+        fillInName("Gama Company LTDA2");
+        fillInSocialReason("Gama Company");
+        fillInAddress("Rua Avelino Nascimento");
+        fillInNumber("222");
+        fillInComplement("apart 107");
+        fillInState("MG");
+        fillInCity("Almenara");
+        fillInZipCode("39900-000");
+        submitForm();
+
+        verifyAlertMessage();
+
+
+        headerObject.visitCompanyList();
+
+        Thread.sleep(2000);
+        return companyListPageObject.getCompanyFromTable();
     }
 }
