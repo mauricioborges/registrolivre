@@ -1,5 +1,6 @@
 package functional.pageObject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CompanyListPageObject {
@@ -10,10 +11,10 @@ public class CompanyListPageObject {
         this.driver = driver;
     }
 
-    public void visit () {
-        driver.get("http://192.168.33.71:5000/#/empresas");
-    }
 
+    public String getCompanyFromTable(){
+        return driver.findElement(By.cssSelector(".text-left > span")).getText();
+    }
 
 
 
