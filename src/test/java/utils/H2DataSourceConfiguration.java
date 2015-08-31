@@ -1,4 +1,4 @@
-package functional.Tests;
+package utils;
 
 import br.com.registrolivre.utils.DatabaseEnvironmentVariables;
 import com.thoughtworks.selenium.webdriven.commands.RunScript;

@@ -1,4 +1,4 @@
-package functional.Tests;
+package utils;
 
 import br.com.registrolivre.Application;
 import org.junit.runner.RunWith;
