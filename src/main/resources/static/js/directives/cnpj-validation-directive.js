@@ -30,8 +30,6 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
 
       var validateCNPJ = function(input) {
         var cnpj = input.replace(/[^\d]+/g, "");
-        console.log(input);
-        console.log(cnpj);
         return isCNPJStructureValid(cnpj) &&
           firstDigitValidation(cnpj) &&
           secondDigitValidation(cnpj) &&
@@ -46,11 +44,9 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
                 scope.verifingCnpj = false;
                 scope.cnpjAlreadyExists = true;
                 ngModel.$setValidity("validandoCNPJ", false);
-                console.log("oi");
             }, function(response) {
                 scope.verifingCnpj = false;
                 ngModel.$setValidity("validandoCNPJ", true);
-                console.log("oi?");
             })
         return true;
       }
