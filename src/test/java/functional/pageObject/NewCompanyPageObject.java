@@ -71,7 +71,7 @@ public class NewCompanyPageObject {
     public String fillFormtoCreateANewCompany() throws InterruptedException {
 
         headerObject.visitSignUpCompany();
-        fillInCnpj("87.806.523/0001-08");
+        fillInCnpj("57.739.236/0001-61");
         fillInName("Gama Company LTDA2");
         fillInSocialReason("Gama Company");
         fillInAddress("Rua Avelino Nascimento");

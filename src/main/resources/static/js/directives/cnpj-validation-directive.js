@@ -3,7 +3,6 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
     scope: {},
     require: 'ngModel',
     link: function(scope, element, attr, ngModel) {
-      ngModel.$setValidity("validandoCNPJ", false);
 
       scope.showUniqueCnpjMessage = function(){
         return scope.cnpjAlreadyExists && element.hasClass("has-error");
@@ -17,6 +16,14 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         return scope.invalidCnpj && element.hasClass("has-error");
       }
 
+            var validateCNPJ = function(input) {
+              var cnpj = input.replace(/[^\d]+/g, "");
+              return isCNPJStructureValid(cnpj) &&
+                firstDigitValidation(cnpj) &&
+                secondDigitValidation(cnpj) &&
+                verifyUniqueCnpj(input);
+            };
+
       element.on("blur", function() {
         scope.cnpjAlreadyExists = false;
         scope.incompleteCnpj = false;
@@ -28,13 +35,6 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
 
       element.on("paste", clipboard.handlePaste(element));
 
-      var validateCNPJ = function(input) {
-        var cnpj = input.replace(/[^\d]+/g, "");
-        return isCNPJStructureValid(cnpj) &&
-          firstDigitValidation(cnpj) &&
-          secondDigitValidation(cnpj) &&
-          verifyUniqueCnpj(input);
-      };
 
       var verifyUniqueCnpj = function(cnpj) {
         scope.verifingCnpj = true;
