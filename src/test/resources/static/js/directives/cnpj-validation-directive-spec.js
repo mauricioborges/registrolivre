@@ -1,9 +1,11 @@
 describe('Directive: cnpj-validation', function() {
   var elm, scope;
 
-  company = {
-    cnpj: '38.366.166/0001-07',
-  }
+  scope = {
+    company: {
+        cnpj: '38.366.166/0001-07',
+    }
+  };
 
   beforeEach(module('registro-livre', function($provide) {
         $provide.value("companies", {
@@ -16,7 +18,7 @@ describe('Directive: cnpj-validation', function() {
   }));
 
   beforeEach(inject(function($rootScope, $compile) {
-      elm = angular.element(
+    elm = angular.element(
       '<div class="form-group has-feedback " id="cnpj-group" >' +
          '<label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>' +
          '<input cnpj-validation class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj"' +
