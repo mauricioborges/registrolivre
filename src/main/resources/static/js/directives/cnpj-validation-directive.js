@@ -3,7 +3,6 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
     scope: {},
     require: 'ngModel',
     link: function(scope, element, attr, ngModel) {
-
       scope.showUniqueCnpjMessage = function(){
         return scope.cnpjAlreadyExists && element.hasClass("has-error");
       }
@@ -34,7 +33,6 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
       });
 
       element.on("paste", clipboard.handlePaste(element));
-
 
       var verifyUniqueCnpj = function(cnpj) {
         scope.verifingCnpj = true;
