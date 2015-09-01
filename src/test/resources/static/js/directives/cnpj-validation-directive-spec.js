@@ -1,11 +1,9 @@
 describe('Directive: cnpj-validation', function() {
   var elm, scope;
 
-  scope = {
-    company: {
-        cnpj: '38.366.166/0001-07',
-    }
-  };
+  company = {
+    cnpj: '38.366.166/0001-07',
+  }
 
   beforeEach(module('registro-livre', function($provide) {
         $provide.value("companies", {
