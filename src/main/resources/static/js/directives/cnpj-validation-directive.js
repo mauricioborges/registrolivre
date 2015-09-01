@@ -73,15 +73,14 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
       };
 
       var firstDigitValidation = function(cnpj) {
-        var size = cnpj.length - 2;
-        var digits = cnpj.substring(size);
-        var valid = cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
-        scope.invalidCnpj = !valid;
-        return valid;
+        return cnpjDigitValidation(cnpj, cnpj.length - 2);
       };
 
       var secondDigitValidation = function(cnpj) {
-        var size = cnpj.length - 1;
+        return cnpjDigitValidation(cnpj, cnpj.length - 1);
+      };
+
+      var cnpjDigitValidation = function(cnpj, size) {
         var digits = cnpj.substring(size);
         var valid = cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
         scope.invalidCnpj = !valid;
