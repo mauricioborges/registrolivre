@@ -1,26 +1,17 @@
 package integration;
 
-import br.com.registrolivre.Application;
 import br.com.registrolivre.controllers.CompaniesController;
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.repository.CompanyRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import utils.H2DataSourceConfiguration;
-
+import utils.InMemoryTestBase;
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {Application.class, H2DataSourceConfiguration.class})
-@WebIntegrationTest("server.port=9000")
-public class IntegrationTest {
+public class IntegrationTest extends InMemoryTestBase {
 
     @Autowired
     CompaniesController controller;
