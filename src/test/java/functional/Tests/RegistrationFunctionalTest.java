@@ -1,23 +1,28 @@
 package functional.Tests;
 
-import functional.pageObject.CompanyListPageObject;
-import functional.pageObject.HeaderObject;
+import br.com.registrolivre.Application;
 import functional.pageObject.NewCompanyPageObject;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import utils.InMemoryTestBase;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import utils.H2DataSourceConfiguration;
 
 import java.util.concurrent.TimeUnit;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = {Application.class, H2DataSourceConfiguration.class})
+@WebIntegrationTest("server.port=9000")
+public class RegistrationFunctionalTest {
 
-public class RegistrationFunctionalTest extends InMemoryTestBase {
     static WebDriver driver;
     private NewCompanyPageObject newCompanyPageObject;
-
 
     @Before
     public void setUp() throws Exception {
@@ -26,15 +31,11 @@ public class RegistrationFunctionalTest extends InMemoryTestBase {
         driver.get("http://localhost:9000/#");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
-
     }
 
     @Test
     public void shouldCreateNewCompany() throws InterruptedException {
-
         Assert.assertEquals(newCompanyPageObject.fillFormtoCreateANewCompany(), "Gama Company LTDA2");
-
     }
 
     @After
