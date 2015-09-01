@@ -30,7 +30,7 @@ public class RegistrationFunctionalTest extends InMemoryTestBase {
 
     @After
     public void tearDown() throws Exception {
-        //driver.quit();
+        driver.quit();
     }
 }
 
