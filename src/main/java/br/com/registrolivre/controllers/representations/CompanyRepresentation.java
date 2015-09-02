@@ -53,7 +53,7 @@ public class CompanyRepresentation {
 
         public CompanyRepresentation toRepresentation(Company company) {
             Set<DocumentRepresentation> documents = company.getDocuments().stream()
-                    .map(document -> new DocumentRepresentation.Builder().toRepresentantion(document))
+                    .map(document -> new DocumentRepresentation.Builder().toRepresentation(document))
                     .collect(Collectors.toSet());
 
             return new CompanyRepresentation()

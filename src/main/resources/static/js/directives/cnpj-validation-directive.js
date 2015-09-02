@@ -1,8 +1,8 @@
 app.directive("cnpjValidation", ["companies", "clipboard", function(companies, clipboard) {
   return {
-    link: function(scope, element, attr, ctrl) {
-      var inputText = element.find(".form-control");
-
+    scope: {},
+    require: 'ngModel',
+    link: function(scope, element, attr, ngModel) {
       scope.showUniqueCnpjMessage = function(){
         return scope.cnpjAlreadyExists && element.hasClass("has-error");
       }
@@ -15,31 +15,24 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         return scope.invalidCnpj && element.hasClass("has-error");
       }
 
-      inputText.on("blur", function() {
+            var validateCNPJ = function(input) {
+              var cnpj = input.replace(/[^\d]+/g, "");
+              return isCNPJStructureValid(cnpj) &&
+                firstDigitValidation(cnpj) &&
+                secondDigitValidation(cnpj) &&
+                verifyUniqueCnpj(input);
+            };
+
+      element.on("blur", function() {
         scope.cnpjAlreadyExists = false;
         scope.incompleteCnpj = false;
         scope.invalidCnpj = false;
-
-        element.removeClass("has-error has-success ng-invalid ng-valid");
-        inputText.removeClass("has-error has-success ng-invalid ng-valid");
-        if(!validateCNPJ(inputText.val())) {
-          inputText.addClass("has-error ng-invalid");
-          element.addClass("has-error ng-invalid");
-        };
-
-        scope.$digest();
+        ngModel.$setValidity("validandoCNPJ", false);
+        validateCNPJ(element.val());
+        scope.$apply();
       });
 
-      inputText.on("paste", clipboard.handlePaste(inputText));
-
-      var validateCNPJ = function(input) {
-        var cnpj = input.replace(/[^\d]+/g, "");
-
-        return isCNPJStructureValid(cnpj) &&
-          firstDigitValidation(cnpj) &&
-          secondDigitValidation(cnpj) &&
-          verifyUniqueCnpj(input);
-      };
+      element.on("paste", clipboard.handlePaste(element));
 
       var verifyUniqueCnpj = function(cnpj) {
         scope.verifingCnpj = true;
@@ -48,12 +41,10 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
             function(response) {
                 scope.verifingCnpj = false;
                 scope.cnpjAlreadyExists = true;
-                inputText.addClass("has-error ng-invalid");
-                element.addClass('has-error ng-invalid');
+                ngModel.$setValidity("validandoCNPJ", false);
             }, function(response) {
                 scope.verifingCnpj = false;
-                inputText.addClass("has-success ng-valid");
-                element.addClass('has-success ng-valid');
+                ngModel.$setValidity("validandoCNPJ", true);
             })
         return true;
       }
@@ -80,15 +71,14 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
       };
 
       var firstDigitValidation = function(cnpj) {
-        var size = cnpj.length - 2;
-        var digits = cnpj.substring(size);
-        var valid = cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
-        scope.invalidCnpj = !valid;
-        return valid;
+        return cnpjDigitValidation(cnpj, cnpj.length - 2);
       };
 
       var secondDigitValidation = function(cnpj) {
-        var size = cnpj.length - 1;
+        return cnpjDigitValidation(cnpj, cnpj.length - 1);
+      };
+
+      var cnpjDigitValidation = function(cnpj, size) {
         var digits = cnpj.substring(size);
         var valid = cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
         scope.invalidCnpj = !valid;

@@ -38,7 +38,7 @@ public class DocumentRepresentation {
             return new DocumentRepresentation(null, null, null);
         }
 
-        public DocumentRepresentation toRepresentantion(Document document) {
+        public DocumentRepresentation toRepresentation(Document document) {
             return new DocumentRepresentation()
                     .withId(document.getId())
                     .withUrl(document.getUrl());

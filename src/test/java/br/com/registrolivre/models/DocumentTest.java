@@ -18,6 +18,7 @@ public class DocumentTest {
                 .build();
 
 
+
         DocumentRepresentation documentRepresentation = new DocumentRepresentation(companyRepresentation, "url");
         Document document = new Document.Builder().toModel(documentRepresentation);
 

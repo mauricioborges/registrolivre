@@ -24,7 +24,50 @@ describe("Controller: NewCompanyController", function() {
           name: "Example Company"
         };
         controller.createCompany(company);
+        spy.should.have.been.called.once;
+    }));
 
+    it('should show success message and clear the form after create new company', inject(function(companies, messages) {
+        var showSuccess = sinon.spy();
+        var resetForm = sinon.spy();
+        var newCompany = function(company) {
+            return {
+                then: function(successCallback, errorCallback) {
+                    successCallback();
+                }
+             };
+        };
+
+        var $scope = {};
+        var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showSuccess: showSuccess }});
+        $scope.resetForm = resetForm;
+
+        var company = {
+          cnpj: "231231",
+          name: "Example Company"
+        };
+        controller.createCompany(company);
+        showSuccess.should.have.been.called.once;
+        resetForm.should.have.been.called.once;
+    }));
+
+    it('should show danger message when server any error happens', inject(function(companies, messages) {
+        var spy = sinon.spy();
+        var newCompany = function(company) {
+            return {
+                then: function(successCallback, errorCallback) {
+                    errorCallback();
+                }
+             };
+        };
+
+        var $scope = {};
+        var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showDanger: spy }});
+        var company = {
+          cnpj: "231231",
+          name: "Example Company"
+        };
+        controller.createCompany(company);
         spy.should.have.been.called.once;
     }));
 
@@ -50,6 +93,22 @@ describe("Controller: NewCompanyController", function() {
 
         controller.loadCities();
         assert(spy.calledWith(state));
+    });
+
+    it("Should clear form and messages when hit reset form button", function() {
+        var clearMessages = sinon.spy();
+
+        var pristineMock = sinon.spy();
+        var formMock = {
+            $setPristine: pristineMock
+        }
+        var controller = $controller('NewCompanyController', { $scope: $scope, messages: { clear: clearMessages }});
+
+        controller.clearForm(formMock);
+        clearMessages.should.have.been.called.once;
+        formMock.$setPristine.should.have.been.called.once;
+        $scope.company.should.be.deep.equal({});
+
     });
 
 });

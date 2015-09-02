@@ -7,8 +7,8 @@ module.exports = function (config) {
         frameworks: ['jasmine', 'sinon-chai'],
 
         files: [
+            '../node_modules/ramda/dist/ramda.js',
             '../node_modules/angular/angular.js',
-            '../node_modules/lodash/index.js',
             '../node_modules/angular-mocks/angular-mocks.js',
             '../node_modules/angular-route/angular-route.js',
             '../node_modules/ng-table/dist/ng-table.js',

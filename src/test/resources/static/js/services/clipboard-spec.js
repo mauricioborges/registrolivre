@@ -16,7 +16,7 @@ describe("clipboard", function () {
       var event = {
         originalEvent: {
           clipboardData: {
-            getData: _.identity
+            getData: R.identity
           }
         }
       };
