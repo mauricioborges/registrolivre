@@ -70,10 +70,6 @@ task npmTest(type: Exec) {
     commandLine "npm", "test"
 }
 
-task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
-
-task jasmineTest(dependsOn: ['npmTest'])
-
 task deleteVendor(type: Delete) {
     delete 'src/main/resources/static/vendor'
 }
@@ -157,13 +153,11 @@ task checkTestCoverage << {
     def branchCoverageString = coverageString.tr.td[4].text()
 }
 
-checkTestCoverage.dependsOn jacocoTestReport
-
 test {
 
     clean.execute()
     testLogging.showStandardStreams = true
-
+    
     onOutput { descriptor, event ->
         logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
     }
@@ -179,4 +173,48 @@ test {
     }
 }
 
+task unitTest(type: Test){
+
+    clean.execute()
+    exclude 'functional/**/*'
+    exclude 'integration/*'
+
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+}
+
+task integrationTest(type: Test){
+
+    clean.execute()
+    testLogging.showStandardStreams = true
+    include 'integration/*'
+    exclude 'functional/**/*'
+    exclude 'br.com.registrolivre/*'
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+}
+
+task functionalTest(type: Test){
+    clean.execute()
+    testLogging.showStandardStreams = true
+    include 'functional/Tests/*'
+    exclude 'integration/*'
+    exclude 'br.com.registrolivre/*'
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
+
+task jasmineTest(dependsOn: ['npmTest'])
+
+checkTestCoverage.dependsOn jacocoTestReport
 test.finalizedBy checkTestCoverage
