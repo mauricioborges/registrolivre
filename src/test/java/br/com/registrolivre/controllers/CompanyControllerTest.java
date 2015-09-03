@@ -35,6 +35,7 @@ public class CompanyControllerTest {
         initMocks(this);
         controller = new CompanyController(companyService);
         Set<DocumentRepresentation> documents = new HashSet<>();
+        documents.add(new DocumentRepresentation().withUrl("http://registro-livre-tw.s3.amazonaws.com/tmp/1441143777273_Archive 5.zip"));
         companyRepresentation = new CompanyRepresentation(1L, "79.064.650/0001-50", "fancy name", "fancy name Ltda.", documents, null);
         company = new Company.Builder().toModel(companyRepresentation);
     }

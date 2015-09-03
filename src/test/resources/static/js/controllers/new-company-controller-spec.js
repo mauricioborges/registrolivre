@@ -19,7 +19,8 @@ describe("Controller: NewCompanyController", function() {
 
         var $scope = {};
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: messages});
-        var company = { 
+        $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
+        var company = {
           cnpj: "231231",
           name: "Example Company"
         };
@@ -41,7 +42,7 @@ describe("Controller: NewCompanyController", function() {
         var $scope = {};
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showSuccess: showSuccess }});
         $scope.resetForm = resetForm;
-
+        $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
         var company = {
           cnpj: "231231",
           name: "Example Company"
@@ -63,6 +64,7 @@ describe("Controller: NewCompanyController", function() {
 
         var $scope = {};
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showDanger: spy }});
+        $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
         var company = {
           cnpj: "231231",
           name: "Example Company"
@@ -103,12 +105,10 @@ describe("Controller: NewCompanyController", function() {
             $setPristine: pristineMock
         }
         var controller = $controller('NewCompanyController', { $scope: $scope, messages: { clear: clearMessages }});
-
+        $scope.evaData.clearFiles = sinon.spy();
         controller.clearForm(formMock);
         clearMessages.should.have.been.called.once;
         formMock.$setPristine.should.have.been.called.once;
         $scope.company.should.be.deep.equal({});
-
     });
-
 });

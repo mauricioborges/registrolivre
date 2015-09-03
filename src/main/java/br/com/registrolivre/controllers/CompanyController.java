@@ -1,13 +1,17 @@
 package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
+import br.com.registrolivre.controllers.representations.FileUploaderOptions;
 import br.com.registrolivre.models.Company;
+import br.com.registrolivre.services.AWSService;
 import br.com.registrolivre.services.CompanyService;
+import br.com.registrolivre.utils.AWSEnviromentVariables;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolation;
@@ -62,5 +66,34 @@ public class CompanyController {
         }
         CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company.get());
         return ResponseEntity.ok(companyRepresentation);
+    }
+
+    @RequestMapping(value = "/get-file-uploader-options", method = RequestMethod.GET)
+    public ResponseEntity getFileUploaderOptions() {
+        try {
+            FileUploaderOptions options = new FileUploaderOptions()
+                    .withBucket(AWSService.BUCKET_NAME)
+                    .withAwsRegion(AWSService.S3_REGION_NAME)
+                    .withAwsKey(System.getenv(AWSEnviromentVariables.ACCESS_KEY_ID))
+                    .withSignerUrl("/get-file-signature");
+            return ResponseEntity.ok(options);
+        } catch (Exception ex) {
+            log.error("Could not get the file uploader options: ", ex);
+            return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/get-file-signature", method = RequestMethod.GET)
+    public ResponseEntity getFileSignature(@RequestParam String to_sign) {
+        try {
+            if (StringUtils.isEmpty(to_sign)) {
+                return new ResponseEntity<>(BAD_REQUEST);
+            } else {
+                return ResponseEntity.ok(AWSService.getDataSignature(to_sign));
+            }
+        } catch (Exception ex) {
+            log.error("Could not get the file signature: ", ex);
+            return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
+        }
     }
 }

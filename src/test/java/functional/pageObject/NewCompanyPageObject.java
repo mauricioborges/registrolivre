@@ -17,6 +17,9 @@ public class NewCompanyPageObject {
         companyListPageObject = new CompanyListPageObject(driver);
     }
 
+    public void fillInArchivo(String archivo) {
+        driver.findElement(By.id("files")).sendKeys(archivo);
+    }
 
     public void fillInCnpj(String cnpj) {
         driver.findElement(By.id("cnpj")).sendKeys(cnpj);
@@ -68,6 +71,7 @@ public class NewCompanyPageObject {
     public String fillFormtoCreateANewCompany() throws InterruptedException {
 
         headerObject.visitSignUpCompany();
+        fillInArchivo("Gama_Company_LTDA2_file.pdf");
         fillInCnpj("57.739.236/0001-61");
         fillInName("Gama Company LTDA2");
         fillInSocialReason("Gama Company");

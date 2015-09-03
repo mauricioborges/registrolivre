@@ -19,6 +19,6 @@ app.factory("companies", ["$http", function($http) {
   return {
     all: all,
     newCompany: newCompany,
-    getCompanyByCnpj: getCompanyByCnpj,
+    getCompanyByCnpj: getCompanyByCnpj
   }
 }]);

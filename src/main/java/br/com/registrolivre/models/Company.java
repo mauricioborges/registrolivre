@@ -69,20 +69,26 @@ public class Company {
 
         public Company toModel(CompanyRepresentation representation) {
             Set<DocumentRepresentation> documentsRepresentation = representation.getDocuments();
-            Set<Document> documents = documentsRepresentation != null ? documentsToModel(documentsRepresentation) : new HashSet<>();
-
-            return new Company()
+            Company company = new Company()
                     .withId(representation.getId())
                     .withCnpj(representation.getCnpj())
                     .withTradeName(representation.getTradeName())
-                    .withCompanyName(representation.getCompanyName())
-                    .withDocuments(documents);
+                    .withCompanyName(representation.getCompanyName());
+            Set<Document> documents = documentsRepresentation != null
+                    ? documentsToModel(documentsRepresentation, company)
+                    : new HashSet<>();
+            documents.forEach(doc -> company.documents.add(doc));
+            return company;
         }
 
-        private Set<Document> documentsToModel(Set<DocumentRepresentation> documents) {
+        private Set<Document> documentsToModel(Set<DocumentRepresentation> documents, Company company) {
             return documents.stream()
-                    .map(document -> new Document.Builder().toModel(document))
+                    .map(document -> new Document.Builder().toModel(document).withCompany(company))
                     .collect(Collectors.toSet());
+        }
+
+        public void setAddress(Address address){
+
         }
     }
 }

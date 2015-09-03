@@ -372,3 +372,22 @@ dt {
 .has-success label {
   color: #67B168;
 }
+
+.top-buffer {
+	margin-top: 8px;
+}
+
+#progressBar {
+	vertical-align: middle;
+    height: 28px;
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+}
+#progressBar div {
+    height: 100%;
+    color: #000000;
+    text-align: right;
+    line-height: 28px; /* same as #progressBar height if we want text middle aligned */
+    width: 0;
+    background-color: #E1E1E1;
+}

@@ -1,4 +1,6 @@
-app.controller("NewCompanyController", ["$scope", "$document", "companies", "messages", "statesAndCities", function($scope, $document, companies, messages, statesAndCities) {
+app.controller("NewCompanyController", ["$scope", "$document", "companies", "messages", "statesAndCities", "fileUploaderFactory", function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory) {
+  fileUploaderFactory.setFileUploaderOptions($scope, $document);
+
   $scope.getStates = function() {
     return statesAndCities.getStates();
   };
@@ -8,6 +10,13 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   };
 
   $scope.createCompany = function(company) {
+    var file = $scope.evaData.files[0];
+    if (!file) {
+      messages.showDanger("Você deve carregar um arquivo antes de continuar.");
+    }
+    company.documents = [{
+      url: file.url
+    }];
     companies.newCompany(company).then(function(response) {
            messages.showSuccess("Empresa <strong>"+ company.tradeName +"</strong> foi cadastrada.");
            $scope.resetForm();
@@ -20,6 +29,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $scope.company = {};
     $document.find(".has-feedback").removeClass("has-error has-success");
     $document.find("#btn-submit").attr("disabled", true);
+    $scope.evaData.clearFiles();
   }
 
   $scope.clearForm = function(form) {
