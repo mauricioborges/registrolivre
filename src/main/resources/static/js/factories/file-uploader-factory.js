@@ -26,7 +26,7 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
         'x-amz-acl': 'public-read'
       },
 
-      maxSizeMB: 50,
+      maxSizeMB: 5,
 
       clearFiles: function () {
         $scope.evaData.files = [];
