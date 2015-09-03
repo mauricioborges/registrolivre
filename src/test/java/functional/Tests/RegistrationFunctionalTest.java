@@ -32,17 +32,7 @@ public class RegistrationFunctionalTest extends InMemoryTestBase {
     @Test
     public void shouldCleanForm() throws InterruptedException {
 
-        newCompanyPageObject.visit();
-        newCompanyPageObject.fillInCnpj("57.739.236/0001-61");
-        newCompanyPageObject.fillInName("Gama Company LTDA2");
-        newCompanyPageObject.fillInSocialReason("Gama Company");
-        newCompanyPageObject.fillInAddress("Rua Avelino Nascimento");
-        newCompanyPageObject.fillInNumber("222");
-        newCompanyPageObject.fillInComplement("apart 107");
-        newCompanyPageObject.fillInState("MG");
-        newCompanyPageObject.fillInCity("Almenara");
-        newCompanyPageObject.fillInZipCode("39900-000");
-        newCompanyPageObject.clearForm();
+        newCompanyPageObject.fillFormToCreateANewCompanyAndCleanFields();
         Assert.assertEquals(newCompanyPageObject.getCnpj(), "");
         Assert.assertEquals(newCompanyPageObject.getName(), "");
         Assert.assertEquals(newCompanyPageObject.getSocialReason(), "");

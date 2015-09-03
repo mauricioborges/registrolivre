@@ -17,9 +17,6 @@ public class NewCompanyPageObject {
         companyListPageObject = new CompanyListPageObject(driver);
     }
 
-    public void visit() {
-        driver.get("http://192.168.33.71:5000/#/cadastro");
-    }
 
     public void fillInCnpj(String cnpj) {
         driver.findElement(By.id("cnpj")).sendKeys(cnpj);
@@ -89,6 +86,20 @@ public class NewCompanyPageObject {
 
         Thread.sleep(2000);
         return companyListPageObject.getCompanyFromTable();
+    }
+
+    public void fillFormToCreateANewCompanyAndCleanFields(){
+        headerObject.visitSignUpCompany();
+        fillInCnpj("57.739.236/0001-61");
+        fillInName("Gama Company LTDA2");
+        fillInSocialReason("Gama Company");
+        fillInAddress("Rua Avelino Nascimento");
+        fillInNumber("222");
+        fillInComplement("apart 107");
+        fillInState("MG");
+        fillInCity("Almenara");
+        fillInZipCode("39900-000");
+        clearForm();
     }
 
     public void clearForm() {
