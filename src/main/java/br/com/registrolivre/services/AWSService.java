@@ -18,22 +18,6 @@ import static br.com.registrolivre.utils.AWSEnviromentVariables.SECRET_ACCESS_KE
 public class AWSService {
     public static final String S3_REGION_NAME = "sa-east-1";
     public static final String BUCKET_NAME = "registro-livre-tw";
-    private AmazonS3 client;
-
-    public AWSService() {
-        AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY_ID, SECRET_ACCESS_KEY);
-        this.client = new AmazonS3Client(credentials);
-    }
-
-    public AWSService(AmazonS3 client) {
-        this.client = client;
-    }
-
-    public String uploadToS3(File file) {
-        String fileName = file.getName();
-        this.client.putObject(BUCKET_NAME, fileName, file);
-        return this.client.generatePresignedUrl(BUCKET_NAME, fileName, null).toString();
-    }
 
     public static String getDataSignature(String data) throws ServletException {
         return calculateRFC2104HMAC(data, System.getenv(AWSEnviromentVariables.SECRET_ACCESS_KEY));
