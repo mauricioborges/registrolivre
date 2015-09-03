@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.InMemoryTestBase;
+
 import java.util.concurrent.TimeUnit;
 
 public class RegistrationFunctionalTest extends InMemoryTestBase {
@@ -26,6 +27,21 @@ public class RegistrationFunctionalTest extends InMemoryTestBase {
     @Test
     public void shouldCreateNewCompany() throws InterruptedException {
         Assert.assertEquals(newCompanyPageObject.fillFormtoCreateANewCompany(), "Gama Company LTDA2");
+    }
+
+    @Test
+    public void shouldCleanForm() throws InterruptedException {
+
+        newCompanyPageObject.fillFormToCreateANewCompanyAndCleanFields();
+        Assert.assertEquals(newCompanyPageObject.getCnpj(), "");
+        Assert.assertEquals(newCompanyPageObject.getName(), "");
+        Assert.assertEquals(newCompanyPageObject.getSocialReason(), "");
+        Assert.assertEquals(newCompanyPageObject.getAddress(), "");
+        Assert.assertEquals(newCompanyPageObject.getNumber(), "");
+        Assert.assertEquals(newCompanyPageObject.getComplement(), "");
+        Assert.assertEquals(newCompanyPageObject.getState(), "");
+        Assert.assertEquals(newCompanyPageObject.getCity(),"");
+        Assert.assertEquals(newCompanyPageObject.getZipCode(),"");
     }
 
     @After
