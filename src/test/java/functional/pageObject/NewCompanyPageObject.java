@@ -90,4 +90,47 @@ public class NewCompanyPageObject {
         Thread.sleep(2000);
         return companyListPageObject.getCompanyFromTable();
     }
+
+    public void clearForm() {
+        driver.findElement(By.className("btn-default")).click();
+    }
+
+    public String getCnpj() {
+        return driver.findElement(By.id("cnpj")).getAttribute("value") ;
+    }
+
+    public String getName() {
+        return driver.findElement(By.id("nomeFantasia")).getAttribute("value");
+    }
+
+    public String getSocialReason() {
+        return driver.findElement(By.id("razaoSocial")).getAttribute("value");
+    }
+
+    public String getAddress() {
+        return driver.findElement(By.id("nomeEndereco")).getAttribute("value");
+    }
+
+    public String getNumber() {
+        return driver.findElement(By.id("nomeNumero")).getAttribute("value");
+    }
+
+    public String getComplement() {
+        return driver.findElement(By.id("nomeComplemento")).getAttribute("value");
+    }
+
+    public String getState() {
+        Select dropdown = new Select(driver.findElement(By.cssSelector("#nomeUF-group select")));
+        return dropdown.getFirstSelectedOption().getText();
+    }
+
+    public String getCity() {
+        Select dropdown = new Select(driver.findElement(By.cssSelector("#nomeCidade-group select")));
+        return dropdown.getFirstSelectedOption().getText();
+    }
+
+    public String getZipCode() {
+        return driver.findElement(By.id("nomeCEP")).getAttribute("value");
+
+    }
 }
