@@ -26,15 +26,15 @@
             </div>
             <input class="form-control required" type="text" id="archivo" autocomplete="off" model-view-value="true" required disabled ng-model="evaData.files[0].name" placeholder="Upload de arquivo">
             <div class="row top-buffer">
-              <div class="col-lg-3 col-md-3 col-sm-3 text-left">
-                <label id="btnFile" for="files" class="btn btn-default btn-sm">Selecionar arquivo</label>
+              <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                <label id="btnFile" for="files" class="btn btn-default">Selecionar arquivo</label>
                 <input name="empresaArchivo" type="file" id="files" class="hidden" evaporate eva-model="evaData">
               </div>
-              <div class="col-lg-7 col-md-7 col-sm-6">
+              <div class="col-lg-6 col-md-6 col-sm-5">
                 <div id="progressBar" ng-show="evaData.files[0].startingUpload"><div></div></div>
               </div>
               <div class="col-lg-2 col-md-2 col-sm-3 text-right">
-                <a id="verificar" class="btn btn-default btn-sm" ng-show="evaData.files[0].completed" ng-href="{{evaData.files[0].url}}" target="_blank">Verificar</a>
+                <a id="verificar" class="btn btn-default" ng-show="evaData.files[0].completed" ng-href="{{evaData.files[0].url}}" target="_blank">Verificar</a>
               </div>
             </div>
             <span ng-show="evaData.fileMaxSizeLimitError"><label class="control-label">Tamanho do arquivo não suportado</label></span>

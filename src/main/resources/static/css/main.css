@@ -392,7 +392,7 @@ dt {
 
 #progressBar {
 	vertical-align: middle;
-    height: 28px;
+    height: 32px;
     border: 1px solid #000000;
     background-color: #FFFFFF;
 }
@@ -400,7 +400,7 @@ dt {
     height: 100%;
     color: #000000;
     text-align: right;
-    line-height: 28px; /* same as #progressBar height if we want text middle aligned */
+    line-height: 32px; /* same as #progressBar height if we want text middle aligned */
     width: 0;
     background-color: #E1E1E1;
 }
