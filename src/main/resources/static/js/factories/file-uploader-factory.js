@@ -36,12 +36,12 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
 
       enableFileUpload: function () {
         $scope.evaData.filesInput.prop('disabled', false);
-        $scope.evaData.fileButton.text('Carga');
+        $scope.evaData.fileButton.text('Selecionar arquivo');
       },
 
       disableFileUpload: function () {
         $scope.evaData.filesInput.prop('disabled', true);
-        $scope.evaData.fileButton.text('Cargando...');
+        $scope.evaData.fileButton.text('Uploading...');
       },
 
       animateProgressBar: function (width, progress) {
@@ -60,7 +60,7 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
       },
 
       onFileComplete: function (file) {
-        $scope.evaData.animateProgressBar($('#progressBar').width() - 1, 100);
+        $scope.evaData.animateProgressBar($('#progressBar').width(), 100);
         $scope.evaData.enableFileUpload();
       },
 

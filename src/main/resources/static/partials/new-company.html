@@ -16,22 +16,29 @@
 
           <div ng-hide="evaData.ready">Carregamentos de arquivos não estão disponíveis</div>
           <div ng-show="evaData.ready" class="form-group has-feedback" id="archivo-group">
-            <label class="control-label">Archivo <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr>&nbsp;&nbsp;(Você pode associar um único arquivo de tamanho máximo {{evaData.maxSizeMB}}MB)</label>
-            <input class="form-control required" type="text" id="archivo" autocomplete="off" model-view-value="true" required disabled ng-model="evaData.files[0].name" placeholder="Archivo no uploaded">
+            <div class="row">
+              <div class="col-lg-2 col-md-3 col-sm-3">
+                <label class="control-label">Arquivo<abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
+              </div>
+              <div class="col-lg-10 col-md-9 col-sm-9 control-description">
+                <span>(Selecionar um único arquivo PDF com tamanho máximo {{evaData.maxSizeMB}}MB)</span>
+              </div>
+            </div>
+            <input class="form-control required" type="text" id="archivo" autocomplete="off" model-view-value="true" required disabled ng-model="evaData.files[0].name" placeholder="Upload de arquivo">
             <div class="row top-buffer">
               <div class="col-lg-3 col-md-3 col-sm-3 text-left">
-                <label id="btnFile" for="files" class="btn btn-default btn-sm">Carga</label>
+                <label id="btnFile" for="files" class="btn btn-default btn-sm">Selecionar arquivo</label>
                 <input name="empresaArchivo" type="file" id="files" class="hidden" evaporate eva-model="evaData">
               </div>
-              <div class="col-lg-7 col-md-7 col-sm-6">
+              <div class="col-lg-8 col-md-8 col-sm-7">
                 <div id="progressBar" ng-show="evaData.files[0].startingUpload"><div></div></div>
               </div>
-              <div class="col-lg-2 col-md-2 col-sm-3 text-right">
+              <div class="col-lg-1 col-md-1 col-sm-2 text-right">
                 <a id="verificar" class="btn btn-default btn-sm" ng-show="evaData.files[0].completed" ng-href="{{evaData.files[0].url}}" target="_blank">Verificar</a>
               </div>
             </div>
-            <span ng-show="evaData.fileMaxSizeLimitError"><label class="control-label">O limite máximo do arquivo pode ser {{evaData.maxSizeMB}}MB</label></span>
-            <span ng-show="evaData.fileTypeNotSupportedError"><label class="control-label">Tipo de arquivo não suportado, atualmente só suporta arquivos PDF</label></span>
+            <span ng-show="evaData.fileMaxSizeLimitError"><label class="control-label">Tamanho do arquivo não suportado</label></span>
+            <span ng-show="evaData.fileTypeNotSupportedError"><label class="control-label">Formato do arquivo não suportado</label></span>
           </div>
 
           <div class="form-group has-feedback " id="cnpj-group" ng-class="{'has-error': userForm.empresaCnpj.$dirty && userForm.empresaCnpj.$invalid, 'has-success': userForm.empresaCnpj.$valid }" >

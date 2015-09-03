@@ -377,6 +377,19 @@ dt {
 	margin-top: 8px;
 }
 
+#btnFile {
+	width: 100%;
+}
+
+.control-description {
+	font-size: 20px;
+	text-align: right;
+}
+
+.control-description span {
+	font-size: 14px;
+}
+
 #progressBar {
 	vertical-align: middle;
     height: 28px;
