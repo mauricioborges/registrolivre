@@ -58,6 +58,12 @@ dependencies {
 
 }
 
+flyway{
+    url=System.getenv()['REGISTROLIVRE_DATABASE_URL']
+    user=System.getenv()['REGISTROLIVRE_DATABASE_USER']
+    password=System.getenv()['REGISTROLIVRE_DATABASE_PASSWORD']
+}
+
 task npmInstall(type: Exec) {
     commandLine "npm", "install"
 }
