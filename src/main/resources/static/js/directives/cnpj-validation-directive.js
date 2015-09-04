@@ -1,6 +1,5 @@
 app.directive("cnpjValidation", ["companies", "clipboard", function(companies, clipboard) {
   return {
-    scope: {},
     require: 'ngModel',
     link: function(scope, element, attr, ngModel) {
       scope.showUniqueCnpjMessage = function(){
@@ -15,18 +14,16 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         return scope.invalidCnpj && element.hasClass("has-error");
       }
 
-            var validateCNPJ = function(input) {
-              var cnpj = input.replace(/[^\d]+/g, "");
-              return isCNPJStructureValid(cnpj) &&
-                firstDigitValidation(cnpj) &&
-                secondDigitValidation(cnpj) &&
-                verifyUniqueCnpj(input);
-            };
+      var validateCNPJ = function(input) {
+        var cnpj = input.replace(/[^\d]+/g, "");
+        return isCNPJStructureValid(cnpj) &&
+          firstDigitValidation(cnpj) &&
+          secondDigitValidation(cnpj) &&
+          verifyUniqueCnpj(input);
+      };
 
       element.on("blur", function() {
-        scope.cnpjAlreadyExists = false;
-        scope.incompleteCnpj = false;
-        scope.invalidCnpj = false;
+        scope.$emit('verifyingCnpj');
         ngModel.$setValidity("validandoCNPJ", false);
         validateCNPJ(element.val());
         scope.$apply();
@@ -41,9 +38,11 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
             function(response) {
                 scope.verifingCnpj = false;
                 scope.cnpjAlreadyExists = true;
+                scope.$emit('duplicatedCnpj');
                 ngModel.$setValidity("validandoCNPJ", false);
             }, function(response) {
                 scope.verifingCnpj = false;
+                scope.$emit('validCnpj');
                 ngModel.$setValidity("validandoCNPJ", true);
             })
         return true;
@@ -52,10 +51,12 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
       var isCNPJStructureValid = function(cnpj) {
         if (cnpj.length != 14) {
           scope.incompleteCnpj = true;
+          scope.$emit('incompleteCnpj');
           return false;
         }
         if (areAllCharsTheSame(cnpj)){
           scope.invalidCnpj = true;
+          scope.$emit('invalidCnpj');
           return false;
         }
         return true;

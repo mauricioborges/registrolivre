@@ -6,7 +6,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   };
 
   $scope.loadCities = function () {
-    return $scope.company && statesAndCities.getCitiesByState($scope.company.UF);
+    return $scope.company && statesAndCities.getCitiesByState($scope.company.state);
   };
 
   $scope.createCompany = function(company) {
@@ -31,6 +31,38 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $document.find("#btn-submit").attr("disabled", true);
     $scope.evaData.clearFiles();
   }
+
+  $scope.$on('verifyingCnpj', function() {
+    console.log('verifyingCnpj');
+    $scope.verifyingCnpj = true;
+    $scope.isCnpjDuplicated = false;
+    $scope.isCnpjIncomplete = false;
+    $scope.isCnpjInvalid = false;
+  });
+
+  $scope.$on('duplicatedCnpj', function() {
+    console.log('duplicatedCnpj');
+    $scope.verifyingCnpj = false;
+    $scope.isCnpjDuplicated = true;
+    $scope.isCnpjInvalid = false;
+    $scope.isCnpjIncomplete = false;
+  });
+
+  $scope.$on('incompleteCnpj', function(){
+    console.log('incompleteCnpj');
+    $scope.isCnpjIncomplete = true;
+    $scope.verifyingCnpj = false;
+    $scope.isCnpjDuplicated = false;
+    $scope.isCnpjInvalid = false;
+  });
+
+  $scope.$on('invalidCnpj', function() {
+    console.log('invalidCnpj');
+    $scope.isCnpjInvalid = true;
+    $scope.verifyingCnpj = false;
+    $scope.isCnpjDuplicated = false;
+    $scope.isCnpjIncomplete = false;
+  });
 
   $scope.clearForm = function(form) {
     form.$setPristine();

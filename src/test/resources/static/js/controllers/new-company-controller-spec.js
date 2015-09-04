@@ -17,7 +17,6 @@ describe("Controller: NewCompanyController", function() {
              };
         };
 
-        var $scope = {};
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: messages});
         $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
         var company = {
@@ -39,7 +38,6 @@ describe("Controller: NewCompanyController", function() {
              };
         };
 
-        var $scope = {};
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showSuccess: showSuccess }});
         $scope.resetForm = resetForm;
         $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
@@ -62,20 +60,18 @@ describe("Controller: NewCompanyController", function() {
              };
         };
 
-        var $scope = {};
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showDanger: spy }});
         $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
         var company = {
           cnpj: "231231",
-          name: "Example Company"
         };
+          name: "Example Company"
         controller.createCompany(company);
         spy.should.have.been.called.once;
     }));
 
     it('Should get states from states-and-cities service', function(){
         var spy = sinon.spy();
-        var $scope = {};
         var controller = $controller('NewCompanyController', { $scope: $scope, statesAndCities: { getStates: spy }});
 
         controller.getStates();
@@ -86,10 +82,8 @@ describe("Controller: NewCompanyController", function() {
     it('Should get cities from states-and-cities service', function() {
         var spy = sinon.spy();
         var state =  "RS";
-        var $scope = {
-            company: {
-                UF: state
-            }
+        $scope.company = {
+            state: state
         };
         var controller = $controller('NewCompanyController', { $scope: $scope, statesAndCities: { getCitiesByState: spy }});
 
@@ -111,4 +105,14 @@ describe("Controller: NewCompanyController", function() {
         formMock.$setPristine.should.have.been.called.once;
         $scope.company.should.be.deep.equal({});
     });
+
+    it("Should detect when CNPJ is invalid", function() {
+        var controller = $controller('NewCompanyController', { $scope: $scope });
+        $rootScope.$broadcast('invalidCnpj');
+        expect($scope.isCnpjInvalid).to.be.true;
+        expect($scope.isCnpjIncomplete).to.be.false;
+        expect($scope.isCnpjDuplicated).to.be.false;
+        expect($scope.verifyingCnpj).to.be.false;
+    });
+
 });

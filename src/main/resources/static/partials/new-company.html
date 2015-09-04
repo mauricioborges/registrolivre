@@ -45,10 +45,10 @@
             <label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
             <input cnpj-validation class="form-control required" ng-model="company.cnpj" type="text" name="empresaCnpj" id="cnpj"
                    autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required>
-              <span ng-show="verifingCnpj" class="form-control-feedback" aria-hidden="true"><img src="images/loader.svg" alt=""/></span>
-              <span ng-show="showUniqueCnpjMessage()"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
-              <span ng-show="showIncompleteCnpjMessage()"><label class=" control-label">Número incompleto</label></span>
-              <span ng-show="showInvalidCnpjMessage()"><label class=" control-label">Número inválido</label></span>
+              <span ng-show="verifyingCnpj" class="form-control-feedback" aria-hidden="true"><img src="images/loader.svg" alt=""/></span>
+              <span ng-show="isCnpjDuplicated"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
+              <span ng-show="isCnpjIncomplete"><label class=" control-label">Número incompleto</label></span>
+              <span ng-show="isCnpjInvalid"><label class=" control-label">Número inválido</label></span>
           </div>
 
           <div class="form-group has-feedback" id="nomeFantasia-group" ng-class="{'has-error': userForm.nomeFantasia.$dirty && userForm.nomeFantasia.$invalid, 'has-success': userForm.nomeFantasia.$valid }">
@@ -65,7 +65,7 @@
 
           <div class="form-group has-feedback" id="nomeEndereco-group">
             <label class="control-label">Endereço </label>
-            <input class="form-control" ng-model="company.Address" type="text" name="nomeEndereco" id="nomeEndereco"
+            <input class="form-control" ng-model="company.streetName" type="text" name="nomeEndereco" id="nomeEndereco"
                      value="" placeholder="ex: Av. Ipiranga">
             <span class="glyphicon form-control-feedback"></span>
           </div>
@@ -74,7 +74,7 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="nomeNumero-group">
                 <label class="control-label">Número </label>
-                <input class="form-control" ng-model="company.Number" type="number" name="empresa.nomeNumero" id="nomeNumero"
+                <input class="form-control" ng-model="company.number" type="number" name="empresa.nomeNumero" id="nomeNumero"
                        value="" placeholder="" maxlength="9" autocomplete="off"  model-view-value="true" />
                 <span class="glyphicon form-control-feedback"></span>
               </div>
@@ -83,7 +83,7 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="nomeComplemento-group">
                 <label class="control-label">Complemento</label>
-                <input class="form-control" ng-model="company.Complement" type="text" name="empresa.nomeComplemento" id="nomeComplemento"
+                <input class="form-control" ng-model="company.complement" type="text" name="empresa.nomeComplemento" id="nomeComplemento"
                        value="" placeholder="ex: 201">
                 <span class="glyphicon form-control-feedback"></span>
               </div>
@@ -94,7 +94,7 @@
             <div class="col-lg-2 col-md-2">
               <div class="form-group has-feedback" id="nomeUF-group">
                 <label class="control-label">UF </label>
-                <select class="form-control" ng-model="company.UF" size="1" lang="trocaEstado()">
+                <select class="form-control" ng-model="company.state" size="1" lang="trocaEstado()">
                     <option ng-repeat="state in getStates()" ng-value="{{state[0]}}"> {{ state[0] }} </option>
                 </select>
                     <span class="glyphicon form-control-feedback"></span>
@@ -104,7 +104,7 @@
             <div class="col-lg-7 col-md-7">
               <div class="form-group has-feedback" id="nomeCidade-group">
                 <label class="control-label">Cidade </label>
-                <select class="form-control" ng-model="company.Cidade" size="1">
+                <select class="form-control" ng-model="company.city" size="1">
                     <option ng-repeat="city in loadCities()" value="{{city}}"> {{ city }} </option>
                 </select>
                 <span class="glyphicon form-control-feedback"></span>
@@ -114,7 +114,7 @@
             <div class="col-lg-3 col-md-3">
               <div class="form-group has-feedback" id="nomeCEP-group">
                 <label class="control-label">CEP</label>
-                <input class="form-control"  ng-model="company.CEP" type="text" name="empresa.nomeCEP" id="nomeCEP"
+                <input class="form-control"  ng-model="company.cep" type="text" name="empresa.nomeCEP" id="nomeCEP"
                        value="" maxlength="9" autocomplete="off" ui-mask="?99999-999" model-view-value="true">
                 <span class="glyphicon form-control-feedback"></span>
               </div>
