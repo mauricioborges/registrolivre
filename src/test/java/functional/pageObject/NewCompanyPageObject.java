@@ -1,8 +1,14 @@
 package functional.pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.net.URISyntaxException;
 
 public class NewCompanyPageObject {
     protected WebDriver driver;
@@ -17,8 +23,12 @@ public class NewCompanyPageObject {
         companyListPageObject = new CompanyListPageObject(driver);
     }
 
-    public void fillInArchivo(String archivo) {
-        driver.findElement(By.id("files")).sendKeys(archivo);
+    public void fillInArquivo(String arquivo) throws URISyntaxException {
+        ((JavascriptExecutor) driver).executeScript("document.getElementById('files').className = document.getElementById('files').className.replace(/\\bhidden\\b/,'');");
+        File file = new File(NewCompanyPageObject.class.getClassLoader().getResource(arquivo).toURI());
+        driver.findElement(By.id("files")).sendKeys(file.getAbsolutePath());
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("verificar")));
     }
 
     public void fillInCnpj(String cnpj) {
@@ -68,10 +78,10 @@ public class NewCompanyPageObject {
         return driver.findElement(By.xpath("/html/body/div/div[2]/div/div/div/div/div[1]/div/strong")).getText();
     }
 
-    public String fillFormtoCreateANewCompany() throws InterruptedException {
+    public String fillFormtoCreateANewCompany() throws InterruptedException, URISyntaxException {
 
         headerObject.visitSignUpCompany();
-        fillInArchivo("Gama_Company_LTDA2_file.pdf");
+        fillInArquivo("file_uploader_functional_test.pdf");
         fillInCnpj("57.739.236/0001-61");
         fillInName("Gama Company LTDA2");
         fillInSocialReason("Gama Company");
@@ -85,15 +95,15 @@ public class NewCompanyPageObject {
 
         verifyAlertMessage();
 
-
         headerObject.visitCompanyList();
 
         Thread.sleep(2000);
         return companyListPageObject.getCompanyFromTable();
     }
 
-    public void fillFormToCreateANewCompanyAndCleanFields(){
+    public void fillFormToCreateANewCompanyAndCleanFields() throws URISyntaxException {
         headerObject.visitSignUpCompany();
+        fillInArquivo("file_uploader_functional_test.pdf");
         fillInCnpj("57.739.236/0001-61");
         fillInName("Gama Company LTDA2");
         fillInSocialReason("Gama Company");
@@ -107,7 +117,11 @@ public class NewCompanyPageObject {
     }
 
     public void clearForm() {
-        driver.findElement(By.className("btn-default")).click();
+        driver.findElement(By.id("btn-clear")).click();
+    }
+
+    public String getFile() {
+        return driver.findElement(By.id("arquivo")).getAttribute("value") ;
     }
 
     public String getCnpj() {
