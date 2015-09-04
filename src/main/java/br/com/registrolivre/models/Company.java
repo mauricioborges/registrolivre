@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Wither
 @EqualsAndHashCode(exclude = "documents")
 @ToString(exclude = "documents")
-public class Company {
+public class Company implements Serializable {
 
     public Company(String cnpj, String tradeName) {
         this.cnpj = cnpj;
@@ -48,6 +49,25 @@ public class Company {
     @Column(name = "company_name")
     String companyName;
 
+    @Column(name = "street_name")
+    String streetName;
+
+    @Column(name = "number")
+    String number;
+
+    @Column(name = "complement")
+    String complement;
+
+    @Column(name = "state")
+    String state;
+
+    @Column(name = "city")
+    String city;
+
+    @Column(name = "cep")
+    String cep;
+
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
     Set<Document> documents = new HashSet<>();
 
@@ -61,7 +81,14 @@ public class Company {
         String cnpj;
         String tradeName;
         String companyName;
+        String streetName;
+        String number;
+        String complement;
+        String state;
+        String city;
+        String cep;
         Set<Document> documents;
+
 
         public Company build() {
             return new Company();
@@ -73,11 +100,19 @@ public class Company {
                     .withId(representation.getId())
                     .withCnpj(representation.getCnpj())
                     .withTradeName(representation.getTradeName())
-                    .withCompanyName(representation.getCompanyName());
+                    .withCompanyName(representation.getCompanyName())
+                    .withStreetName(representation.getStreetName())
+                    .withNumber(representation.getNumber())
+                    .withComplement(representation.getComplement())
+                    .withState(representation.getState())
+                    .withCity(representation.getCity())
+                    .withCep(representation.getCep());
+
             Set<Document> documents = documentsRepresentation != null
                     ? documentsToModel(documentsRepresentation, company)
                     : new HashSet<>();
             documents.forEach(doc -> company.documents.add(doc));
+
             return company;
         }
 
@@ -85,10 +120,6 @@ public class Company {
             return documents.stream()
                     .map(document -> new Document.Builder().toModel(document).withCompany(company))
                     .collect(Collectors.toSet());
-        }
-
-        public void setAddress(Address address){
-
         }
     }
 }
