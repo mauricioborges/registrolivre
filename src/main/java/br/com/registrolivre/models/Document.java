@@ -48,7 +48,7 @@ public class Document {
         String url;
 
         public Document build() {
-            return new Document(null, null, null);
+            return new Document();
         }
 
         public Document toModel(DocumentRepresentation representation) {

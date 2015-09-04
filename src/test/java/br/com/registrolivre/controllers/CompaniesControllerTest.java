@@ -1,9 +1,7 @@
 package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
-import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import br.com.registrolivre.models.Company;
-import br.com.registrolivre.models.Document;
 import br.com.registrolivre.services.CompanyService;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,11 +38,9 @@ public class CompaniesControllerTest {
     public void shouldReturnAllRegisteredCompanies() {
         when(companyService.findAll()).thenReturn(registeredCompanies());
         ResponseEntity<Iterable<CompanyRepresentation>> companies = controller.getCompanies();
-
         List<CompanyRepresentation> expectedCompanies = new ArrayList<>();
-        Set<DocumentRepresentation> emptyDocuments = new HashSet<>();
-        expectedCompanies.add(new CompanyRepresentation(1L, "first cnpj", "first tradeName", "first tradeName Ltda.", emptyDocuments, null));
-        expectedCompanies.add(new CompanyRepresentation(2L, "second cnpj", "second tradeName", "second tradeName Ltda.", emptyDocuments, null));
+        expectedCompanies.add(new CompanyRepresentation("first cnpj", "first tradeName"));
+        expectedCompanies.add(new CompanyRepresentation("second cnpj", "second tradeName"));
 
         assertThat(asList(companies.getBody()).size(), is(asList(expectedCompanies).size()));
         assertThat(companies.getStatusCode(), is(HttpStatus.OK));
@@ -60,9 +56,8 @@ public class CompaniesControllerTest {
     }
 
     private Set<Company> registeredCompanies() {
-        Set<Document> emptyDocuments = new HashSet<>();
-        Company firstCompany = new Company(1L, "first cnpj", "first tradeName", "first tradeName Ltda.", emptyDocuments);
-        Company secondCompany = new Company(2L, "second cnpj", "second tradeName", "second tradeName Ltda.", emptyDocuments);
+        Company firstCompany = new Company("first cnpj", "first tradeName");
+        Company secondCompany = new Company("second cnpj", "second tradeName");
         Set<Company> companies = new HashSet<>();
         companies.add(firstCompany);
         companies.add(secondCompany);
