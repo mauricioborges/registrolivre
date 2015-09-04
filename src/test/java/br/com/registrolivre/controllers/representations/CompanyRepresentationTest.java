@@ -10,6 +10,7 @@ public class CompanyRepresentationTest {
 
     private static final String CNPJ = "1234567";
     private static final String TRADE_NAME = "fancy name";
+    public static final String NUMBER = "NUMBER";
 
     @Test
     public void shouldConvertCompanyToRepresentation() throws Exception {

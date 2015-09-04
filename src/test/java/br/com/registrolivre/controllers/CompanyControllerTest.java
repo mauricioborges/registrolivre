@@ -1,7 +1,6 @@
 package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
-import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.services.CompanyService;
 import org.junit.Before;
@@ -9,9 +8,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -34,9 +30,7 @@ public class CompanyControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         controller = new CompanyController(companyService);
-        Set<DocumentRepresentation> documents = new HashSet<>();
-        documents.add(new DocumentRepresentation().withUrl("http://registro-livre-tw.s3.amazonaws.com/tmp/1441143777273_Archive 5.zip"));
-        companyRepresentation = new CompanyRepresentation(1L, "79.064.650/0001-50", "fancy name", "fancy name Ltda.", documents, null);
+        companyRepresentation = new CompanyRepresentation("79.064.650/0001-50", "fancy name");
         company = new Company.Builder().toModel(companyRepresentation);
     }
 
@@ -69,8 +63,7 @@ public class CompanyControllerTest {
 
     @Test
     public void shouldGetExistingCompanyByCNPJ() throws Exception {
-        HashSet<DocumentRepresentation> documents = new HashSet<>();
-        CompanyRepresentation company = new CompanyRepresentation(1L, "cnpj", "company", "company inc.", documents, null);
+        CompanyRepresentation company = new CompanyRepresentation("cnpj", "company");
         when(companyService.getByCnpj("cnpj")).thenReturn(new Company.Builder().toModel(company));
         ResponseEntity response = controller.getCompanyByCnpj("cnpj");
         assertThat(response.getBody(), is(company));
