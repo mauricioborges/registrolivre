@@ -89,7 +89,7 @@ public class CompanyController {
             if (StringUtils.isEmpty(to_sign)) {
                 return new ResponseEntity<>(BAD_REQUEST);
             } else {
-                return ResponseEntity.ok(AWSService.getDataSignature(to_sign));
+                return ResponseEntity.ok(AWSService.calculateRFC2104HMAC(to_sign, System.getenv(AWSEnviromentVariables.SECRET_ACCESS_KEY)));
             }
         } catch (Exception ex) {
             log.error("Could not get the file signature: ", ex);
