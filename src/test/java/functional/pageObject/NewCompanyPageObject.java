@@ -27,7 +27,7 @@ public class NewCompanyPageObject {
         ((JavascriptExecutor) driver).executeScript("document.getElementById('files').className = document.getElementById('files').className.replace(/\\bhidden\\b/,'');");
         File file = new File(NewCompanyPageObject.class.getClassLoader().getResource(arquivo).toURI());
         driver.findElement(By.id("files")).sendKeys(file.getAbsolutePath());
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 4);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("verificar")));
     }
 
