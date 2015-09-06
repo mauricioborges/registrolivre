@@ -19,7 +19,7 @@ public class DocumentTest {
 
 
 
-        DocumentRepresentation documentRepresentation = new DocumentRepresentation(companyRepresentation, "url");
+        DocumentRepresentation documentRepresentation = new DocumentRepresentation(companyRepresentation, "url", null);
         Document document = new Document.Builder().toModel(documentRepresentation);
 
         assertThat(document.getUrl(), is(documentRepresentation.getUrl()));

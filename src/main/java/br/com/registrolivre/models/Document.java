@@ -7,6 +7,8 @@ import lombok.experimental.Wither;
 
 import javax.persistence.*;
 
+import java.util.Date;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @AllArgsConstructor
@@ -20,9 +22,10 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString(exclude = "company")
 public class Document {
 
-    public Document(Company company, String url) {
+    public Document(Company company, String url, Date issue_date) {
         this.company = company;
         this.url = url;
+        this.issue_date = issue_date;
     }
 
     @Id
@@ -37,6 +40,9 @@ public class Document {
     @Column(name = "url")
     String url;
 
+    @Column(name = "issue_date")
+    Date issue_date;
+
     @NoArgsConstructor
     @AllArgsConstructor
     @Value
@@ -46,6 +52,7 @@ public class Document {
         Long id;
         Company company;
         String url;
+        Date issue_date;
 
         public Document build() {
             return new Document();
@@ -54,7 +61,8 @@ public class Document {
         public Document toModel(DocumentRepresentation representation) {
             return new Document()
                     .withId(representation.getId())
-                    .withUrl(representation.getUrl());
+                    .withUrl(representation.getUrl())
+                    .withIssue_date(representation.getIssue_date());
         }
     }
 }

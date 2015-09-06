@@ -5,6 +5,8 @@ import br.com.registrolivre.models.Document;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -12,6 +14,7 @@ public class DocumentRepresentationTest {
     private CompanyRepresentation companyRepresentation;
     private Company company;
     private String url = "url";
+    private Date issue_date = null;
 
     @Before
     public void setUp() {
@@ -28,7 +31,7 @@ public class DocumentRepresentationTest {
 
     @Test
     public void shouldConvertDocumentToRepresentation() throws Exception {
-        Document document = new Document(company, url);
+        Document document = new Document(company, url, issue_date);
         DocumentRepresentation documentRepresentation = new DocumentRepresentation.Builder()
                 .toRepresentation(document);
 
