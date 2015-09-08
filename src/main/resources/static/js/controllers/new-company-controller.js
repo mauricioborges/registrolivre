@@ -33,7 +33,6 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   }
 
   $scope.$on('verifyingCnpj', function() {
-    console.log('verifyingCnpj');
     $scope.verifyingCnpj = true;
     $scope.isCnpjDuplicated = false;
     $scope.isCnpjIncomplete = false;
@@ -41,7 +40,6 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   });
 
   $scope.$on('duplicatedCnpj', function() {
-    console.log('duplicatedCnpj');
     $scope.verifyingCnpj = false;
     $scope.isCnpjDuplicated = true;
     $scope.isCnpjInvalid = false;
@@ -49,7 +47,6 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   });
 
   $scope.$on('incompleteCnpj', function(){
-    console.log('incompleteCnpj');
     $scope.isCnpjIncomplete = true;
     $scope.verifyingCnpj = false;
     $scope.isCnpjDuplicated = false;
@@ -57,11 +54,17 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   });
 
   $scope.$on('invalidCnpj', function() {
-    console.log('invalidCnpj');
     $scope.isCnpjInvalid = true;
     $scope.verifyingCnpj = false;
     $scope.isCnpjDuplicated = false;
     $scope.isCnpjIncomplete = false;
+  });
+
+  $scope.$on('validCnpj', function() {
+      $scope.isCnpjInvalid = false;
+      $scope.verifyingCnpj = false;
+      $scope.isCnpjDuplicated = false;
+      $scope.isCnpjIncomplete = false;
   });
 
   $scope.clearForm = function(form) {
