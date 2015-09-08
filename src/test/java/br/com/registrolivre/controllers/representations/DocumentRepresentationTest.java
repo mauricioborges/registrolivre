@@ -5,7 +5,7 @@ import br.com.registrolivre.models.Document;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -14,7 +14,7 @@ public class DocumentRepresentationTest {
     private CompanyRepresentation companyRepresentation;
     private Company company;
     private String url = "url";
-    private Date issue_date = null;
+    private LocalDate issue_date = LocalDate.of(2010,9,10);
 
     @Before
     public void setUp() {

@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
-import java.util.Date;
 
+import java.time.LocalDate;
 
 import static lombok.AccessLevel.*;
 
@@ -19,9 +19,9 @@ public class DocumentRepresentation {
     @JsonFormat Long id;
     @JsonFormat CompanyRepresentation company;
     @JsonFormat String url;
-    @JsonFormat Date issue_date;
+    @JsonFormat LocalDate issue_date;
 
-    public DocumentRepresentation(CompanyRepresentation company, String url, Date issue_date) {
+    public DocumentRepresentation(CompanyRepresentation company, String url, LocalDate issue_date) {
         this.company = company;
         this.url = url;
         this.issue_date = issue_date;
@@ -37,7 +37,7 @@ public class DocumentRepresentation {
         Long id;
         CompanyRepresentation company;
         String url;
-        Date issue_date;
+        LocalDate issue_date;
 
         public DocumentRepresentation build() {
             return new DocumentRepresentation(null, null, null, null);

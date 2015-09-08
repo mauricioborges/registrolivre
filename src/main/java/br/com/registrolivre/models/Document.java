@@ -7,7 +7,7 @@ import lombok.experimental.Wither;
 
 import javax.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -22,7 +22,7 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString(exclude = "company")
 public class Document {
 
-    public Document(Company company, String url, Date issue_date) {
+    public Document(Company company, String url, LocalDate issue_date) {
         this.company = company;
         this.url = url;
         this.issue_date = issue_date;
@@ -41,7 +41,7 @@ public class Document {
     String url;
 
     @Column(name = "issue_date")
-    Date issue_date;
+    LocalDate issue_date;
 
     @NoArgsConstructor
     @AllArgsConstructor
@@ -52,7 +52,7 @@ public class Document {
         Long id;
         Company company;
         String url;
-        Date issue_date;
+        LocalDate issue_date;
 
         public Document build() {
             return new Document();
