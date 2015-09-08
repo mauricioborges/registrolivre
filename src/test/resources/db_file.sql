@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS companies (
 CREATE TABLE IF NOT EXISTS documents (
     id   SERIAL PRIMARY KEY,
     company_id INT NOT NULL REFERENCES companies(id),
-    url VARCHAR(500)
+    url VARCHAR(500),
+    issue_date DATE
 );
 
 INSERT INTO companies VALUES (1, '40.573.872/0001-63', 'Marcenaria Tio Zé', 'Marcenaria LTDA Brasil', null, null, null, null, null, null);
