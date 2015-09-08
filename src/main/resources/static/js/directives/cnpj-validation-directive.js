@@ -83,6 +83,9 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         var digits = cnpj.substring(size);
         var valid = cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
         scope.invalidCnpj = !valid;
+        if(!valid) {
+          scope.$emit('invalidCnpj');
+        }
         return valid;
       };
 
