@@ -1,0 +1,1 @@
+ALTER TABLE companies ADD COLUMN opening_date DATE DEFAULT NULL;

@@ -69,6 +69,10 @@ public class NewCompanyPageObject {
         driver.findElement(By.id("nomeCEP")).sendKeys(zipCode);
     }
 
+    public void fillInOpeningDate(String openingDate) {
+        driver.findElement(By.id("nomeDataDeAbertura")).sendKeys(openingDate);
+    }
+
     public void submitForm() {
         driver.findElement(By.id("btn-submit")).click();
     }
@@ -91,6 +95,7 @@ public class NewCompanyPageObject {
         fillInState("MG");
         fillInCity("Almenara");
         fillInZipCode("39900-000");
+        fillInOpeningDate("09/03/2009");
         submitForm();
 
         verifyAlertMessage();
@@ -113,6 +118,7 @@ public class NewCompanyPageObject {
         fillInState("MG");
         fillInCity("Almenara");
         fillInZipCode("39900-000");
+        fillInOpeningDate("09/03/2009");
         clearForm();
     }
 
@@ -160,6 +166,9 @@ public class NewCompanyPageObject {
 
     public String getZipCode() {
         return driver.findElement(By.id("nomeCEP")).getAttribute("value");
+    }
 
+    public String getOpeningDate() {
+        return driver.findElement(By.id("nomeDataDeAbertura")).getAttribute("value");
     }
 }

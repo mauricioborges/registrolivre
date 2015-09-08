@@ -44,6 +44,7 @@ public class RegistrationFunctionalTest extends InMemoryTestBase {
         Assert.assertEquals("", newCompanyPageObject.getState());
         Assert.assertEquals("", newCompanyPageObject.getCity());
         Assert.assertEquals("", newCompanyPageObject.getZipCode());
+        Assert.assertEquals("", newCompanyPageObject.getOpeningDate());
     }
 
     @After

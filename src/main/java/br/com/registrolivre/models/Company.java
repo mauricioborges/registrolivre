@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -67,6 +68,8 @@ public class Company implements Serializable {
     @Column(name = "cep")
     String cep;
 
+    @Column(name = "opening_date")
+    LocalDate openingDate;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
     Set<Document> documents = new HashSet<>();
@@ -87,8 +90,8 @@ public class Company implements Serializable {
         String state;
         String city;
         String cep;
+        LocalDate openingDate;
         Set<Document> documents;
-
 
         public Company build() {
             return new Company();
@@ -106,8 +109,8 @@ public class Company implements Serializable {
                     .withComplement(representation.getComplement())
                     .withState(representation.getState())
                     .withCity(representation.getCity())
-                    .withCep(representation.getCep());
-
+                    .withCep(representation.getCep())
+                    .withOpeningDate(representation.getOpeningDate());
             Set<Document> documents = documentsRepresentation != null
                     ? documentsToModel(documentsRepresentation, company)
                     : new HashSet<>();

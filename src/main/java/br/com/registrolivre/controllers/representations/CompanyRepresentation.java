@@ -10,6 +10,7 @@ import lombok.experimental.Wither;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,7 @@ public class CompanyRepresentation {
     @JsonFormat String state;
     @JsonFormat String city;
     @JsonFormat String cep;
+    @JsonFormat LocalDate openingDate;
     @JsonFormat Set<DocumentRepresentation> documents;
     @JsonFormat MultipartFile file;
 
@@ -41,15 +43,12 @@ public class CompanyRepresentation {
         this.documents = new HashSet<>();
     }
 
-
-
     @NoArgsConstructor
     @AllArgsConstructor
     @Value
     @Wither
     @FieldDefaults(level = PRIVATE)
     public static class Builder {
-
         Long id;
         String cnpj;
         String tradeName;
@@ -60,6 +59,7 @@ public class CompanyRepresentation {
         String state;
         String city;
         String cep;
+        LocalDate openingDate;
         Set<DocumentRepresentation> documents;
         MultipartFile file;
 
@@ -83,7 +83,9 @@ public class CompanyRepresentation {
                     .withComplement(company.getComplement())
                     .withState(company.getState())
                     .withCity(company.getCity())
-                    .withCep(company.getCep());
+                    .withCep(company.getCep())
+                    .withOpeningDate(company.getOpeningDate());
+
         }
     }
 }
