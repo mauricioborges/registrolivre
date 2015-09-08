@@ -190,6 +190,12 @@ task unitTest(type: Test){
         events "passed", "skipped", "failed"
     }
 
+    jacoco {
+        append = false
+        destinationFile = file("build/reports/jacoco/jacocoTest.exec")
+        classDumpFile = file("build/reports/jacoco/classpathdumps")
+    }
+
 }
 
 task integrationTest(type: Test){
@@ -224,3 +230,4 @@ task jasmineTest(dependsOn: ['npmTest'])
 
 checkTestCoverage.dependsOn jacocoTestReport
 test.finalizedBy checkTestCoverage
+unitTest.finalizedBy checkTestCoverage
