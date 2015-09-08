@@ -109,28 +109,20 @@ describe("Controller: NewCompanyController", function() {
     it("Should detect when CNPJ is invalid", function() {
         var controller = $controller('NewCompanyController', { $scope: $scope });
         $rootScope.$broadcast('invalidCnpj');
-        expect($scope.isCnpjInvalid).to.be.true;
-        expect($scope.isCnpjIncomplete).to.be.false;
-        expect($scope.isCnpjDuplicated).to.be.false;
-        expect($scope.verifyingCnpj).to.be.false;
+        expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.INVALID);
     });
 
     it("Should detect when CNPJ is incomplete", function() {
         var controller = $controller('NewCompanyController', { $scope: $scope });
         $rootScope.$broadcast('incompleteCnpj');
-        expect($scope.isCnpjInvalid).to.be.false;
-        expect($scope.isCnpjIncomplete).to.be.true;
-        expect($scope.isCnpjDuplicated).to.be.false;
-        expect($scope.verifyingCnpj).to.be.false;
+        expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.INCOMPLETE);
     });
 
     it("Should detect when CNPJ is valid", function() {
         var controller = $controller('NewCompanyController', { $scope: $scope });
         $rootScope.$broadcast('validCnpj');
-        expect($scope.isCnpjInvalid).to.be.false;
-        expect($scope.isCnpjIncomplete).to.be.false;
-        expect($scope.isCnpjDuplicated).to.be.false;
-        expect($scope.verifyingCnpj).to.be.false;
+        expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.VALID);
     });
 
+    it("Should detect when CNPJ is duplicated");
 });

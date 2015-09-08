@@ -45,10 +45,10 @@
             <label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
             <input cnpj-validation class="form-control required" ng-model="company.cnpj" type="text" name="empresaCnpj" id="cnpj"
                    autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required>
-              <span ng-show="verifyingCnpj" class="form-control-feedback" aria-hidden="true"><img src="images/loader.svg" alt=""/></span>
-              <span ng-show="isCnpjDuplicated"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
-              <span ng-show="isCnpjIncomplete"><label class=" control-label">Número incompleto</label></span>
-              <span ng-show="isCnpjInvalid"><label class=" control-label">Número inválido</label></span>
+              <span ng-show="cnpjValidation == VALIDATION.LOADING" class="form-control-feedback" aria-hidden="true"><img src="images/loader.svg" alt=""/></span>
+              <span ng-show="cnpjValidation == VALIDATION.DUPLICATED"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
+              <span ng-show="cnpjValidation == VALIDATION.INCOMPLETE"><label class=" control-label">Número incompleto</label></span>
+              <span ng-show="cnpjValidation == VALIDATION.INVALID"><label class=" control-label">Número inválido</label></span>
           </div>
 
           <div class="form-group has-feedback" id="nomeFantasia-group" ng-class="{'has-error': userForm.nomeFantasia.$dirty && userForm.nomeFantasia.$invalid, 'has-success': userForm.nomeFantasia.$valid }">

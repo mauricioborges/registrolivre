@@ -1,5 +1,12 @@
 app.controller("NewCompanyController", ["$scope", "$document", "companies", "messages", "statesAndCities", "fileUploaderFactory", function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory) {
   fileUploaderFactory.setFileUploaderOptions($scope, $document);
+  $scope.VALIDATION = {
+    INVALID : 0,
+    INCOMPLETE : 1,
+    DUPLICATED : 2,
+    LOADING : 3,
+    VALID: 4
+  };
 
   $scope.getStates = function() {
     return statesAndCities.getStates();
@@ -33,38 +40,23 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   }
 
   $scope.$on('verifyingCnpj', function() {
-    $scope.verifyingCnpj = true;
-    $scope.isCnpjDuplicated = false;
-    $scope.isCnpjIncomplete = false;
-    $scope.isCnpjInvalid = false;
+    $scope.cnpjValidation = $scope.VALIDATION.LOADING;
   });
 
   $scope.$on('duplicatedCnpj', function() {
-    $scope.verifyingCnpj = false;
-    $scope.isCnpjDuplicated = true;
-    $scope.isCnpjInvalid = false;
-    $scope.isCnpjIncomplete = false;
+    $scope.cnpjValidation = $scope.VALIDATION.DUPLICATED;
   });
 
   $scope.$on('incompleteCnpj', function(){
-    $scope.isCnpjIncomplete = true;
-    $scope.verifyingCnpj = false;
-    $scope.isCnpjDuplicated = false;
-    $scope.isCnpjInvalid = false;
+    $scope.cnpjValidation = $scope.VALIDATION.INCOMPLETE;
   });
 
   $scope.$on('invalidCnpj', function() {
-    $scope.isCnpjInvalid = true;
-    $scope.verifyingCnpj = false;
-    $scope.isCnpjDuplicated = false;
-    $scope.isCnpjIncomplete = false;
+    $scope.cnpjValidation = $scope.VALIDATION.INVALID;
   });
 
   $scope.$on('validCnpj', function() {
-      $scope.isCnpjInvalid = false;
-      $scope.verifyingCnpj = false;
-      $scope.isCnpjDuplicated = false;
-      $scope.isCnpjIncomplete = false;
+      $scope.cnpjValidation = $scope.VALIDATION.VALID;
   });
 
   $scope.clearForm = function(form) {
