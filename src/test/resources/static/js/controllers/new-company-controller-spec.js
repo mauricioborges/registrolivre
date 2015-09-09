@@ -124,5 +124,9 @@ describe("Controller: NewCompanyController", function() {
         expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.VALID);
     });
 
-    it("Should detect when CNPJ is duplicated");
+    it("Should detect when CNPJ is duplicated", function() {
+        var controller = $controller('NewCompanyController', { $scope: $scope });
+        $rootScope.$broadcast("duplicatedCnpj");
+        expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.DUPLICATED);
+    });
 });
