@@ -40,6 +40,12 @@ dt {
 	cursor:pointer;
 }
 
+select.form-control {
+    -webkit-appearance: menulist;
+    height: 34px;
+    border-radius: 0px;
+}
+
 #busca-avancada{
 	display:none;
 }
