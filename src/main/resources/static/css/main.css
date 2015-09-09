@@ -410,3 +410,7 @@ select.form-control {
     width: 0;
     background-color: #E1E1E1;
 }
+
+.has-feedback .form-control {
+    padding-right: 0px;
+}
