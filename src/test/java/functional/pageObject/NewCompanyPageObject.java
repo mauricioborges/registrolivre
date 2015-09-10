@@ -70,7 +70,12 @@ public class NewCompanyPageObject {
     }
 
     public void fillInOpeningDate(String openingDate) {
-        driver.findElement(By.id("nomeDataDeAbertura")).sendKeys(openingDate);
+        ((JavascriptExecutor) driver).executeScript("document.getElementById('nomeDataDeAbertura').value = '" + openingDate + "';");
+    }
+
+    public void fillInIssueDate(String issueDate){
+        ((JavascriptExecutor) driver).executeScript("document.getElementById('nomeDataDoDocumento').value = '" + issueDate + "';");
+
     }
 
     public void submitForm() {
@@ -95,7 +100,8 @@ public class NewCompanyPageObject {
         fillInState("MG");
         fillInCity("Almenara");
         fillInZipCode("39900-000");
-        fillInOpeningDate("09/03/2009");
+        fillInOpeningDate("10/10/2009");
+        fillInIssueDate("10/10/2010");
         submitForm();
 
         verifyAlertMessage();
@@ -118,7 +124,8 @@ public class NewCompanyPageObject {
         fillInState("MG");
         fillInCity("Almenara");
         fillInZipCode("39900-000");
-        fillInOpeningDate("09/03/2009");
+        fillInOpeningDate("10/10/2009");
+        fillInIssueDate("10/10/2010");
         clearForm();
     }
 
@@ -170,5 +177,9 @@ public class NewCompanyPageObject {
 
     public String getOpeningDate() {
         return driver.findElement(By.id("nomeDataDeAbertura")).getAttribute("value");
+    }
+
+    public String getIssueDate() {
+        return driver.findElement(By.id("nomeDataDoDocumento")).getAttribute("value");
     }
 }
