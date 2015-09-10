@@ -63,6 +63,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     form.$setPristine();
     messages.clear();
     $scope.resetForm();
+    $scope.cnpjValidation = $scope.VALIDATION.VALID;
   }
 
   return {

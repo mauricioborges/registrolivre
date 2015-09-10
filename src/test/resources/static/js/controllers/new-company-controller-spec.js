@@ -104,6 +104,7 @@ describe("Controller: NewCompanyController", function() {
         clearMessages.should.have.been.called.once;
         formMock.$setPristine.should.have.been.called.once;
         $scope.company.should.be.deep.equal({});
+        expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.VALID);
     });
 
     it("Should detect when CNPJ is invalid", function() {
