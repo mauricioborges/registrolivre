@@ -1,3 +1,4 @@
+
 app.controller("NewCompanyController", ["$scope", "$document", "companies", "messages", "statesAndCities", "fileUploaderFactory", function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory) {
   fileUploaderFactory.setFileUploaderOptions($scope, $document);
   $scope.VALIDATION = {
@@ -39,6 +40,10 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $scope.evaData.clearFiles();
   }
 
+  $scope.preventType = function(event) {
+    event.preventDefault();
+  };
+
   $scope.$on('verifyingCnpj', function() {
     $scope.cnpjValidation = $scope.VALIDATION.LOADING;
   });
@@ -66,11 +71,14 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $scope.cnpjValidation = $scope.VALIDATION.VALID;
   }
 
+
+
   return {
     createCompany: $scope.createCompany,
     getStates: $scope.getStates,
     loadCities: $scope.loadCities,
-    clearForm: $scope.clearForm
+    clearForm: $scope.clearForm,
+    preventType: $scope.preventType
   };
 
 }]);
