@@ -1,4 +1,4 @@
-var app = angular.module("registro-livre", ["ngRoute","ui.mask", "ngTable", 'evaporate'])
+var app = angular.module("registro-livre", ["ngRoute","ui.mask", "ngTable", 'evaporate','720kb.datepicker'])
 
 app.config(["$routeProvider",
     function($routeProvider) {
