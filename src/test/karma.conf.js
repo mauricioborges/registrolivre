@@ -13,6 +13,7 @@ module.exports = function (config) {
             '../node_modules/angular-route/angular-route.js',
             '../node_modules/ng-table/dist/ng-table.js',
             '../node_modules/angular-ui-mask/dist/mask.min.js',
+            '../node_modules/angularjs-datepicker/dist/angular-datepicker.min.js',
             'main/resources/static/js/lib/angular-evaporate/evaporate.js',
             'main/resources/static/js/lib/angular-evaporate/angular-evaporate.js',
             'main/resources/static/js/**/*.js',
