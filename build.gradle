@@ -203,6 +203,7 @@ task unitTest(type: Test){
 
 task integrationTest(type: Test){
 
+    
     clean.execute()
     testLogging.showStandardStreams = true
     include 'integration/*'
