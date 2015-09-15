@@ -26,8 +26,10 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
       url: file.url
     }];
     companies.newCompany(company).then(function(response) {
-           messages.showSuccess("Empresa <strong>"+ company.tradeName +"</strong> foi cadastrada.");
-           $scope.resetForm();
+          messages.showSuccess("Empresa <strong>"+ company.tradeName +"</strong> foi cadastrada.");
+          $scope.userForm.$setPristine();
+          $scope.resetForm();
+          $scope.cnpjValidation = $scope.VALIDATION.VALID;
         }, function(response) {
            messages.showDanger("Ocorreu um erro no sistema, por favor tente novamente.");
         });

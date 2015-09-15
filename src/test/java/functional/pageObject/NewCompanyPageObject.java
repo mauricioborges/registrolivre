@@ -112,7 +112,7 @@ public class NewCompanyPageObject {
         return companyListPageObject.getCompanyFromTable();
     }
 
-    public void fillFormToCreateANewCompanyAndCleanFields() throws URISyntaxException {
+    public void fillFormToCreateANewCompanyAndCleanFields() throws URISyntaxException, InterruptedException {
         headerObject.visitSignUpCompany();
         fillInArquivo("file_uploader_functional_test.pdf");
         fillInCnpj("57.739.236/0001-61");

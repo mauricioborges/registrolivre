@@ -45,9 +45,15 @@ describe("Controller: NewCompanyController", function() {
           cnpj: "231231",
           name: "Example Company"
         };
+        var pristineMock = sinon.spy();
+        var formMock = {
+            $setPristine: pristineMock
+        }
+        $scope.userForm = formMock;
         controller.createCompany(company);
         showSuccess.should.have.been.called.once;
         resetForm.should.have.been.called.once;
+        formMock.$setPristine.should.have.been.called.once;
     }));
 
     it('should show danger message when server any error happens', inject(function(companies, messages) {

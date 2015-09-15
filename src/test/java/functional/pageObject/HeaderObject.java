@@ -15,8 +15,10 @@ public class HeaderObject {
         driver.findElement(By.xpath("/html/body/div/div[1]/nav/div/div[1]/a/")).click();
     }
 
-    public void visitSignUpCompany(){
+    public void
+    visitSignUpCompany() throws InterruptedException {
         driver.findElement(By.cssSelector("div.collapse.navbar-mobile.in > ul > li:nth-child(2) > a")).click();
+        Thread.sleep(2000);
     }
 
     public void visitCompanyList(){
