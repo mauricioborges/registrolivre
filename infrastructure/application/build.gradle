@@ -26,6 +26,13 @@ task deployProductionAppServer(type: Exec) {
     commandLine "sh", "scripts/deploy/production/install.sh"
 }
 
+task createVirtualMachine {
+    dependsOn destroyLocalAppServer
+    dependsOn bringUpLocalAppServer
+    dependsOn provisionLocalAppServer
+    dependsOn(":infrastructure/database:createLocalDatabase")
+    dependsOn deployLocalAppServer
+}
+bringUpLocalAppServer.mustRunAfter(destroyLocalAppServer)
 provisionLocalAppServer.mustRunAfter(bringUpLocalAppServer)
-destroyLocalAppServer.mustRunAfter(bringUpLocalAppServer)
-deployLocalAppServer.mustRunAfter(provisionLocalAppServer)
+deployLocalAppServer.mustRunAfter(":infrastructure/database:createLocalDatabase")

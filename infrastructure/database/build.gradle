@@ -5,3 +5,5 @@ task createLocalDatabase(type: Exec) {
 task destroyLocalDatabase(type: Exec) {
     commandLine "sh", "./scripts/local/destroy-database.sh"
 }
+
+createLocalDatabase.mustRunAfter(":infrastructure/application:provisionLocalAppServer")
