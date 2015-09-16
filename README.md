@@ -36,6 +36,13 @@ O **Registro Livre** é uma plataforma de dados abertos cujo objetivo principal 
 * Pipeline:
  * [GO](http://www.go.cd/)
 
+## Pré-requisitos para instalar a máquina virtual:
+* ^ Virtual Box 5.0.4 r102546
+* ^ Vagrant 1.7.2
+* Java 1.8
+* ^ NPM 2
+* ^ Gradle 2.4
+
 ## Pré-requisitos para executar os testes de front-end
 
 ### Mac OS X
@@ -113,61 +120,11 @@ O ambiente local para executar a aplicação é em uma máquina virtual.
 Para criar a máquina virtual no ambiente local, execute o script abaixo:
 
 ```
-$ ./gradlew bringUpLocalAppServer
+$ ./gradlew createVirtualMachine
 ```
 
-Para provisionar a máquina local, é preciso configurar as variáveis de ambientes antes de executar a task "provisionLocalAppServer":
-
-- Gere uma SSH key para acessar a máquina virtual:
-
-```
-$ ssh-keygen -t rsa -b 4096 -C "registrolivre"
-```
-
-- Copie a **chave pública** gerada para o diretório adequado:
-
-```
-$ cp registrolivre.pub infrastructure/application/public_keys/
-```
-
-- Adicione as seguintes variáveis de ambiente (recomendo usar o [direnv](http://direnv.net/)):
-
-```
-export REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
-export LOCAL_REGISTROLIVRE_IP="192.168.33.71"  # ip do vagrant box 
-```
-
-- Provisionamento:
-
-```
-$ ./gradlew provisionLocalAppServer
-```
-
-Para verificar o status de sua máquina local:
-
-```
-$ ./gradlew statusLocalAppServer
-```
-
-Para destruir a máquina virtual, se necessário:
-
-```
-$ ./gradlew destroyLocalAppServer
-```
-
-## Banco de Dados
-
-Para criar o banco de dados local é necessário que sua chave pública esteja presente no diretório infrastructure/application/public_keys.
-
-```
-$ ./gradlew createLocalDatabase
-```
-
-Para destruir o banco de dados local, se necessário:
-
-```
-$ ./gradlew destroyLocalDatabase
-```
+* Se é utilizada outra ferramenta de shell diferente de Bash, é necessário atualizar as váriaveis de ambiente com o comando:
+$ source <RAIZ DO PROJETO>/.profile
 
 ### Como criar migrations
 
