@@ -49,7 +49,7 @@
             <value>/home/registro-livre-key.pem</value>
           </variable>
           <variable name="AWS_REGISTROLIVRE_IP">
-            <value>54.232.246.149</value>
+            <value>10.27.1.56</value>
           </variable>
         </environmentvariables>
         <jobs>
