@@ -18,7 +18,12 @@ task createEnvironmentVariables(type: Exec){
     commandLine "sh", "scripts/provision/create-environment-variables.sh"
 }
 
+task runNPMInstallLocalAppServer(type: Exec) {
+    commandLine "npm",  "install"
+}
+
 task deployLocalAppServer(type: Exec) {
+    dependsOn runNPMInstallLocalAppServer
     commandLine "sh", "scripts/deploy/local/install.sh"
 }
 
