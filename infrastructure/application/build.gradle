@@ -2,6 +2,10 @@ task bringUpLocalAppServer(type: Exec) {
     commandLine "vagrant", "up", "--no-provision"
 }
 
+task createRegisterKeysLocalAppServer(type: Exec){
+    commandLine "sh", "scripts/provision/create-register-keys.sh"
+}
+
 task provisionLocalAppServer(type: Exec) {
     commandLine "vagrant", "provision"
 }
@@ -38,12 +42,14 @@ task deployProductionAppServer(type: Exec) {
 task createVirtualMachine {
     dependsOn destroyLocalAppServer
     dependsOn bringUpLocalAppServer
+    dependsOn createRegisterKeysLocalAppServer
     dependsOn provisionLocalAppServer
     dependsOn(":infrastructure/database:createLocalDatabase")
     dependsOn createEnvironmentVariables
     dependsOn deployLocalAppServer
 }
 bringUpLocalAppServer.mustRunAfter(destroyLocalAppServer)
-provisionLocalAppServer.mustRunAfter(bringUpLocalAppServer)
+createRegisterKeysLocalAppServer.mustRunAfter(bringUpLocalAppServer)
+provisionLocalAppServer.mustRunAfter(createRegisterKeysLocalAppServer)
 deployLocalAppServer.mustRunAfter(createEnvironmentVariables)
 createEnvironmentVariables.mustRunAfter(":infrastructure/database:createLocalDatabase")

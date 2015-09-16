@@ -36,3 +36,7 @@ vendor/
 
 #Ignore coverage report
 src/test/resources/coverage/
+
+
+.profile
+.keys
