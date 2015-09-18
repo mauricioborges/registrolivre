@@ -87,6 +87,24 @@ public class NewCompanyPageObject {
         return driver.findElement(By.xpath("/html/body/div/div[2]/div/div/div/div/div[1]/div/strong")).getText();
     }
 
+    public void createANewCompany(String cnpj) throws InterruptedException, URISyntaxException {
+
+        headerObject.visitSignUpCompany();
+        fillInArquivo("file_uploader_functional_test.pdf");
+        fillInCnpj(cnpj);
+        fillInName("Gama Company LTDA3");
+        fillInSocialReason("Gama Company");
+        fillInAddress("Rua Avelino Nascimento");
+        fillInNumber("222");
+        fillInComplement("apart 107");
+        fillInState("MG");
+        fillInCity("Almenara");
+        fillInZipCode("39900-000");
+        fillInOpeningDate("10/10/2009");
+        fillInIssueDate("10/10/2010");
+        submitForm();
+    }
+
     public String fillFormtoCreateANewCompany() throws InterruptedException, URISyntaxException {
 
         headerObject.visitSignUpCompany();
@@ -181,5 +199,9 @@ public class NewCompanyPageObject {
 
     public String getIssueDate() {
         return driver.findElement(By.id("nomeDataDoDocumento")).getAttribute("value");
+    }
+
+    public String getProgressBar() {
+        return driver.findElement(By.id("progressBar")).getText();
     }
 }

@@ -39,6 +39,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $scope.company = {};
     $document.find(".has-feedback").removeClass("has-error has-success");
     $document.find("#btn-submit").attr("disabled", true);
+    $('[name="' + $scope.userForm.$name + '"]')[0].reset();
     $scope.evaData.clearFiles();
   }
 

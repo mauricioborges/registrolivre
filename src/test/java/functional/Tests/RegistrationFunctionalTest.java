@@ -1,11 +1,16 @@
 package functional.Tests;
 
 import functional.pageObject.NewCompanyPageObject;
+import java.util.Arrays;
+import java.util.Collection;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.InMemoryTestBase;
 
@@ -19,6 +24,7 @@ public class RegistrationFunctionalTest extends InMemoryTestBase {
     @Before
     public void setUp() throws Exception {
         driver = new FirefoxDriver();
+
         newCompanyPageObject = new NewCompanyPageObject(driver);
         driver.get("http://localhost:9000/#");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -47,6 +53,13 @@ public class RegistrationFunctionalTest extends InMemoryTestBase {
         Assert.assertEquals("", newCompanyPageObject.getOpeningDate());
         Assert.assertEquals("", newCompanyPageObject.getIssueDate());
 
+    }
+
+    @Test
+    public void shouldAllowUploadSameFileAfterSaveACompany() throws InterruptedException, URISyntaxException {
+        newCompanyPageObject.createANewCompany("89.962.350/0001-42");
+        newCompanyPageObject.fillInArquivo("file_uploader_functional_test.pdf");
+        Assert.assertEquals("100%", newCompanyPageObject.getProgressBar());
     }
 
     @After
