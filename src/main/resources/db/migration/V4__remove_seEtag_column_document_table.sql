@@ -1,1 +1,0 @@
-ALTER TABLE documents DROP COLUMN s3_etag;

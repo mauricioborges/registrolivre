@@ -1,5 +1,0 @@
-CREATE TABLE IF NOT EXISTS companies (
-  id   SERIAL PRIMARY KEY,
-  cnpj VARCHAR(18) UNIQUE NOT NULL,
-  trade_name VARCHAR(40)
-);

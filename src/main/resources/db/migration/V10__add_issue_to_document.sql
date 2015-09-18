@@ -1,1 +1,0 @@
-ALTER TABLE documents ADD COLUMN issue_date DATE DEFAULT NULL;
