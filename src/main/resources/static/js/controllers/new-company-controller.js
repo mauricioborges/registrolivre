@@ -46,10 +46,6 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $scope.evaData.clearFiles();
   }
 
-  $scope.preventType = function(event) {
-    event.preventDefault();
-  };
-
   $scope.$on('verifyingCnpj', function() {
     $scope.cnpjValidation = $scope.VALIDATION.LOADING;
   });
