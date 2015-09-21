@@ -29,6 +29,9 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
           messages.showSuccess("Empresa <strong>"+ company.tradeName +"</strong> foi cadastrada.");
           $scope.userForm.$setPristine();
           $scope.resetForm();
+          if(document.getElementsByName('userForm') !== undefined && document.getElementsByName('userForm').length > 0){
+            document.getElementsByName('userForm')[0].reset();
+          }
           $scope.cnpjValidation = $scope.VALIDATION.VALID;
         }, function(response) {
            messages.showDanger("Ocorreu um erro no sistema, por favor tente novamente.");
@@ -39,7 +42,6 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $scope.company = {};
     $document.find(".has-feedback").removeClass("has-error has-success");
     $document.find("#btn-submit").attr("disabled", true);
-    $('[name="' + $scope.userForm.$name + '"]')[0].reset();
     $scope.evaData.clearFiles();
   }
 
