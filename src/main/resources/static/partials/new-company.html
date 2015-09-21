@@ -124,9 +124,7 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="nomeDataDeAbertura-group">
                 <label class="control-label">Data de abertura</label>
-                  <datepicker date-format="dd/MM/yyyy">
-                      <input id="nomeDataDeAbertura" ng-model="company.openingDate"  type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
-                  </datepicker>
+                <input id="nomeDataDeAbertura" ng-model="company.openingDate" ng-blur="verifyDate(company.openingDate)" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
                 <span class="glyphicon form-control-feedback"></span>
               </div>
             </div>

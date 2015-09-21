@@ -73,6 +73,17 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $scope.cnpjValidation = $scope.VALIDATION.VALID;
   }
 
+  $scope.verifyDate = function(inputDate){
+   var dateArray = inputDate.split("/");
+   var dateStandard = dateArray[2]+ "/"+ dateArray[1]+ "/" + dateArray[0];
+   var date = new Date(dateStandard);
+
+    if (date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2]){
+    return;
+    }
+    console.log("Data invalida");
+    inputDate= "";
+  }
 
 
   return {
