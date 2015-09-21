@@ -22,4 +22,12 @@ public class LocalDatePersistenceConverter implements AttributeConverter<LocalDa
         }
         return null;
     }
+
+    public static LocalDate getLocalDate(String issueDate) {
+        String[] date = issueDate.split("/");
+        int openingYear = Integer.parseInt(date[2]);
+        int openingMonth = Integer.parseInt(date[1]);
+        int openingDay = Integer.parseInt(date[0]);
+        return LocalDate.of(openingYear, openingMonth, openingDay);
+    }
 }

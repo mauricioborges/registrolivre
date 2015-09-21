@@ -62,7 +62,7 @@ public class Document {
 
         public Document toModel(DocumentRepresentation representation) {
             LocalDate documentDate = representation.getIssueDate() != null
-                    ? getLocalDate(representation.getIssueDate())
+                    ? LocalDatePersistenceConverter.getLocalDate(representation.getIssueDate())
                     : null;
             return new Document()
                     .withId(representation.getId())
@@ -70,12 +70,6 @@ public class Document {
                     .withIssueDate(documentDate);
         }
 
-        private LocalDate getLocalDate(String issueDate) {
-            String[] date = issueDate.split("/");
-            int openingYear = Integer.parseInt(date[2]);
-            int openingMonth = Integer.parseInt(date[1]);
-            int openingDay = Integer.parseInt(date[0]);
-            return LocalDate.of(openingYear, openingMonth, openingDay);
-        }
+
     }
 }

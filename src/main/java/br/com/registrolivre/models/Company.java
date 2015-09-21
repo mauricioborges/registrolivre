@@ -102,7 +102,7 @@ public class Company implements Serializable {
         public Company toModel(CompanyRepresentation representation) {
             Set<DocumentRepresentation> documentsRepresentation = representation.getDocuments();
             LocalDate companyDate = representation.getOpeningDate() != null
-                ? getLocalDate(representation.getOpeningDate())
+                ? LocalDatePersistenceConverter.getLocalDate(representation.getOpeningDate())
                 : null;
             Company company = new Company()
                     .withId(representation.getId())
@@ -122,14 +122,6 @@ public class Company implements Serializable {
             documents.forEach(doc -> company.documents.add(doc));
 
             return company;
-        }
-
-        private LocalDate getLocalDate(String dateString) {
-            String[] date = dateString.split("/");
-            int openingYear = Integer.parseInt(date[2]);
-            int openingMonth = Integer.parseInt(date[1]);
-            int openingDay = Integer.parseInt(date[0]);
-            return LocalDate.of(openingYear, openingMonth, openingDay);
         }
 
         private Set<Document> documentsToModel(Set<DocumentRepresentation> documents, Company company) {
