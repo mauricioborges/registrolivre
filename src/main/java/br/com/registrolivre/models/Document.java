@@ -1,6 +1,7 @@
 package br.com.registrolivre.models;
 
 import br.com.registrolivre.controllers.representations.DocumentRepresentation;
+import br.com.registrolivre.utils.LocalDatePersistenceConverter;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
@@ -22,10 +23,10 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString(exclude = "company")
 public class Document {
 
-    public Document(Company company, String url, LocalDate issue_date) {
+    public Document(Company company, String url, LocalDate issueDate) {
         this.company = company;
         this.url = url;
-        this.issue_date = issue_date;
+        this.issueDate = issueDate;
     }
 
     @Id
@@ -40,8 +41,9 @@ public class Document {
     @Column(name = "url")
     String url;
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "issue_date")
-    LocalDate issue_date;
+    LocalDate issueDate;
 
     @NoArgsConstructor
     @AllArgsConstructor
@@ -52,17 +54,28 @@ public class Document {
         Long id;
         Company company;
         String url;
-        LocalDate issue_date;
+        LocalDate issueDate;
 
         public Document build() {
             return new Document();
         }
 
         public Document toModel(DocumentRepresentation representation) {
+            LocalDate documentDate = representation.getIssueDate() != null
+                    ? getLocalDate(representation.getIssueDate())
+                    : null;
             return new Document()
                     .withId(representation.getId())
                     .withUrl(representation.getUrl())
-                    .withIssue_date(representation.getIssue_date());
+                    .withIssueDate(documentDate);
+        }
+
+        private LocalDate getLocalDate(String issueDate) {
+            String[] date = issueDate.split("/");
+            int openingYear = Integer.parseInt(date[2]);
+            int openingMonth = Integer.parseInt(date[1]);
+            int openingDay = Integer.parseInt(date[0]);
+            return LocalDate.of(openingYear, openingMonth, openingDay);
         }
     }
 }

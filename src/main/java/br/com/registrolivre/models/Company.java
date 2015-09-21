@@ -2,6 +2,7 @@ package br.com.registrolivre.models;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.controllers.representations.DocumentRepresentation;
+import br.com.registrolivre.utils.LocalDatePersistenceConverter;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
@@ -68,6 +69,7 @@ public class Company implements Serializable {
     @Column(name = "cep")
     String cep;
 
+    @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "opening_date")
     LocalDate openingDate;
 
@@ -99,6 +101,9 @@ public class Company implements Serializable {
 
         public Company toModel(CompanyRepresentation representation) {
             Set<DocumentRepresentation> documentsRepresentation = representation.getDocuments();
+            LocalDate companyDate = representation.getOpeningDate() != null
+                ? getLocalDate(representation.getOpeningDate())
+                : null;
             Company company = new Company()
                     .withId(representation.getId())
                     .withCnpj(representation.getCnpj())
@@ -110,13 +115,21 @@ public class Company implements Serializable {
                     .withState(representation.getState())
                     .withCity(representation.getCity())
                     .withCep(representation.getCep())
-                    .withOpeningDate(representation.getOpeningDate());
+                    .withOpeningDate(companyDate);
             Set<Document> documents = documentsRepresentation != null
                     ? documentsToModel(documentsRepresentation, company)
                     : new HashSet<>();
             documents.forEach(doc -> company.documents.add(doc));
 
             return company;
+        }
+
+        private LocalDate getLocalDate(String dateString) {
+            String[] date = dateString.split("/");
+            int openingYear = Integer.parseInt(date[2]);
+            int openingMonth = Integer.parseInt(date[1]);
+            int openingDay = Integer.parseInt(date[0]);
+            return LocalDate.of(openingYear, openingMonth, openingDay);
         }
 
         private Set<Document> documentsToModel(Set<DocumentRepresentation> documents, Company company) {

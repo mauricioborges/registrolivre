@@ -23,7 +23,8 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
       messages.showDanger("Você deve carregar um arquivo antes de continuar.");
     }
     company.documents = [{
-      url: file.url
+      url: file.url,
+      issueDate: company.issueDate
     }];
     companies.newCompany(company).then(function(response) {
           messages.showSuccess("Empresa <strong>"+ company.tradeName +"</strong> foi cadastrada.");
