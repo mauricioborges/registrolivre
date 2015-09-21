@@ -24,7 +24,7 @@ public class CompanyTest {
     private static final String STATE = "";
     private static final String CITY = "";
     private static final String CEP = "";
-    private static final LocalDate OPENING_DATE = LocalDate.of(2009, 03, 9);
+    private static final String OPENING_DATE = "08/09/2015";
     private static final MultipartFile FILE = null;
 
     @Test
@@ -42,6 +42,9 @@ public class CompanyTest {
                 STREET_NAME, ADDRESS_NUMBER, COMPLEMENT, STATE, CITY, CEP, OPENING_DATE, DOCUMENTS, FILE);
         Company company = new Company.Builder().toModel(representation);
 
+        LocalDate companyDate = company.getOpeningDate();
+        String resultingDate = String.format("%02d", companyDate.getDayOfMonth()) + "/" + String.format("%02d", companyDate.getMonthValue()) + "/" + companyDate.getYear();
+
         assertThat(company.getCnpj(), is(representation.getCnpj()));
         assertThat(company.getTradeName(), is(representation.getTradeName()));
         assertThat(company.getCompanyName(), is(representation.getCompanyName()));
@@ -51,6 +54,6 @@ public class CompanyTest {
         assertThat(company.getState(), is(representation.getState()));
         assertThat(company.getCity(), is(representation.getCity()));
         assertThat(company.getCep(), is(representation.getCep()));
-        assertThat(company.getOpeningDate(), is(representation.getOpeningDate()));
+        assertThat(resultingDate, is(representation.getOpeningDate()));
     }
 }
