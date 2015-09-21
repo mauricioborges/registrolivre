@@ -56,7 +56,7 @@ public class NewCompanyPageObject {
     }
 
     public void fillInState(String stateName) {
-        Select dropdown = new Select(driver.findElement(By.cssSelector("#nomeUF-group select")));
+            Select dropdown = new Select(driver.findElement(By.cssSelector("#nomeUF-group select")));
         dropdown.selectByVisibleText(stateName);
     }
 
