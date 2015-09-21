@@ -19,12 +19,12 @@ public class DocumentRepresentation {
     @JsonFormat Long id;
     @JsonFormat CompanyRepresentation company;
     @JsonFormat String url;
-    @JsonFormat LocalDate issue_date;
+    @JsonFormat String issueDate;
 
-    public DocumentRepresentation(CompanyRepresentation company, String url, LocalDate issue_date) {
+    public DocumentRepresentation(CompanyRepresentation company, String url, String issueDate) {
         this.company = company;
         this.url = url;
-        this.issue_date = issue_date;
+        this.issueDate = issueDate;
     }
 
     @NoArgsConstructor
@@ -37,17 +37,24 @@ public class DocumentRepresentation {
         Long id;
         CompanyRepresentation company;
         String url;
-        LocalDate issue_date;
+        String issueDate;
 
         public DocumentRepresentation build() {
             return new DocumentRepresentation(null, null, null, null);
         }
 
         public DocumentRepresentation toRepresentation(Document document) {
+            String dateString = document.getIssueDate() != null
+                    ? getStringDate(document.getIssueDate())
+                    : null;
             return new DocumentRepresentation()
                     .withId(document.getId())
                     .withUrl(document.getUrl())
-                    .withIssue_date(document.getIssue_date());
+                    .withIssueDate(dateString);
+        }
+
+        private String getStringDate(LocalDate issueDate) {
+            return String.format("%02d", issueDate.getDayOfMonth()) + "/" + String.format("%02d", issueDate.getMonthValue()) + "/" + String.format("%02d", issueDate.getYear());
         }
     }
 }

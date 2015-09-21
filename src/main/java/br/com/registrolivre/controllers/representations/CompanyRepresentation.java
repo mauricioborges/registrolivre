@@ -33,7 +33,7 @@ public class CompanyRepresentation {
     @JsonFormat String state;
     @JsonFormat String city;
     @JsonFormat String cep;
-    @JsonFormat LocalDate openingDate;
+    @JsonFormat String openingDate;
     @JsonFormat Set<DocumentRepresentation> documents;
     @JsonFormat MultipartFile file;
 
@@ -59,7 +59,7 @@ public class CompanyRepresentation {
         String state;
         String city;
         String cep;
-        LocalDate openingDate;
+        String openingDate;
         Set<DocumentRepresentation> documents;
         MultipartFile file;
 
@@ -72,6 +72,9 @@ public class CompanyRepresentation {
             Set<DocumentRepresentation> documents = company.getDocuments().stream()
                     .map(document -> new DocumentRepresentation.Builder().toRepresentation(document))
                     .collect(Collectors.toSet());
+            String dateString = company.getOpeningDate() != null
+                    ? getStringDate(company.getOpeningDate())
+                    : null;
             return new CompanyRepresentation()
                     .withId(company.getId())
                     .withCnpj(company.getCnpj())
@@ -84,8 +87,12 @@ public class CompanyRepresentation {
                     .withState(company.getState())
                     .withCity(company.getCity())
                     .withCep(company.getCep())
-                    .withOpeningDate(company.getOpeningDate());
+                    .withOpeningDate(dateString);
 
+        }
+
+        private String getStringDate(LocalDate localDate) {
+            return String.format("%02d", localDate.getDayOfMonth()) + "/" + String.format("%02d", localDate.getMonthValue()) + "/" + String.format("%02d", localDate.getYear());
         }
     }
 }
