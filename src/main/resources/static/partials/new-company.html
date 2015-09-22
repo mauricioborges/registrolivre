@@ -116,7 +116,6 @@
                 <label class="control-label">CEP</label>
                 <input class="form-control"  ng-model="company.cep" type="text" name="empresa.nomeCEP" id="nomeCEP"
                        value="" maxlength="9" autocomplete="off" ui-mask="?99999-999" model-view-value="true">
-                <span class="glyphicon form-control-feedback"></span>
               </div>
             </div>
           </div>
@@ -124,17 +123,15 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="nomeDataDeAbertura-group">
                 <label class="control-label">Data de abertura</label>
-                <input id="nomeDataDeAbertura" ng-model="company.openingDate" ng-blur="verifyDate(company.openingDate)" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
-                <span class="glyphicon form-control-feedback"></span>
+                  <input id="nomeDataDeAbertura" ng-model="company.openingDate" ng-blur="verifyOpenDate(company.openingDate)" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
+                    <span ng-show="openDateValidation == VALIDATION.INVALID"><label class="control-label">Data invalida</label></span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="nomeDataDoDocumento-group">
                 <label class="control-label">Emissão de documento</label>
-                  <datepicker date-format="dd/MM/yyyy">
-                      <input id="nomeDataDoDocumento" ng-model="company.issueDate"  type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
-                  </datepicker>
-                <span class="glyphicon form-control-feedback"></span>
+                  <input id="nomeDataDoDocumento" ng-model="company.issueDate" ng-blur="verifyEmissionDate(company.issueDate)" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
+                  <span ng-show="emissionDateValidation == VALIDATION.INVALID"><label class=" control-label">Data invalida</label></span>
               </div>
             </div>
         </div>

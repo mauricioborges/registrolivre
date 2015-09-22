@@ -34,6 +34,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
             document.getElementsByName('userForm')[0].reset();
           }
           $scope.cnpjValidation = $scope.VALIDATION.VALID;
+          $scope.verifyDate = $scope.VALIDATION.VALID;
         }, function(response) {
            messages.showDanger("Ocorreu um erro no sistema, por favor tente novamente.");
         });
@@ -71,17 +72,48 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     messages.clear();
     $scope.resetForm();
     $scope.cnpjValidation = $scope.VALIDATION.VALID;
+    $scope.openDateValidation = $scope.VALIDATION.VALID;
+    $scope.emissionDateValidation = $scope.VALIDATION.VALID;
+
   }
 
-  $scope.verifyDate = function(inputDate){
-   var dateArray = inputDate.split("/");
-   var dateStandard = dateArray[2]+ "/"+ dateArray[1]+ "/" + dateArray[0];
-   var date = new Date(dateStandard);
+   $scope.verifyDate = function(inputDate){
+    var dateArray = inputDate.split("/");
+    var dateStandard = dateArray[2]+ "/"+ dateArray[1]+ "/" + dateArray[0];
+    var date = new Date(dateStandard);
 
-    if (date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2]){
-    return;
+    if (date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2]) {
+        return true;
     }
-    console.log("Data invalida");
+    else {
+       return false;
+    }
+    inputDate= "";
+   }
+
+  $scope.verifyOpenDate = function(inputDate){
+
+    if ($scope.verifyDate(inputDate)){
+        console.log("data valida");
+        $scope.openDateValidation = $scope.VALIDATION.VALID;
+    }
+    else{
+        console.log("data invalida");
+        $scope.openDateValidation = $scope.VALIDATION.INVALID;
+    }
+    inputDate= "";
+  }
+
+ $scope.verifyEmissionDate = function(inputDate){
+
+    if ($scope.verifyDate(inputDate)){
+        console.log("data valida");
+        $scope.emissionDateValidation = $scope.VALIDATION.VALID;
+    }
+    else{
+        console.log("data invalida");
+        $scope.emissionDateValidation = $scope.VALIDATION.INVALID;
+    }
     inputDate= "";
   }
 
