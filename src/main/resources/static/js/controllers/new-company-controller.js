@@ -82,7 +82,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     var dateStandard = dateArray[2]+ "/"+ dateArray[1]+ "/" + dateArray[0];
     var date = new Date(dateStandard);
 
-    if (date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2]) {
+    if (inputDate.length==0 || date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2] ) {
         return true;
     }
     else {
@@ -92,13 +92,10 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
    }
 
   $scope.verifyOpenDate = function(inputDate){
-
     if ($scope.verifyDate(inputDate)){
-        console.log("data valida");
         $scope.openDateValidation = $scope.VALIDATION.VALID;
     }
     else{
-        console.log("data invalida");
         $scope.openDateValidation = $scope.VALIDATION.INVALID;
     }
     inputDate= "";
@@ -107,11 +104,9 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
  $scope.verifyEmissionDate = function(inputDate){
 
     if ($scope.verifyDate(inputDate)){
-        console.log("data valida");
         $scope.emissionDateValidation = $scope.VALIDATION.VALID;
     }
     else{
-        console.log("data invalida");
         $scope.emissionDateValidation = $scope.VALIDATION.INVALID;
     }
     inputDate= "";
