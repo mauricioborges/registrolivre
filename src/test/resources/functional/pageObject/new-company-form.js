@@ -25,12 +25,28 @@ var NewCompanyForm = (function () {
     };
 
     NewCompanyForm.prototype.uploadDocument = function(pdf){
+          var uploader = element(by.id('files')),
+              verificarButton = element(by.id('verificar'));
+
           browser.executeScript('document.getElementById("files").className = ""');
-          element(by.id('files')).sendKeys(pdf);
+
+          uploader.sendKeys(pdf);
+
+          browser.driver.wait(function () {
+                                          return verificarButton.isDisplayed();
+                                      }, 5000);
     }
 
     NewCompanyForm.prototype.getProgressBarText = function(){
           return element(by.id('progressBar')).getText();
+    }
+
+    NewCompanyForm.prototype.isSaved = function(){
+          browser.sleep(10000);
+          browser.driver.wait(function () {
+                                    return element(by.css('.alert-success')).isDisplayed();
+                                }, 5000);
+          return element(by.css('.alert-success')).getText();
     }
 
     return NewCompanyForm;

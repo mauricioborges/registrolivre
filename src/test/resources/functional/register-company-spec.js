@@ -9,7 +9,7 @@ var companyList = new CompanyList();
 
 beforeEach(function() {
     var fs = require('fs');
-    pdf = require('path').resolve('../file_uploader_functional_test.pdf');
+    pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
 });
 
 describe('Register Company', function() {
@@ -19,10 +19,8 @@ describe('Register Company', function() {
       browser.get('http://localhost:8080/#/cadastro');
       newCompanyForm.fillFields('57.863.988/0001-30', 'ZYGama Company LTDA2', pdf);
       newCompanyForm.submit();
-      navBar.clickCompanyList();
-      var name = companyList.findCompanyName('ZYGama Company LTDA2');
 
-      expect(name).toEqual("ZYGama Company LTDA2");
+      expect(newCompanyForm.isSaved()).toContain('Empresa ZYGama Company LTDA2 foi cadastrada.');
   });
 
   it('should clean form', function() {
@@ -34,11 +32,13 @@ describe('Register Company', function() {
   });
 
   it('should allow upload the same file after save a company', function() {
+      var verificarButton = element(by.id('verificar'));
+
       browser.get('http://localhost:8080/#/cadastro');
       newCompanyForm.fillFields('20.579.862/0001-28', 'Gama Company LTDA3', pdf);
       newCompanyForm.uploadDocument(pdf);
 
-      expect(newCompanyForm.getProgressBarText()).toEqual('100%');
+      expect(verificarButton.isDisplayed()).toBe(true);
   });
 });
 
