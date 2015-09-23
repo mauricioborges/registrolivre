@@ -77,42 +77,6 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
 
   }
 
-   $scope.verifyDate = function(inputDate){
-    var dateArray = inputDate.split("/");
-    var dateStandard = dateArray[2]+ "/"+ dateArray[1]+ "/" + dateArray[0];
-    var date = new Date(dateStandard);
-
-    if (inputDate.length==0 || date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2] ) {
-        return true;
-    }
-    else {
-       return false;
-    }
-    inputDate= "";
-   }
-
-  $scope.verifyOpenDate = function(inputDate){
-    if ($scope.verifyDate(inputDate)){
-        $scope.openDateValidation = $scope.VALIDATION.VALID;
-    }
-    else{
-        $scope.openDateValidation = $scope.VALIDATION.INVALID;
-    }
-    inputDate= "";
-  }
-
- $scope.verifyEmissionDate = function(inputDate){
-
-    if ($scope.verifyDate(inputDate)){
-        $scope.emissionDateValidation = $scope.VALIDATION.VALID;
-    }
-    else{
-        $scope.emissionDateValidation = $scope.VALIDATION.INVALID;
-    }
-    inputDate= "";
-  }
-
-
   return {
     createCompany: $scope.createCompany,
     getStates: $scope.getStates,
