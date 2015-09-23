@@ -74,8 +74,8 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="nomeNumero-group">
                 <label class="control-label">Número </label>
-                <input class="form-control" ng-model="company.number" pattern="[0-9]*"  name="empresa.nomeNumero" id="nomeNumero"
-                       value="" placeholder="" maxlength="9" autocomplete="off"  model-view-value="true" />
+                <input type="text" class="form-control" ng-model="company.number"  name="empresa.nomeNumero" id="nomeNumero" ng-keypress="filterValue($event)"
+                       value="" placeholder="" maxlength="9" autocomplete="off" model-view-value="true" />
                 <span class="glyphicon form-control-feedback"></span>
               </div>
             </div>

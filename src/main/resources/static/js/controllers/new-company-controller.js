@@ -93,12 +93,19 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
 
   }
 
+  $scope.filterValue = function($event) {
+     if(isNaN(String.fromCharCode($event.charCode))){
+         $event.preventDefault();
+     }
+  };
+
   return {
     createCompany: $scope.createCompany,
     getStates: $scope.getStates,
     loadCities: $scope.loadCities,
     clearForm: $scope.clearForm,
-    preventType: $scope.preventType
+    preventType: $scope.preventType,
+    filterValue: $scope.filterValue
   };
 
 }]);

@@ -161,4 +161,26 @@ describe("Controller: NewCompanyController", function() {
         expect($scope.openingDateValidation).to.be.equal($scope.VALIDATION.INVALID);
     });
 
+    it("Should not prevent typing when typing a number", function(){
+        var spy = sinon.spy();
+        var event = {
+            charCode: 49,
+            preventDefault: spy
+        }
+        var controller = $controller('NewCompanyController', { $scope: $scope });
+        controller.filterValue(event);
+        expect(spy).not.to.have.been.called;
+    });
+
+    it("Should prevent typing when typing anything other than a number", function(){
+        var spy = sinon.spy();
+        var event = {
+            charCode: 8,
+            preventDefault: spy
+        }
+            var controller = $controller('NewCompanyController', { $scope: $scope });
+            controller.filterValue(event);
+            expect(spy).to.have.been.called;
+        });
+
 });
