@@ -1,4 +1,3 @@
-
 app.directive("dateValidation", [function() {
   return {
     require: 'ngModel',
@@ -8,14 +7,18 @@ app.directive("dateValidation", [function() {
             var dateArray = inputDate.split("/");
             var dateStandard = dateArray[2]+ "/"+ dateArray[1]+ "/" + dateArray[0];
             var date = new Date(dateStandard);
-
-            return inputDate.length == 0 || date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2];
+            var dateFormat = "__/__/____";
+            console.log(inputDate);
+            return inputDate == dateFormat || inputDate.length == 0 || date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2];
         }
 
         var dateValidator = function(inputDate) {
+            console.log(element.attr('id'));
             if (dateExists(inputDate)) {
+                scope.$emit(element.attr('id') + 'Valid');
                 return true;
             } else {
+                scope.$emit(element.attr('id') + 'Invalid');
                 return false;
             }
         };

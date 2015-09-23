@@ -121,17 +121,17 @@
           </div>
           <div class="row">
             <div class="col-lg-6 col-md-6">
-              <div class="form-group has-feedback" id="nomeDataDeAbertura-group">
+              <div class="form-group has-feedback" id="nomeDataDeAbertura-group" ng-class="{'has-error': userForm.openingDate.$dirty && userForm.openingDate.$invalid}" >
                 <label class="control-label">Data de abertura</label>
-                  <input date-validation class="form-control" id="nomeDataDeAbertura" ng-model="company.openingDate" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
-                    <span ng-show="openDateValidation == VALIDATION.INVALID"><label class="control-label">Data invalida</label></span>
+                  <input date-validation class="form-control" id="openingDate" name="openingDate" ng-model="company.openingDate" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
+                    <span ng-show="openingDateValidation == VALIDATION.INVALID"><label class="control-label">Data invalida</label></span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
-              <div class="form-group has-feedback" id="nomeDataDoDocumento-group">
+              <div class="form-group has-feedback" id="nomeDataDoDocumento-group" ng-class="{'has-error': userForm.issueDate.$dirty && userForm.issueDate.$invalid}">
                 <label class="control-label">Emissão de documento</label>
-                  <input date-validation class="form-control"  id="nomeDataDoDocumento" ng-model="company.issueDate" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
-                  <span ng-show="emissionDateValidation == VALIDATION.INVALID"><label class=" control-label">Data invalida</label></span>
+                  <input date-validation class="form-control"  id="issueDate" name="issueDate" ng-model="company.issueDate" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
+                  <span ng-show="issueDateValidation == VALIDATION.INVALID"><label class=" control-label">Data invalida</label></span>
               </div>
             </div>
         </div>

@@ -67,13 +67,29 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
       $scope.cnpjValidation = $scope.VALIDATION.VALID;
   });
 
+  $scope.$on('issueDateValid', function() {
+      $scope.issueDateValidation = $scope.VALIDATION.VALID;
+  });
+
+  $scope.$on('issueDateInvalid', function() {
+      $scope.issueDateValidation = $scope.VALIDATION.INVALID;
+  });
+
+  $scope.$on('openingDateValid', function() {
+      $scope.openingDateValidation = $scope.VALIDATION.VALID;
+  });
+
+  $scope.$on('openingDateInvalid', function() {
+      $scope.openingDateValidation = $scope.VALIDATION.INVALID;
+  });
+
   $scope.clearForm = function(form) {
     form.$setPristine();
     messages.clear();
     $scope.resetForm();
     $scope.cnpjValidation = $scope.VALIDATION.VALID;
-    $scope.openDateValidation = $scope.VALIDATION.VALID;
-    $scope.emissionDateValidation = $scope.VALIDATION.VALID;
+    $scope.issueDateValidation = $scope.VALIDATION.VALID;
+    $scope.openingDateValidation = $scope.VALIDATION.VALID;
 
   }
 

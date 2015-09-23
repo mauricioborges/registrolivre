@@ -70,11 +70,11 @@ public class NewCompanyPageObject {
     }
 
     public void fillInOpeningDate(String openingDate) {
-        ((JavascriptExecutor) driver).executeScript("document.getElementById('nomeDataDeAbertura').value = '" + openingDate + "';");
+        ((JavascriptExecutor) driver).executeScript("document.getElementById('openingDate').value = '" + openingDate + "';");
     }
 
     public void fillInIssueDate(String issueDate){
-        ((JavascriptExecutor) driver).executeScript("document.getElementById('nomeDataDoDocumento').value = '" + issueDate + "';");
+        ((JavascriptExecutor) driver).executeScript("document.getElementById('issueDate').value = '" + issueDate + "';");
 
     }
 
@@ -194,11 +194,11 @@ public class NewCompanyPageObject {
     }
 
     public String getOpeningDate() {
-        return driver.findElement(By.id("nomeDataDeAbertura")).getAttribute("value");
+        return driver.findElement(By.id("openingDate")).getAttribute("value");
     }
 
     public String getIssueDate() {
-        return driver.findElement(By.id("nomeDataDoDocumento")).getAttribute("value");
+        return driver.findElement(By.id("issueDate")).getAttribute("value");
     }
 
     public String getProgressBar() {

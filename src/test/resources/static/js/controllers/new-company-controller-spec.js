@@ -137,4 +137,28 @@ describe("Controller: NewCompanyController", function() {
         expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.DUPLICATED);
     });
 
+    it("Should detect when issueDate is valid", function() {
+       var controller = $controller('NewCompanyController', { $scope: $scope });
+       $rootScope.$broadcast("issueDateValid");
+       expect($scope.issueDateValidation).to.be.equal($scope.VALIDATION.VALID);
+    });
+
+    it("Should detect when issueDate is invalid", function() {
+        var controller = $controller('NewCompanyController', { $scope: $scope });
+        $rootScope.$broadcast("issueDateInvalid");
+        expect($scope.issueDateValidation).to.be.equal($scope.VALIDATION.INVALID);
+    });
+
+    it("Should detect when openingDate is valid", function() {
+       var controller = $controller('NewCompanyController', { $scope: $scope });
+       $rootScope.$broadcast("openingDateValid");
+       expect($scope.openingDateValidation).to.be.equal($scope.VALIDATION.VALID);
+    });
+
+    it("Should detect when openingDate is invalid", function() {
+        var controller = $controller('NewCompanyController', { $scope: $scope });
+        $rootScope.$broadcast("openingDateInvalid");
+        expect($scope.openingDateValidation).to.be.equal($scope.VALIDATION.INVALID);
+    });
+
 });

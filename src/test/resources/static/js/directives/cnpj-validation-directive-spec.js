@@ -103,4 +103,4 @@ describe('Directive: cnpj-validation', function() {
            spy.should.have.been.calledWith("duplicatedCnpj")
     });
 
-}); 
+});
