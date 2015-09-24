@@ -38,7 +38,7 @@
 
 ## Pré-requisitos para instalar a máquina virtual:
 * ^ Virtual Box 5.0.4 r102546
-* ^ Vagrant 1.7.2
+* ^ Vagrant 1.7.3
 * Java 1.8
 * ^ NPM 2
 * ^ Gradle 2.4
@@ -65,6 +65,15 @@ $ sudo apt-get install npm
 
 ```
 $ ./gradlew jsTest
+```
+
+## Como executar os testes funcionais
+
+Dependências:
+Instalar Protractor como global: npm install protactor -g
+
+```
+$ ./gradlew functionalTest
 ```
 
 #  Como fazer o deploy do GO-CD no seu computador

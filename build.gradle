@@ -166,6 +166,7 @@ test {
 
     clean.execute()
     testLogging.showStandardStreams = true
+    exclude 'functional/**/*'
     
     onOutput { descriptor, event ->
         logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
@@ -180,6 +181,7 @@ test {
         destinationFile = file("build/reports/jacoco/jacocoTest.exec")
         classDumpFile = file("build/reports/jacoco/classpathdumps")
     }
+
 }
 
 task unitTest(type: Test){
@@ -216,21 +218,13 @@ task integrationTest(type: Test){
 
 }
 
-task functionalTest(type: Test){
-    clean.execute()
-    testLogging.showStandardStreams = true
-    include 'functional/Tests/*'
-    exclude 'integration/*'
-    exclude 'br.com.registrolivre/*'
-
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-}
-
 task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
 
 task jasmineTest(dependsOn: ['npmTest'])
+
+task functionalTest(type: Exec){
+    commandLine "sh", "./infrastructure/application/scripts/tests/functional/functional-test.sh"
+}
 
 checkTestCoverage.dependsOn jacocoTestReport
 test.finalizedBy checkTestCoverage
