@@ -13,6 +13,12 @@ beforeEach(function() {
 });
 
 describe('Register Company', function() {
+    it('should be disabled send button when enter in the page', function() {
+        browser.get('http://localhost:8080/#/cadastro');
+
+        expect(newCompanyForm.isSubmitButtonEnable()).toBe(false);
+    });
+
   it('should create a new company', function() {
       var navBar = new NavBar();
 

@@ -12,8 +12,8 @@ var NewCompanyForm = (function () {
           element(by.css('#nomeUF-group select')).element(by.cssContainingText('option', 'MG')).click();
           element(by.css('#nomeCidade-group select')).element(by.cssContainingText('option', 'Almenara')).click();
           element(by.id('nomeCEP')).sendKeys('39900-000');
-          element(by.id('nomeDataDeAbertura')).sendKeys('10/10/2009');
-          element(by.id('nomeDataDoDocumento')).sendKeys('10/10/2010');
+          element(by.id('openingDate')).sendKeys('10/10/2009');
+          element(by.id('issueDate')).sendKeys('10/10/2010');
     };
 
     NewCompanyForm.prototype.submit = function(){
@@ -47,6 +47,10 @@ var NewCompanyForm = (function () {
                                     return element(by.css('.alert-success')).isDisplayed();
                                 }, 5000);
           return element(by.css('.alert-success')).getText();
+    }
+
+    NewCompanyForm.prototype.isSubmitButtonEnable = function(){
+        return element(by.id('btn-submit')).isEnabled();
     }
 
     return NewCompanyForm;
