@@ -55,5 +55,14 @@ describe('Register Company', function() {
 
         expect(newCompanyForm.CNPJExists()).toBe(true);
     });
+
+    it('should present message that CNPJ is invalid', function() {
+        var verificarButton = element(by.id('verificar'));
+
+        browser.get('http://localhost:8080/#/cadastro');
+        newCompanyForm.fillFields('11.111.111/1111-11', 'ZYGama Company LTDA2', pdf);
+
+        expect(newCompanyForm.isCNPJValid()).toBe(true);
+    });
 });
 

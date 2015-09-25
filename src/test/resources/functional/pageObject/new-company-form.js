@@ -60,6 +60,13 @@ var NewCompanyForm = (function () {
         return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
     }
 
+    NewCompanyForm.prototype.isCNPJValid = function(){
+        browser.driver.wait(function () {
+                                            return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed();
+                                        }, 5000);
+        return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed();
+    }
+
     return NewCompanyForm;
 
 })();
