@@ -53,6 +53,13 @@ var NewCompanyForm = (function () {
         return element(by.id('btn-submit')).isEnabled();
     }
 
+    NewCompanyForm.prototype.CNPJExists = function(){
+        browser.driver.wait(function () {
+                                            return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
+                                        }, 5000);
+        return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
+    }
+
     return NewCompanyForm;
 
 })();

@@ -46,5 +46,14 @@ describe('Register Company', function() {
 
       expect(verificarButton.isDisplayed()).toBe(true);
   });
+
+  it('should present message that CNPJ exist', function() {
+        var verificarButton = element(by.id('verificar'));
+
+        browser.get('http://localhost:8080/#/cadastro');
+        newCompanyForm.fillFields('81.746.232/0001-95', 'ZYGama Company LTDA2', pdf);
+
+        expect(newCompanyForm.CNPJExists()).toBe(true);
+    });
 });
 
