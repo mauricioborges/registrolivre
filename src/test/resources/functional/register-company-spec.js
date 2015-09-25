@@ -48,8 +48,6 @@ describe('Register Company', function() {
   });
 
   it('should present message that CNPJ exist', function() {
-        var verificarButton = element(by.id('verificar'));
-
         browser.get('http://localhost:8080/#/cadastro');
         newCompanyForm.fillFields('81.746.232/0001-95', 'ZYGama Company LTDA2', pdf);
 
@@ -57,12 +55,20 @@ describe('Register Company', function() {
     });
 
     it('should present message that CNPJ is invalid', function() {
-        var verificarButton = element(by.id('verificar'));
-
         browser.get('http://localhost:8080/#/cadastro');
         newCompanyForm.fillFields('11.111.111/1111-11', 'ZYGama Company LTDA2', pdf);
 
-        expect(newCompanyForm.isCNPJValid()).toBe(true);
+        expect(newCompanyForm.isCNPJValid()).toBe(false);
+    });
+
+    it('should present message that file is larger than 5MG', function() {
+        var fs = require('fs');
+            invalidPdf = require('path').resolve('./src/test/resources/annual_report_2009.pdf');
+
+        browser.get('http://localhost:8080/#/cadastro');
+        newCompanyForm.setFile(invalidPdf);
+
+        expect(newCompanyForm.isPDFValid()).toBe(false);
     });
 });
 

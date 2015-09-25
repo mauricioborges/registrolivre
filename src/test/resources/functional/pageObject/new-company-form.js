@@ -24,13 +24,18 @@ var NewCompanyForm = (function () {
           element(by.id('btn-clear')).click();
     };
 
+    NewCompanyForm.prototype.setFile = function(pdf){
+        var uploader = element(by.id('files'));
+
+        browser.executeScript('document.getElementById("files").className = ""');
+
+        uploader.sendKeys(pdf);
+    }
+
     NewCompanyForm.prototype.uploadDocument = function(pdf){
-          var uploader = element(by.id('files')),
-              verificarButton = element(by.id('verificar'));
+          var verificarButton = element(by.id('verificar'));
 
-          browser.executeScript('document.getElementById("files").className = ""');
-
-          uploader.sendKeys(pdf);
+          NewCompanyForm.prototype.setFile(pdf);
 
           browser.driver.wait(function () {
                                           return verificarButton.isDisplayed();
@@ -64,7 +69,14 @@ var NewCompanyForm = (function () {
         browser.driver.wait(function () {
                                             return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed();
                                         }, 5000);
-        return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed();
+        return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed() === false;
+    }
+
+    NewCompanyForm.prototype.isPDFValid = function(){
+        browser.driver.wait(function () {
+                                            return element(by.cssContainingText('.control-label', 'Tamanho do arquivo não suportado')).isDisplayed();
+                                        }, 5000);
+        return element(by.cssContainingText('.control-label', 'Tamanho do arquivo não suportado')).isDisplayed() === false;
     }
 
     return NewCompanyForm;
