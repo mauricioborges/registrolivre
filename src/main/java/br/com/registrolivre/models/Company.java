@@ -2,6 +2,7 @@ package br.com.registrolivre.models;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.controllers.representations.DocumentRepresentation;
+import br.com.registrolivre.controllers.representations.PartnerRepresentation;
 import br.com.registrolivre.utils.LocalDatePersistenceConverter;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -76,6 +77,9 @@ public class Company implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
     Set<Document> documents = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
+    Set<Partner> partners = new HashSet<>();
+
     @NoArgsConstructor
     @AllArgsConstructor
     @Value
@@ -94,6 +98,8 @@ public class Company implements Serializable {
         String cep;
         LocalDate openingDate;
         Set<Document> documents;
+        Set<Partner> partners;
+
 
         public Company build() {
             return new Company();
@@ -101,6 +107,7 @@ public class Company implements Serializable {
 
         public Company toModel(CompanyRepresentation representation) {
             Set<DocumentRepresentation> documentsRepresentation = representation.getDocuments();
+            Set<PartnerRepresentation> partnersRepresentations = representation.getPartners();
             LocalDate companyDate = representation.getOpeningDate() != null
                 ? LocalDatePersistenceConverter.getLocalDate(representation.getOpeningDate())
                 : null;
@@ -121,6 +128,9 @@ public class Company implements Serializable {
                     : new HashSet<>();
             documents.forEach(doc -> company.documents.add(doc));
 
+            Set<Partner> partners = partnersRepresentations != null ? partnersToModel(partnersRepresentations,company) : new HashSet<>();
+            partners.forEach(partner -> company.partners.add(partner));
+
             return company;
         }
 
@@ -128,6 +138,10 @@ public class Company implements Serializable {
             return documents.stream()
                     .map(document -> new Document.Builder().toModel(document).withCompany(company))
                     .collect(Collectors.toSet());
+        }
+
+        private Set<Partner> partnersToModel(Set<PartnerRepresentation> partners, Company company){
+            return partners.stream().map(partner -> new Partner.Builder().toModel(partner).withCompany(company)).collect(Collectors.toSet());
         }
     }
 }

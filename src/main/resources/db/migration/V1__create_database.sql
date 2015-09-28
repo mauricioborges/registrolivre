@@ -18,3 +18,11 @@ CREATE TABLE IF NOT EXISTS documents (
   url VARCHAR(500),
   issue_date DATE DEFAULT NULL
 );
+
+CREATE TABLE IF NOT EXISTS partners(
+ id SERIAL PRIMARY KEY,
+ company_id INT NOT NULL REFERENCES companies(id),
+ name VARCHAR(150),
+ cpf VARCHAR(14),
+ isActive BIT
+);

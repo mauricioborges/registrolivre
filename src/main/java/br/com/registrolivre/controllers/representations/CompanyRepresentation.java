@@ -36,6 +36,7 @@ public class CompanyRepresentation {
     @JsonFormat String openingDate;
     @JsonFormat Set<DocumentRepresentation> documents;
     @JsonFormat MultipartFile file;
+    @JsonFormat Set<PartnerRepresentation> partners;
 
     public CompanyRepresentation(String cnpj, String tradeName) {
         this.cnpj = cnpj;
@@ -62,6 +63,7 @@ public class CompanyRepresentation {
         String openingDate;
         Set<DocumentRepresentation> documents;
         MultipartFile file;
+        Set<PartnerRepresentation> partners;
 
 
         public CompanyRepresentation build() {
@@ -75,6 +77,7 @@ public class CompanyRepresentation {
             String dateString = company.getOpeningDate() != null
                     ? getStringDate(company.getOpeningDate())
                     : null;
+            Set<PartnerRepresentation> partners = company.getPartners().stream().map(partner -> new PartnerRepresentation.Builder().toRepresentation(partner)).collect(Collectors.toSet());
             return new CompanyRepresentation()
                     .withId(company.getId())
                     .withCnpj(company.getCnpj())
@@ -87,7 +90,8 @@ public class CompanyRepresentation {
                     .withState(company.getState())
                     .withCity(company.getCity())
                     .withCep(company.getCep())
-                    .withOpeningDate(dateString);
+                    .withOpeningDate(dateString)
+                    .withPartners(partners);
 
         }
 
