@@ -1,4 +1,5 @@
 var NewCompanyForm = require('./pageObject/new-company-form.js');
+var ListCompany = require('./pageObject/company-list.js');
 
 var pdf;
 var newCompanyForm = new NewCompanyForm();
@@ -9,18 +10,19 @@ beforeEach(function() {
 });
 
 describe('Register Company', function() {
-    it('should be disabled send button when enter in the page', function() {
-        browser.get('http://localhost:8080/#/cadastro');
-
-        expect(newCompanyForm.isSubmitButtonEnable()).toBe(false);
-    });
-
   it('should create a new company', function() {
+      var companyName = 'ZYGama Company LTDA2';
+      var listCompany = new ListCompany();
+
       browser.get('http://localhost:8080/#/cadastro');
-      newCompanyForm.fillFields('57.863.988/0001-30', 'ZYGama Company LTDA2', pdf);
+      newCompanyForm.fillFields('57.863.988/0001-30', companyName, pdf);
       newCompanyForm.submit();
 
-      expect(newCompanyForm.isSaved()).toContain('Empresa ZYGama Company LTDA2 foi cadastrada.');
+      expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');
+
+      browser.get('http://localhost:8080/#/empresas');
+      expect(listCompany.containsCompanyName(companyName)).toBe(true);
+
   });
 
   it('should clean form', function() {
@@ -40,29 +42,5 @@ describe('Register Company', function() {
 
       expect(verificarButton.isDisplayed()).toBe(true);
   });
-
-  it('should present message that CNPJ exist', function() {
-        browser.get('http://localhost:8080/#/cadastro');
-        newCompanyForm.fillFields('81.746.232/0001-95', 'ZYGama Company LTDA2', pdf);
-
-        expect(newCompanyForm.CNPJExists()).toBe(true);
-    });
-
-    it('should present message that CNPJ is invalid', function() {
-        browser.get('http://localhost:8080/#/cadastro');
-        newCompanyForm.fillFields('11.111.111/1111-11', 'ZYGama Company LTDA2', pdf);
-
-        expect(newCompanyForm.isCNPJValid()).toBe(false);
-    });
-
-    it('should present message that file is larger than 5MG', function() {
-        var fs = require('fs');
-            invalidPdf = require('path').resolve('./src/test/resources/annual_report_2009.pdf');
-
-        browser.get('http://localhost:8080/#/cadastro');
-        newCompanyForm.setFile(invalidPdf);
-
-        expect(newCompanyForm.isPDFValid()).toBe(false);
-    });
 });
 
