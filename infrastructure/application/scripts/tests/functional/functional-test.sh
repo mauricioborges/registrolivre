@@ -5,4 +5,7 @@ psql -d registro_livre -c "insert into companies(cnpj, company_name, trade_name,
 webdriver-manager start &
 sleep 5
 protractor src/test/resources/functional/conf.js
+sleep 5
 curl "http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer"
+pkill -f gradle
+exit

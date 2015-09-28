@@ -1,11 +1,7 @@
 var NewCompanyForm = require('./pageObject/new-company-form.js');
-var NavBar = require('./pageObject/nav-bar.js');
-var CompanyList = require('./pageObject/company-list.js');
 
 var pdf;
 var newCompanyForm = new NewCompanyForm();
-var companyList = new CompanyList();
-
 
 beforeEach(function() {
     var fs = require('fs');
@@ -20,8 +16,6 @@ describe('Register Company', function() {
     });
 
   it('should create a new company', function() {
-      var navBar = new NavBar();
-
       browser.get('http://localhost:8080/#/cadastro');
       newCompanyForm.fillFields('57.863.988/0001-30', 'ZYGama Company LTDA2', pdf);
       newCompanyForm.submit();
