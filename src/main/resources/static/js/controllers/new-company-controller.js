@@ -94,9 +94,9 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   }
 
   $scope.filterValue = function($event) {
-     if(isNaN(String.fromCharCode($event.charCode))){
-         $event.preventDefault();
-     }
+    if(isNaN(String.fromCharCode($event.charCode))) {
+      $event.preventDefault();
+    }
   };
 
   return {
