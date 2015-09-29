@@ -11,11 +11,12 @@ beforeEach(function() {
 
 describe('Register Company', function() {
   it('should create a new company', function() {
-      var companyName = 'ZYGama Company LTDA2';
+      var companyName = browser.params.name;
+      var companyCNPJ = browser.params.cnpj;
       var listCompany = new ListCompany();
 
       browser.get('http://localhost:8080/#/cadastro');
-      newCompanyForm.fillFields('57.863.988/0001-30', companyName, pdf);
+      newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
       newCompanyForm.submit();
 
       expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');
