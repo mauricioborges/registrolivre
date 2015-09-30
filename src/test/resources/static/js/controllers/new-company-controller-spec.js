@@ -88,11 +88,11 @@ describe("Controller: NewCompanyController", function() {
     it('Should get cities from states-and-cities service', function() {
         var spy = sinon.spy();
         var state =  "RS";
+
+        var controller = $controller('NewCompanyController', { $scope: $scope, statesAndCities: { getCitiesByState: spy }});
         $scope.company = {
             state: state
         };
-        var controller = $controller('NewCompanyController', { $scope: $scope, statesAndCities: { getCitiesByState: spy }});
-
         controller.loadCities();
         assert(spy.calledWith(state));
     });
