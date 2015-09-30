@@ -42,6 +42,7 @@ public class CompanyRepresentation {
         this.cnpj = cnpj;
         this.tradeName = tradeName;
         this.documents = new HashSet<>();
+        this.partners = new HashSet<>();
     }
 
     @NoArgsConstructor
@@ -77,7 +78,9 @@ public class CompanyRepresentation {
             String dateString = company.getOpeningDate() != null
                     ? getStringDate(company.getOpeningDate())
                     : null;
-            Set<PartnerRepresentation> partners = company.getPartners().stream().map(partner -> new PartnerRepresentation.Builder().toRepresentation(partner)).collect(Collectors.toSet());
+            Set<PartnerRepresentation> partners = company.getPartners().stream()
+                    .map(partner -> new PartnerRepresentation.Builder().toRepresentation(partner))
+                    .collect(Collectors.toSet());
             return new CompanyRepresentation()
                     .withId(company.getId())
                     .withCnpj(company.getCnpj())

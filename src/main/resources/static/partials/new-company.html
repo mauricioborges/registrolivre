@@ -136,6 +136,22 @@
             </div>
         </div>
 
+          <div class="row" data-ng:repeat="partner in company.partners">
+            <h2>Dados do sócio</h2>
+              {{partner.name}}
+            <div class="form-group">
+              <label>Nome do sócio</label>
+              <input type="text" class="form-control" data-ng:model="partner.name" name="partnerName" id="partnerName">
+            </div>
+            <div class="form-group">
+              <label>CPF</label>
+              <input type="text" class="form-control" data-ng:model="partner.cpf" name="cpf" id="cpf">
+            </div>
+            <div class="form-group">
+              <input type="checkbox" class="form-control" data-ng:model="partner.isActive" name="isActive" id="isActive" value="Ativo">
+            </div>
+          </div>
+
         </div>
         <div class="panel-footer">
           <span class="centralize msg-alert color-red margin-15-0" id="form-alert">Preencha os campos corretamente para enviar.</span>

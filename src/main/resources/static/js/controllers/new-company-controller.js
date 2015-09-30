@@ -9,6 +9,10 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     VALID: 4
   };
 
+  $scope.company = {
+    partners: [{name:"test", isActive: false}]
+  };
+
   $scope.getStates = function() {
     return statesAndCities.getStates();
   };
