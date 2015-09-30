@@ -14,6 +14,7 @@ module.exports = function (config) {
             '../node_modules/ng-table/dist/ng-table.js',
             '../node_modules/angular-ui-mask/dist/mask.min.js',
             '../node_modules/angularjs-datepicker/dist/angular-datepicker.min.js',
+            '../node_modules/ng-cpf-cnpj-validate/validate-cpf-directive.js',
             'main/resources/static/js/lib/angular-evaporate/evaporate.js',
             'main/resources/static/js/lib/angular-evaporate/angular-evaporate.js',
             'main/resources/static/js/**/*.js',
