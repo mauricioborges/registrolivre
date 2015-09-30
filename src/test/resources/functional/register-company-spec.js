@@ -35,13 +35,13 @@ describe('Register Company', function() {
   });
 
   it('should allow upload the same file after save a company', function() {
-      var verificarButton = element(by.id('verificar'));
+      var verifyButton = element(by.id('verify'));
 
       browser.get('http://localhost:8080/#/cadastro');
       newCompanyForm.fillFields('20.579.862/0001-28', 'Gama Company LTDA3', pdf);
       newCompanyForm.uploadDocument(pdf);
 
-      expect(verificarButton.isDisplayed()).toBe(true);
+      expect(verifyButton.isDisplayed()).toBe(true);
   });
 });
 

@@ -15,35 +15,35 @@
           </div>
 
           <div ng-hide="evaData.ready">Carregamentos de arquivos não estão disponíveis</div>
-          <div ng-show="evaData.ready" class="form-group has-feedback" id="archivo-group">
+          <div ng-show="evaData.ready" class="form-group has-feedback" id="file-group">
             <div class="row">
               <div class="col-lg-2 col-md-3 col-sm-3">
-                <label class="control-label">Arquivo<abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
+                <label class="control-label">Arquivo<abbr class="red-color" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
               </div>
               <div class="col-lg-10 col-md-9 col-sm-9 control-description">
                 <span>(Selecionar um único arquivo PDF com tamanho máximo {{evaData.maxSizeMB}}MB)</span>
               </div>
             </div>
-                <input class="form-control required" type="text" id="arquivo" autocomplete="off" model-view-value="true" required disabled ng-model="evaData.files[0].name" placeholder="Upload de arquivo">
+                <input class="form-control required" type="text" id="file" autocomplete="off" model-view-value="true" required disabled ng-model="evaData.files[0].name" placeholder="Upload de arquivo">
             <div class="row top-buffer">
               <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                 <label id="btnFile" for="files" class="btn btn-default">Selecionar arquivo</label>
-                <input name="empresaArchivo" type="file" id="files" class="hidden" evaporate eva-model="evaData">
+                <input name="companyFile" type="file" id="files" class="hidden" evaporate eva-model="evaData">
               </div>
               <div class="col-lg-6 col-md-6 col-sm-5">
                 <div id="progressBar" ng-show="evaData.files[0].startingUpload"><div></div></div>
               </div>
               <div class="col-lg-2 col-md-2 col-sm-3 text-right">
-                <a id="verificar" class="btn btn-default" ng-show="evaData.files[0].completed" ng-href="{{evaData.files[0].url}}" target="_blank">Verificar</a>
+                <a id="verify" class="btn btn-default" ng-show="evaData.files[0].completed" ng-href="{{evaData.files[0].url}}" target="_blank">Verificar</a>
               </div>
             </div>
             <span ng-show="evaData.fileMaxSizeLimitError"><label class="control-label">Tamanho do arquivo não suportado</label></span>
             <span ng-show="evaData.fileTypeNotSupportedError"><label class="control-label">Formato do arquivo não suportado</label></span>
           </div>
 
-          <div class="form-group has-feedback " id="cnpj-group" ng-class="{'has-error': userForm.empresaCnpj.$dirty && userForm.empresaCnpj.$invalid, 'has-success': userForm.empresaCnpj.$valid }" >
-            <label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
-            <input cnpj-validation class="form-control required" ng-model="company.cnpj" type="text" name="empresaCnpj" id="cnpj"
+          <div class="form-group has-feedback " id="cnpj-group" ng-class="{'has-error': userForm.companyCnpj.$dirty && userForm.companyCnpj.$invalid, 'has-success': userForm.companyCnpj.$valid }" >
+            <label class="control-label">CNPJ <abbr class="red-color" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
+            <input cnpj-validation class="form-control required" ng-model="company.cnpj" type="text" name="companyCnpj" id="cnpj"
                    autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required>
               <span ng-show="cnpjValidation == VALIDATION.LOADING" class="form-control-feedback" aria-hidden="true"><img src="images/loader.svg" alt=""/></span>
               <span ng-show="cnpjValidation == VALIDATION.DUPLICATED"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
@@ -51,39 +51,39 @@
               <span ng-show="cnpjValidation == VALIDATION.INVALID"><label class=" control-label">Número inválido</label></span>
           </div>
 
-          <div class="form-group has-feedback" id="nomeFantasia-group" ng-class="{'has-error': userForm.nomeFantasia.$dirty && userForm.nomeFantasia.$invalid, 'has-success': userForm.nomeFantasia.$valid }">
-            <label class="control-label">Nome fantasia  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
-            <input class="form-control required" ng-model="company.tradeName" type="text" name="nomeFantasia"
-                   id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" maxlength="150" required>
+          <div class="form-group has-feedback" id="tradeName-group" ng-class="{'has-error': userForm.tradeName.$dirty && userForm.tradeName.$invalid, 'has-success': userForm.tradeName.$valid }">
+            <label class="control-label">Nome fantasia  <abbr class="red-color" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+            <input class="form-control required" ng-model="company.tradeName" type="text" name="tradeName"
+                   id="tradeName" value="" placeholder="ex: Larah Instrumentos Musicais" maxlength="150" required>
             <span class="glyphicon form-control-feedback"></span>
           </div>
 
-          <div class="form-group" id="razaoSocial-group">
+          <div class="form-group" id="name-group">
             <label class="control-label">Razão social </label>
-            <input class="form-control" ng-model="company.companyName" type="text" name="empresa.razaoSocial" id="razaoSocial" placeholder="ex: Larah Instrumentos Musicais Ltda." maxlength="150">
+            <input class="form-control" ng-model="company.companyName" type="text" name="company.name" id="name" placeholder="ex: Larah Instrumentos Musicais Ltda." maxlength="150">
           </div>
 
-          <div class="form-group has-feedback" id="nomeEndereco-group">
+          <div class="form-group has-feedback" id="address-group">
             <label class="control-label">Endereço </label>
-            <input class="form-control" ng-model="company.streetName" type="text" name="nomeEndereco" id="nomeEndereco"
+            <input class="form-control" ng-model="company.streetName" type="text" name="address" id="address"
                      value="" placeholder="ex: Av. Ipiranga" maxlength="255">
             <span class="glyphicon form-control-feedback"></span>
           </div>
 
           <div class="row">
             <div class="col-lg-6 col-md-6">
-              <div class="form-group has-feedback" id="nomeNumero-group">
+              <div class="form-group has-feedback" id="number-group">
                 <label class="control-label">Número </label>
-                <input type="text" class="form-control" ng-model="company.number"  name="empresa.nomeNumero" id="nomeNumero" ng-keyup="filterValue($event)"
+                <input type="text" class="form-control" ng-model="company.number"  name="company.number" id="number" ng-keyup="filterValue($event)"
                        value="" placeholder="" autocomplete="off" model-view-value="true" ui-mask="?999999999" />
                 <span class="glyphicon form-control-feedback"></span>
               </div>
             </div>
 
             <div class="col-lg-6 col-md-6">
-              <div class="form-group has-feedback" id="nomeComplemento-group">
+              <div class="form-group has-feedback" id="complement-group">
                 <label class="control-label">Complemento</label>
-                <input class="form-control" ng-model="company.complement" type="text" name="empresa.nomeComplemento" id="nomeComplemento"
+                <input class="form-control" ng-model="company.complement" type="text" name="company.complement" id="complement"
                        value="" placeholder="ex: Apartamento 201 - Bloco B" maxlength="30">
                 <span class="glyphicon form-control-feedback"></span>
               </div>
@@ -92,9 +92,9 @@
 
           <div class="row">
             <div class="col-lg-2 col-md-2">
-              <div class="form-group has-feedback" id="nomeUF-group">
+              <div class="form-group has-feedback" id="state-group">
                 <label class="control-label">UF </label>
-                <select class="form-control" ng-model="company.state" size="1" lang="trocaEstado()">
+                <select class="form-control" ng-model="company.state" size="1" lang="changeState()">
                     <option ng-repeat="state in getStates()" ng-value="{{state[0]}}"> {{ state[0] }} </option>
                 </select>
                     <span class="glyphicon form-control-feedback"></span>
@@ -102,7 +102,7 @@
             </div>
 
             <div class="col-lg-6 col-md-6">
-              <div class="form-group has-feedback" id="nomeCidade-group">
+              <div class="form-group has-feedback" id="city-group">
                 <label class="control-label">Cidade </label>
                 <select class="form-control" ng-model="company.city" size="1">
                     <option ng-repeat="city in loadCities()" value="{{city}}"> {{ city }} </option>
@@ -112,23 +112,23 @@
             </div>
 
             <div class="col-lg-4 col-md-4">
-              <div class="form-group has-feedback" id="nomeCEP-group">
+              <div class="form-group has-feedback" id="zip-group">
                 <label class="control-label">CEP</label>
-                <input class="form-control"  ng-model="company.cep" type="text" name="empresa.nomeCEP" id="nomeCEP"
+                <input class="form-control"  ng-model="company.cep" type="text" name="company.zip" id="zip"
                        value="" maxlength="9" autocomplete="off" ui-mask="?99999-999" model-view-value="true">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-6 col-md-6">
-              <div class="form-group has-feedback" id="nomeDataDeAbertura-group" ng-class="{'has-error': userForm.openingDate.$dirty && userForm.openingDate.$invalid}" >
+              <div class="form-group has-feedback" id="openingDate-group" ng-class="{'has-error': userForm.openingDate.$dirty && userForm.openingDate.$invalid}" >
                 <label class="control-label">Data de abertura</label>
                   <input date-validation class="form-control" id="openingDate" name="openingDate" ng-model="company.openingDate" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
                     <span ng-show="openingDateValidation == VALIDATION.INVALID"><label class="control-label">Data invalida</label></span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
-              <div class="form-group has-feedback" id="nomeDataDoDocumento-group" ng-class="{'has-error': userForm.issueDate.$dirty && userForm.issueDate.$invalid}">
+              <div class="form-group has-feedback" id="issueDate-group" ng-class="{'has-error': userForm.issueDate.$dirty && userForm.issueDate.$invalid}">
                 <label class="control-label">Emissão de documento</label>
                   <input date-validation class="form-control"  id="issueDate" name="issueDate" ng-model="company.issueDate" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
                   <span ng-show="issueDateValidation == VALIDATION.INVALID"><label class=" control-label">Data invalida</label></span>

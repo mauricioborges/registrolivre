@@ -21,8 +21,8 @@ describe('Directive: cnpj-validation', function() {
   beforeEach(inject(function($rootScope, $compile) {
      element = angular.element(
       '<div class="form-group has-feedback " id="cnpj-group" >' +
-         '<label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>' +
-         '<input cnpj-validation class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj"' +
+         '<label class="control-label">CNPJ <abbr class="red-color" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>' +
+         '<input cnpj-validation class="form-control required" ng-model="company.cnpj"  type="text" name="company.cnpj" id="cnpj"' +
          'autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required/>' +
          '<span ng-show="isCnpjDuplicated"><label class="control-label">Já existe empresa com esse CNPJ</label></span>' +
          '<span ng-show="isCnpjIncomplete"><label class="control-label">Número incompleto</label></span>' +

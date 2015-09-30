@@ -4,14 +4,14 @@ var NewCompanyForm = (function () {
     NewCompanyForm.prototype.fillFields = function(cnpj, tradeName, pdf) {
           this.uploadDocument(pdf);
           element(by.id('cnpj')).sendKeys(cnpj);
-          element(by.id('nomeFantasia')).sendKeys(tradeName);
-          element(by.id('razaoSocial')).sendKeys('Gama Company');
-          element(by.id('nomeEndereco')).sendKeys('Rua Avelino Nascimento');
-          element(by.id('nomeNumero')).sendKeys('222');
-          element(by.id('nomeComplemento')).sendKeys('apart 107');
-          element(by.css('#nomeUF-group select')).element(by.cssContainingText('option', 'MG')).click();
-          element(by.css('#nomeCidade-group select')).element(by.cssContainingText('option', 'Almenara')).click();
-          element(by.id('nomeCEP')).sendKeys('39900-000');
+          element(by.id('tradeName')).sendKeys(tradeName);
+          element(by.id('name')).sendKeys('Gama Company');
+          element(by.id('address')).sendKeys('Rua Avelino Nascimento');
+          element(by.id('number')).sendKeys('222');
+          element(by.id('complement')).sendKeys('apart 107');
+          element(by.css('#state-group select')).element(by.cssContainingText('option', 'MG')).click();
+          element(by.css('#city-group select')).element(by.cssContainingText('option', 'Almenara')).click();
+          element(by.id('zip')).sendKeys('39900-000');
           element(by.id('openingDate')).sendKeys('10/10/2009');
           element(by.id('issueDate')).sendKeys('10/10/2010');
     };
@@ -33,12 +33,12 @@ var NewCompanyForm = (function () {
     }
 
     NewCompanyForm.prototype.uploadDocument = function(pdf){
-          var verificarButton = element(by.id('verificar'));
+          var verifyButton = element(by.id('verify'));
 
           NewCompanyForm.prototype.setFile(pdf);
 
           browser.driver.wait(function () {
-                                          return verificarButton.isDisplayed();
+                                          return verifyButton.isDisplayed();
                                       }, 5000);
     }
 
