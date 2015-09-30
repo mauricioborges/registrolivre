@@ -24,5 +24,5 @@ CREATE TABLE IF NOT EXISTS partners(
  company_id INT NOT NULL REFERENCES companies(id),
  name VARCHAR(150),
  cpf VARCHAR(14),
- isActive BIT
+ is_active boolean
 );
