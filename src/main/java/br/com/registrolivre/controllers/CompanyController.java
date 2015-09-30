@@ -42,7 +42,8 @@ public class CompanyController {
     public ResponseEntity save(@RequestBody CompanyRepresentation companyRepresentation) {
         try {
             Company company = new Company.Builder().toModel(companyRepresentation);
-
+            System.out.println(company.getPartners().toArray()[0]);
+            System.out.println(company.getDocuments().toArray()[0]);
             Set<ConstraintViolation<Company>> violations = validator.validate(company);
             if (violations.isEmpty()) {
                 companyService.save(company);

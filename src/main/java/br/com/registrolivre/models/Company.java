@@ -77,7 +77,7 @@ public class Company implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
     Set<Document> documents = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Partner.class,cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.EAGER)
     Set<Partner> partners = new HashSet<>();
 
     @NoArgsConstructor
@@ -128,7 +128,9 @@ public class Company implements Serializable {
                     : new HashSet<>();
             documents.forEach(doc -> company.documents.add(doc));
 
-            Set<Partner> partners = partnersRepresentations != null ? partnersToModel(partnersRepresentations,company) : new HashSet<>();
+            Set<Partner> partners = partnersRepresentations != null
+                    ? partnersToModel(partnersRepresentations,company)
+                    : new HashSet<>();
             partners.forEach(partner -> company.partners.add(partner));
 
             return company;
@@ -141,7 +143,9 @@ public class Company implements Serializable {
         }
 
         private Set<Partner> partnersToModel(Set<PartnerRepresentation> partners, Company company){
-            return partners.stream().map(partner -> new Partner.Builder().toModel(partner).withCompany(company)).collect(Collectors.toSet());
+            return partners.stream()
+                    .map(partner -> new Partner.Builder().toModel(partner).withCompany(company))
+                    .collect(Collectors.toSet());
         }
     }
 }
