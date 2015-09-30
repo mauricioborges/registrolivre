@@ -2,6 +2,7 @@ package br.com.registrolivre.models;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.controllers.representations.DocumentRepresentation;
+import br.com.registrolivre.controllers.representations.PartnerRepresentation;
 import org.junit.Test;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +27,7 @@ public class CompanyTest {
     private static final String CEP = "";
     private static final String OPENING_DATE = "08/09/2015";
     private static final MultipartFile FILE = null;
+    private static final Set<PartnerRepresentation> PARTNER = new HashSet<>();
 
     @Test
     public void shouldConvertRepresentationToCompany() throws Exception {
@@ -39,7 +41,7 @@ public class CompanyTest {
     @Test
     public void shouldConvertRepresentationWithAddressToCompany() throws Exception {
         CompanyRepresentation representation = new CompanyRepresentation(1L, CNPJ, TRADE_NAME, COMPANY_NAME,
-                STREET_NAME, ADDRESS_NUMBER, COMPLEMENT, STATE, CITY, CEP, OPENING_DATE, DOCUMENTS, FILE);
+                STREET_NAME, ADDRESS_NUMBER, COMPLEMENT, STATE, CITY, CEP, OPENING_DATE, DOCUMENTS, FILE, PARTNER);
         Company company = new Company.Builder().toModel(representation);
 
         LocalDate companyDate = company.getOpeningDate();
