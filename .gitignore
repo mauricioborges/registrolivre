@@ -40,3 +40,5 @@ src/test/resources/coverage/
 
 .profile
 .keys
+
+logback.xml
