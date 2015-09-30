@@ -147,9 +147,10 @@
                 </button>
               </h4>
             </div>
-            <div class="form-group">
-              <label>Nome do sócio</label>
-              <input type="text" class="form-control" data-ng:model="partner.name" name="partnerName" id="partnerName">
+            <div class="form-group has-feedback" ng-class="{'has-error': userForm.partnerName.$dirty && userForm.partnerName.$invalid, 'has-success': userForm.partnerName.$valid }">
+              <label>Nome do sócio <abbr class="red-color" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
+              <input type="text" class="form-control required" value="" data-ng:model="partner.name" name="partnerName" id="partnerName" maxlength="150" required>
+              <span class="glyphicon form-control-feedback"></span>
             </div>
             <div class="form-group">
               <label>CPF</label>
