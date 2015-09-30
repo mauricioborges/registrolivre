@@ -183,4 +183,25 @@ describe("Controller: NewCompanyController", function() {
             expect(spy).to.have.been.called;
         });
 
+    it("Should have not any partner when load the controller", function(){
+        var controller = $controller('NewCompanyController', { $scope: $scope });
+
+        expect(false).to.be.equal(controller.hasPartners());
+    });
+
+    it("Should have a partner when add a new Partner", function(){
+        var controller = $controller('NewCompanyController', { $scope: $scope });
+        controller.addPartner();
+        expect(true).to.be.equal(controller.hasPartners());
+    });
+
+    it("Should have not a partner when remove the unique partner in controller", function(){
+        $scope.company = {partners: [{}]};
+        var controller = $controller('NewCompanyController', { $scope: $scope });
+
+        controller.removePartner(0);
+
+        expect(false).to.be.equal(controller.hasPartners());
+    });
+
 });

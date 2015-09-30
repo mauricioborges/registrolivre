@@ -9,8 +9,22 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     VALID: 4
   };
 
-  $scope.company = {
-    partners: [{name:"test", isActive: false}]
+  $scope.addPartner = function(){
+    $scope.company = $scope.company || {};
+    if($scope.company.partners === undefined){
+      $scope.company.partners = [];
+    }
+    $scope.company.partners.push({name:"", isActive: false});
+  };
+
+  $scope.removePartner = function(position){
+    if($scope.hasPartners()){
+      $scope.company.partners.splice(position, 1);
+    }
+  };
+
+  $scope.hasPartners = function(){
+    return $scope.company !== undefined && Array.isArray($scope.company.partners) && $scope.company.partners.length > 0;
   };
 
   $scope.getStates = function() {
@@ -109,7 +123,10 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     loadCities: $scope.loadCities,
     clearForm: $scope.clearForm,
     preventType: $scope.preventType,
-    filterValue: $scope.filterValue
+    filterValue: $scope.filterValue,
+    hasPartners: $scope.hasPartners,
+    addPartner: $scope.addPartner,
+    removePartner: $scope.removePartner
   };
 
 }]);
