@@ -124,7 +124,14 @@ task copyRamda {
     }
 }
 
-task copyVendorFiles(dependsOn: ['deleteVendor', 'copyLodash', 'copyRamda', 'copyBootstrap', 'copyAngular'])
+task cpfDirective {
+    doLast {
+        mkdir('src/main/resources/static/vendor/cpf-directive')
+        copy { from 'node_modules/ng-cpf-cnpj-validate/validate-cpf-directive.js' into 'src/main/resources/static/vendor/cpf-directive'}
+    }
+}
+
+task copyVendorFiles(dependsOn: ['deleteVendor', 'copyLodash', 'copyRamda', 'copyBootstrap', 'copyAngular', 'cpfDirective'])
 
 task assembleJar(dependsOn: assemble)
 
