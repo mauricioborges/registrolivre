@@ -1,17 +1,21 @@
-app.directive("onlyDigits", function () {
+app.directive('onlyDigits', function() {
     return {
+        require: 'ngModel',
         restrict: 'A',
-        require: '?ngModel',
-        link: function (scope, element, attrs, ngModel) {
-            if (!ngModel) return;
-            ngModel.$parsers.unshift(function (inputValue) {
-                var digits = inputValue.split('').filter(function (s) {
-                    return (!isNaN(s) && s != ' ');
-                }).join('');
-                ngModel.$viewValue = digits;
-                ngModel.$render();
-                return digits;
-            });
+        link: function (scope, element, attr, ctrl) {
+            function inputValue(val) {
+                if (val) {
+                    var digits = val.replace(/[^0-9]/g, '');
+
+                    if (digits !== val) {
+                        ctrl.$setViewValue(digits);
+                        ctrl.$render();
+                    }
+                    return parseInt(digits,10);
+                }
+                return undefined;
+            }
+            ctrl.$parsers.push(inputValue);
         }
     };
 });
