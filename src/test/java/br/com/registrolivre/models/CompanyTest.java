@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class CompanyTest {
@@ -58,4 +59,23 @@ public class CompanyTest {
         assertThat(company.getCep(), is(representation.getCep()));
         assertThat(resultingDate, is(representation.getOpeningDate()));
     }
+
+    @Test
+    public void shouldReturnNullDateWhenOpeningDateIsEmpty() throws Exception {
+        String emptyOpeningDate = "";
+        CompanyRepresentation representation = new CompanyRepresentation(1L, CNPJ, TRADE_NAME, COMPANY_NAME,
+                STREET_NAME, ADDRESS_NUMBER, COMPLEMENT, STATE, CITY, CEP, emptyOpeningDate, DOCUMENTS, FILE, PARTNER);
+        Company company = new Company.Builder().toModel(representation);
+        assertNull(company.getOpeningDate());
+    }
+
+    @Test
+    public void shouldReturnNullDateWhenOpeningDateIsNull() throws Exception {
+        String nullOpeningDate = null;
+        CompanyRepresentation representation = new CompanyRepresentation(1L, CNPJ, TRADE_NAME, COMPANY_NAME,
+                STREET_NAME, ADDRESS_NUMBER, COMPLEMENT, STATE, CITY, CEP, nullOpeningDate, DOCUMENTS, FILE, PARTNER);
+        Company company = new Company.Builder().toModel(representation);
+        assertNull(company.getOpeningDate());
+    }
+
 }

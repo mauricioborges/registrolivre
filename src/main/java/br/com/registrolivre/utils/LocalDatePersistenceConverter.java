@@ -24,6 +24,7 @@ public class LocalDatePersistenceConverter implements AttributeConverter<LocalDa
     }
 
     public static LocalDate getLocalDate(String issueDate) {
+        if(issueDate == "") return null;
         String[] date = issueDate.split("/");
         int openingYear = Integer.parseInt(date[2]);
         int openingMonth = Integer.parseInt(date[1]);
