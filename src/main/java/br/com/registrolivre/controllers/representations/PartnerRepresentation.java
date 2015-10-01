@@ -31,6 +31,9 @@ public class PartnerRepresentation {
         this.isActive = isActive;
     }
 
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
+    }
 
     @NoArgsConstructor
     @AllArgsConstructor

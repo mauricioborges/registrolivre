@@ -34,7 +34,6 @@ public class Partner implements Serializable {
     @Column(name = "cpf")
     String cpf;
 
-    @org.hibernate.annotations.Type(type = "true_false")
     @Column(name = "is_active")
     boolean isActive;
 
