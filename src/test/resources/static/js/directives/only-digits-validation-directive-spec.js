@@ -12,11 +12,11 @@ describe('Directive: only-digits-validation', function() {
 
       beforeEach(inject(function($rootScope, $compile) {
           onlyDigitsHTML = '<input type="text" ng-model="company.number" name="empresa.nomeNumero" ' +
-                           ' id="nomeNumero" maxlength="9" only-digits />';
+                           ' id="number" maxlength="9" only-digits />';
 
           scope = $rootScope;
           scope.company = company;
-          element = $compile(element)(scope);
+          element = $compile(onlyDigitsHTML)(scope);
           scope.$digest();
       }));
 
