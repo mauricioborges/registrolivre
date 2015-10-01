@@ -20,6 +20,13 @@ var NewCompanyForm = (function () {
           element(by.id('btn-submit')).click();
     };
 
+    NewCompanyForm.prototype.fillPartnerFields = function(partnerName,cpf){
+        element(by.id('add-partners')).click();
+        element(by.id('partnerName')).sendKeys(partnerName);
+        element(by.id('cpf')).sendKeys(cpf);
+
+    }
+
     NewCompanyForm.prototype.clear = function(){
           element(by.id('btn-clear')).click();
     };

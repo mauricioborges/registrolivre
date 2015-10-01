@@ -7,6 +7,10 @@ exports.config = {
   },
   params: {
       cnpj: "73.193.236/0001-65",
-      name: "Boteco do Pedro"
+      cnpj2: "74.174.834/0001-50",
+      name: "Boteco do Pedro",
+      name2: "Company without partner Chrome",
+      partnerName:"Sócio",
+      cpf:"442.282.005-24"
   }
 };
