@@ -5,7 +5,6 @@ sleep 30
 webdriver-manager start > /dev/null 2>&1 &
 sleep 5
 protractor src/test/resources/functional/firefox-conf.js
-protractor src/test/resources/functional/chrome-conf.js
 sleep 5
 curl "http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer"
 pkill -f gradle

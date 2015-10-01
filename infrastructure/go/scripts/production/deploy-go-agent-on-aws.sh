@@ -24,6 +24,7 @@ ssh -i $GO_AGENT_REGISTROLIVRE_KEY ubuntu@$GO_AGENT_AWS_IP "sh ${SCRIPTS_PATH}/o
 ssh -i $GO_AGENT_REGISTROLIVRE_KEY ubuntu@$GO_AGENT_AWS_IP "sh ${SCRIPTS_PATH}/export-java_home.sh"
 ssh -i $GO_AGENT_REGISTROLIVRE_KEY ubuntu@$GO_AGENT_AWS_IP "sh ${SCRIPTS_PATH}/git.sh"
 ssh -i $GO_AGENT_REGISTROLIVRE_KEY ubuntu@$GO_AGENT_AWS_IP "sh ${SCRIPTS_PATH}/nodejs.sh"
+ssh -i $GO_AGENT_REGISTROLIVRE_KEY ubuntu@$GO_AGENT_AWS_IP "sh ${SCRIPTS_PATH}/firefox.sh"
 ssh -i $GO_AGENT_REGISTROLIVRE_KEY ubuntu@$GO_AGENT_AWS_IP "sh ${SCRIPTS_PATH}/go-agent.sh"
 ssh -i $GO_AGENT_REGISTROLIVRE_KEY ubuntu@$GO_AGENT_AWS_IP "sh ${SCRIPTS_PATH}/export-go_server.sh $AWS_GO_SERVER_DNS"
 
