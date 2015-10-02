@@ -11,18 +11,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class DocumentRepresentationTest {
-    private CompanyRepresentation companyRepresentation;
     private Company company;
     private String url = "url";
     private LocalDate issue_date = LocalDate.of(2010,9,10);
 
     @Before
     public void setUp() {
-        companyRepresentation = new CompanyRepresentation.Builder()
-                .withCnpj("cnpj")
-                .withTradeName("trade name")
-                .build();
-
         company = new Company.Builder()
                 .withCnpj("cnpj")
                 .withTradeName("trade name")
