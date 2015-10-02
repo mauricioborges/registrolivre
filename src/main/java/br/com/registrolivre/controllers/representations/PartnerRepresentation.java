@@ -25,7 +25,8 @@ public class PartnerRepresentation {
     @JsonFormat CompanyRepresentation company;
 
 
-    public PartnerRepresentation(String name, String cpf, boolean isActive){
+    public PartnerRepresentation(CompanyRepresentation company,String name, String cpf, boolean isActive){
+        this.company = company;
         this.name = name;
         this.cpf = cpf;
         this.isActive = isActive;

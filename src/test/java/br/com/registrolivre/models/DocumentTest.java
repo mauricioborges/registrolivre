@@ -25,8 +25,9 @@ public class DocumentTest {
 
         DocumentRepresentation documentRepresentation = new DocumentRepresentation(companyRepresentation, "url",issueDate );
         Document document = new Document.Builder().toModel(documentRepresentation);
-
         assertThat(document.getUrl(), is(documentRepresentation.getUrl()));
+        assertThat(document.getIssueDate(), is(document.getIssueDate()));
+
     }
 
     @Test
