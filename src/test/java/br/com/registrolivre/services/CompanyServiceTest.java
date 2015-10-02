@@ -21,19 +21,20 @@ public class CompanyServiceTest {
     private CompanyRepository companyRepository;
 
     private CompanyService companyService;
-
+    private Company company;
     @Before
     public void setUp() {
         initMocks(this);
         companyService = new CompanyService(companyRepository);
+        company = new Company.Builder()
+                .withCnpj("cnpj")
+                .withTradeName("trade name")
+                .build();
+
     }
 
     @Test
     public void shouldSaveCompanyTest() {
-        Company company = new Company.Builder()
-                .withCnpj("cnpj")
-                .withTradeName("trade name")
-                .build();
 
         when(companyRepository.save(company)).thenReturn(company);
 
@@ -53,11 +54,6 @@ public class CompanyServiceTest {
 
     @Test
     public void shouldReturnExistingCompanyWhenGetCompanyByCNPJ() throws Exception {
-        Company company = new Company.Builder()
-                .withCnpj("cnpj")
-                .withTradeName("trade name")
-                .build();
-
         when(companyRepository.getByCnpj("cnpj")).thenReturn(company);
         Company resultingCompany = companyService.getByCnpj("cnpj");
 
@@ -65,11 +61,6 @@ public class CompanyServiceTest {
     }
 
     private List<Company> getCompanies() {
-        Company company = new Company.Builder()
-                .withCnpj("cnpj")
-                .withTradeName("trade name")
-                .build();
-
         List<Company> companies = new ArrayList<Company>();
         companies.add(company);
         return companies;
