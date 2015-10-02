@@ -42,6 +42,8 @@ describe('Directive: cnpj-validation', function() {
     input.triggerHandler('blur');
 
     input.hasClass('ng-valid').should.be.true;
+    element.hasClass('has-success').should.be.true;
+    element.hasClass('has-error').should.be.false;
   });
 
   it('should invalidate cnpj with incorrect length', function() {
@@ -62,6 +64,8 @@ describe('Directive: cnpj-validation', function() {
       input.triggerHandler('blur');
 
       input.hasClass('ng-invalid').should.be.true;
+      element.hasClass('has-error').should.be.true;
+      element.hasClass('has-success').should.be.false;
     });
 
     it('should emit incompleteCnpj message when CNPJ is incomplete',function(){
