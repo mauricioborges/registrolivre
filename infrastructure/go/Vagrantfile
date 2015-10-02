@@ -22,4 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "scripts/provision/nodejs.sh"
   config.vm.provision "shell", path: "scripts/provision/go-server.sh"
   config.vm.provision "shell", path: "scripts/provision/go-agent.sh"
+  config.vm.provision "shell", path: "scripts/provision/firefox.sh"
+  config.vm.provision "shell", path: "scripts/provision/postgres.sh"
+  config.vm.provision "shell", path: "scripts/provision/gradle.sh"
  end
