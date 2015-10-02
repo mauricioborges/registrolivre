@@ -25,7 +25,15 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
       element.on("blur", function() {
         scope.$emit('verifyingCnpj');
         ngModel.$setValidity("validandoCNPJ", false);
-        validateCNPJ(element.val());
+        var isValid = validateCNPJ(element.val());
+
+        if (isValid) {
+          element.parent().removeClass('has-error');
+          element.parent().addClass('has-success');
+        } else {
+          element.parent().removeClass('has-success');
+          element.parent().addClass('has-error');
+        }
         scope.$apply();
       });
 
