@@ -6,7 +6,7 @@ describe('Directive: only-digits-validation', function() {
 
       company = {
           number: '349'
-      }
+      };
 
       beforeEach(module('registro-livre'));
 

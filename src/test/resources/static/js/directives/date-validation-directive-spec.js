@@ -4,7 +4,6 @@ describe('Directive: date-validation', function() {
     var spy;
     var validDate = "01/01/2015";
     var invalidDate = "31/02/2015";
-    var dateFormat = "__/__/____";
     var company = {
         issueDate: ""
     };
@@ -47,6 +46,6 @@ describe('Directive: date-validation', function() {
         input.triggerHandler('blur');
         input.hasClass('ng-valid').should.be.true;
         spy.should.have.been.calledWith("issueDateValid");
-    })
+    });
 
 });

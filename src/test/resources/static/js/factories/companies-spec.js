@@ -48,7 +48,6 @@ describe("Factory: companies", function() {
             cnpj: "2903902193",
             tradeName: "Fantasy Name"
         };
-        var expectedResponse = 200;
         $httpBackend.expectGET('/buscar-por-cnpj?cnpj=2903902193').respond(company);
 
         companies.getCompanyByCnpj("2903902193").then(function(response) {

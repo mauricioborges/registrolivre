@@ -4,9 +4,7 @@ var ListCompany = require('../pageObject/company-list.js');
 var pdf;
 var newCompanyForm = new NewCompanyForm();
 
-beforeEach(function() {
-    var fs = require('fs');
-    pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
+beforeEach(function() {    pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
 });
 
 describe('Register Company', function() {

@@ -3,17 +3,20 @@ describe('Directive: cnpj-validation', function() {
   var validCnpj = "27.853.013/0001-60";
   company = {
     cnpj: '38.366.166/0001-07',
-  }
+  };
 
   beforeEach(module('registro-livre', function($provide) {
         $provide.value("companies", {
             getCompanyByCnpj: function(cnpj) {
                 return {
                    then: function(success, error404) {
-                    if(cnpj == validCnpj) success();
-                    else error404();
+                    if(cnpj === validCnpj) {
+                    success();
+                    }
+                    else{ error404();
                    }
                 }
+              };
             }
         });
   }));
@@ -85,7 +88,7 @@ describe('Directive: cnpj-validation', function() {
        scope.company.cnpj = "04.114.710/0001-00";
        scope.$digest();
        input.triggerHandler('blur');
-       spy.should.have.been.calledWith("invalidCnpj")
+       spy.should.have.been.calledWith("invalidCnpj");
     });
     it('should not show invalid message if CNPJ is valid',function(){
            var spy = sinon.spy();
@@ -95,7 +98,7 @@ describe('Directive: cnpj-validation', function() {
            scope.$digest();
            input.triggerHandler('blur');
            spy.should.have.not.been.calledWith("invalidCnpj");
-           spy.should.have.been.calledWith("validCnpj")
+           spy.should.have.been.calledWith("validCnpj");
     });
     it('should show duplicateCnpj message when CNPJ already exists in DB',function(){
            var spy = sinon.spy();
@@ -104,7 +107,7 @@ describe('Directive: cnpj-validation', function() {
            scope.company.cnpj = "27.853.013/0001-60";
            scope.$digest();
            input.triggerHandler('blur');
-           spy.should.have.been.calledWith("duplicatedCnpj")
+           spy.should.have.been.calledWith("duplicatedCnpj");
     });
 
 });
