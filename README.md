@@ -28,6 +28,7 @@
   * [Karma](http://karma-runner.github.io/)
   * [Sinon](http://sinonjs.org/)
   * [Chai](http://chaijs.com/)
+  * [JSHint](http://jshint.com/)
 
 * Ferramentas de Automação:
  * [Gradle](https://gradle.org/)
