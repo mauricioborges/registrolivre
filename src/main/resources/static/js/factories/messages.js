@@ -13,7 +13,7 @@ app.factory("messages", ["$document", "$templateCache", function($document, $tem
     /* O método .find() do Angular não encontra classes ou IDs, apenas atributos */
     var container = $document[0].querySelector(".messages-container");
     angular.element(container).html(alert);
-  };
+  }
 
   function clear() {
     var container = $document[0].querySelector(".messages-container");
@@ -26,7 +26,7 @@ app.factory("messages", ["$document", "$templateCache", function($document, $tem
   }
 
   function showWarning(message) {
-    show(message, "warning")
+    show(message, "warning");
   }
 
    function showDanger(message) {
@@ -43,5 +43,5 @@ app.factory("messages", ["$document", "$templateCache", function($document, $tem
     showDanger: showDanger,
     showInfo: showInfo,
     clear: clear,
-  }
+  };
 }]);

@@ -39,15 +39,15 @@ app.factory("statesAndCities", [function() {
     };
 
     function getCitiesByState(state) {
-        if(cities[state] == undefined) {
+        if(cities[state] === undefined) {
             return [];
         }
         return cities[state];
-    };
+    }
 
     function getStates() {
         return states;
-    };
+    }
 
     return {
         getCitiesByState: getCitiesByState,

@@ -9,8 +9,8 @@ app.directive("dateValidation", [function() {
             var date = new Date(dateStandard);
             var dateFormat = "__/__/____";
             console.log(inputDate);
-            return inputDate == dateFormat || inputDate.length == 0 || date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2];
-        }
+            return inputDate == dateFormat || inputDate.length === 0 || date.getDate()==dateArray[0] && (date.getMonth()+1)==dateArray[1] && date.getFullYear()==dateArray[2];
+        };
 
         var dateValidator = function(inputDate) {
             console.log(element.attr('id'));
@@ -29,5 +29,5 @@ app.directive("dateValidation", [function() {
            scope.$apply();
         });
     },
-  }
+  };
 }]);

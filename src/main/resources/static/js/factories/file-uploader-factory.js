@@ -68,7 +68,7 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
         console.log('onError || message: %s', message);
         $scope.evaData.enableFileUpload();
       }
-    }
+    };
   }
 
   function createFileUploader(onSuccess) {
@@ -83,9 +83,9 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
         };
         onSuccess(evaporateOptions);
       });
-    };
+    }
   return {
     setFileUploaderOptions: setFileUploaderOptions,
     createFileUploader: createFileUploader
-  }
+  };
 }]);

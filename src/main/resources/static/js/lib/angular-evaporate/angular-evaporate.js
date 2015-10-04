@@ -13,7 +13,7 @@
       };
       return {
         create: create
-      }
+      };
     }])
 
     .directive('evaporate', ['fileUploaderFactory', 'evaFactory', function (fileUploaderFactory, evaFactory) {

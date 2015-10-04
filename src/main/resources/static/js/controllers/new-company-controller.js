@@ -56,14 +56,14 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
         }, function(response) {
            messages.showDanger("Ocorreu um erro no sistema, por favor tente novamente.");
         });
-    }
+    };
 
   $scope.resetForm = function() {
     $scope.company = {};
     $document.find(".has-feedback").removeClass("has-error has-success");
     $document.find("#btn-submit").attr("disabled", true);
     $scope.evaData.clearFiles();
-  }
+  };
 
   $scope.$on('verifyingCnpj', function() {
     $scope.cnpjValidation = $scope.VALIDATION.LOADING;
@@ -109,7 +109,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $scope.issueDateValidation = $scope.VALIDATION.VALID;
     $scope.openingDateValidation = $scope.VALIDATION.VALID;
 
-  }
+  };
 
   $scope.filterValue = function($event) {
     if(isNaN(String.fromCharCode($event.charCode))) {

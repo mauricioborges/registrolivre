@@ -4,15 +4,15 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
     link: function(scope, element, attr, ngModel) {
       scope.showUniqueCnpjMessage = function(){
         return scope.cnpjAlreadyExists && element.hasClass("has-error");
-      }
+      };
 
       scope.showIncompleteCnpjMessage = function(){
         return scope.incompleteCnpj && element.hasClass("has-error");
-      }
+      };
 
       scope.showInvalidCnpjMessage = function(){
         return scope.invalidCnpj && element.hasClass("has-error");
-      }
+      };
 
       var validateCNPJ = function(input) {
         var cnpj = input.replace(/[^\d]+/g, "");
@@ -52,9 +52,9 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
                 scope.verifingCnpj = false;
                 scope.$emit('validCnpj');
                 ngModel.$setValidity("validandoCNPJ", true);
-            })
+            });
         return true;
-      }
+      };
 
       var isCNPJStructureValid = function(cnpj) {
         if (cnpj.length != 14) {
@@ -109,6 +109,6 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         return sum % 11 < 2 ? 0 : 11 - sum % 11;
       };
     },
-  }
+  };
 
 }]);

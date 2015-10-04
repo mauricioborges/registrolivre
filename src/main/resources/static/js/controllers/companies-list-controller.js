@@ -4,7 +4,7 @@ app.controller("CompaniesListController", ["$scope", "$filter", "ngTableParams",
         $scope.companies = [];
         $scope.hasCompanies = false;
         $scope.companiesNotFoundMessage = "Nenhum registro de empresa encontrado.";
-    };
+    }
 
     function configureTableParams() {
         $scope.tableParams = new ngTableParams({
@@ -20,7 +20,7 @@ app.controller("CompaniesListController", ["$scope", "$filter", "ngTableParams",
                 $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
             }
         });
-    };
+    }
 
     init();
 
