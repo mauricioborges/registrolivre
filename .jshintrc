@@ -1,0 +1,11 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "unused": true,
+  "expr" : true,
+  "browser" : true,
+  "globals": {
+  "jasmine": true,
+  "mocha": true
+  }
+}
