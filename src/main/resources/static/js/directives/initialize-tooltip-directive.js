@@ -1,6 +1,6 @@
 app.directive("initializeTooltip", ["$timeout", function($timeout) {
   return {
-    link: function(scope, element, attr, ctrl) {
+    link: function(scope) {
 
       if (scope.$last){
         $timeout(function() {

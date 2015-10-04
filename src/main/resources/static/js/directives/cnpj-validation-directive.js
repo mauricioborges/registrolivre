@@ -43,12 +43,12 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         scope.verifingCnpj = true;
 
         companies.getCompanyByCnpj(cnpj).then(
-            function(response) {
+            function() {
                 scope.verifingCnpj = false;
                 scope.cnpjAlreadyExists = true;
                 scope.$emit('duplicatedCnpj');
                 ngModel.$setValidity("validandoCNPJ", false);
-            }, function(response) {
+            }, function() {
                 scope.verifingCnpj = false;
                 scope.$emit('validCnpj');
                 ngModel.$setValidity("validandoCNPJ", true);
@@ -57,7 +57,7 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
       };
 
       var isCNPJStructureValid = function(cnpj) {
-        if (cnpj.length != 14) {
+        if (cnpj.length !== 14) {
           scope.incompleteCnpj = true;
           scope.$emit('incompleteCnpj');
           return false;
@@ -72,7 +72,7 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
 
       var areAllCharsTheSame = function(input) {
         for (i = 0; i < input.length - 1; i++) {
-          if (input.charAt(i) != input.charAt(i + 1)) {
+          if (input.charAt(i) !== input.charAt(i + 1)) {
             return false;
           }
         }
@@ -103,8 +103,9 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         var pos = size - 7;
         for (i = size; i >= 1; i--) {
           sum += numbers.charAt(size - i) * pos--;
-          if (pos < 2)
+          if (pos < 2){
             pos = 9;
+        }
         }
         return sum % 11 < 2 ? 0 : 11 - sum % 11;
       };

@@ -49,7 +49,7 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
       },
 
       // custom callbacks for onProgress and onComplete events
-      onFileStart: function (file) {
+      onFileStart: function () {
         $scope.evaData.progressBar.width(0).html('');
         $scope.evaData.disableFileUpload();
       },
@@ -59,7 +59,7 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
         $scope.evaData.animateProgressBar(progressBarWidth, file.progress);
       },
 
-      onFileComplete: function (file) {
+      onFileComplete: function () {
         $scope.evaData.animateProgressBar($('#progressBar').width(), 100);
         $scope.evaData.enableFileUpload();
       },
