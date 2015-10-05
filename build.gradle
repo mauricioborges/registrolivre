@@ -219,17 +219,20 @@ task integrationTest(type: Test){
 
 task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
 
-task jasmineTest(dependsOn: ['npmTest'])
+task jasmineTest(dependsOn: ['npmTest', 'jsHintSourceCode', 'jsHintSourceTestCode'])
+
 
 task functionalTest(type: Exec){
     commandLine "sh", "./infrastructure/application/scripts/tests/functional/functional-test.sh"
 }
 
 task jsHintSourceCode(type: Exec){
+    ignoreExitValue = true
     commandLine "jshint", "src/main/resources/static/js/"
 }
 
 task jsHintSourceTestCode(type: Exec){
+    ignoreExitValue = true
     commandLine "jshint", "src/test/resources/"
 }
 
