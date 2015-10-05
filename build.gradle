@@ -217,7 +217,7 @@ task integrationTest(type: Test){
 
 }
 
-task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
+task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest', 'jsHintSourceCode', 'jsHintSourceTestCode'])
 
 task jasmineTest(dependsOn: ['npmTest', 'jsHintSourceCode', 'jsHintSourceTestCode'])
 
