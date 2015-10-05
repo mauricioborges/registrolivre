@@ -236,6 +236,11 @@ task jsHintSourceTestCode(type: Exec){
     commandLine "jshint", "src/test/resources/"
 }
 
+npmTest.dependsOn npmInstall
+npmInstall.dependsOn deleteNodeFolder
+jsHintSourceCode.dependsOn npmTest
+jsHintSourceTestCode.dependsOn jsHintSourceCode
+
 checkTestCoverage.dependsOn jacocoTestReport
 test.finalizedBy checkTestCoverage
 unitTest.finalizedBy checkTestCoverage
