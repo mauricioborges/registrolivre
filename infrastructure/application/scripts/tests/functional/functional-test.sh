@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Drop and create database
-psql -U postgres -c "drop database if exists registro_livre;"
-psql -U postgres -c "create database registro_livre with owner registro_livre_user;"
+psql -c "drop database if exists registro_livre;"
+psql -c "create database registro_livre with owner registro_livre_user;"
 
 # Execute registro livre application
 cd registrolivre
