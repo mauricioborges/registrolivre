@@ -62,21 +62,6 @@ $ sudo apt-get install nodejs
 $ sudo apt-get install npm
 ```
 
-## Como executar os testes de front-end
-
-```
-$ ./gradlew jsTest
-```
-
-## Como executar os testes funcionais
-
-Dependências:
-Instalar Protractor como global: npm install protactor -g
-
-```
-$ ./gradlew functionalTest
-```
-
 #  Como fazer o deploy do GO-CD no seu computador
 
 Para ter uma instância do GO-CD executando no seu computador, basta executar o comando abaixo:
@@ -150,14 +135,6 @@ Os arquivos de migration devem seguir o padrão abaixo de nomenclatura.
 * Sufixo: .sql
 
 **Exemplo**: V1__init.sql
-
-#### Executar migrations
-
-Para executar as migrations na Máquina Virtual é só fazer um novo deploy da aplicação, executando:
-
-```
-$ ./gradlew deployLocalAppServer
-```
 
 ## Deploy da aplicação no ambiente local
 
