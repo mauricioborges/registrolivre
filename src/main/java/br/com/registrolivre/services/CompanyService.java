@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @FieldDefaults(level = PRIVATE)
@@ -29,5 +31,9 @@ public class CompanyService {
 
     public Company getByCnpj(String cnpj) {
         return companyRepository.getByCnpj(cnpj);
+    }
+
+    public List<Company> findByTradeName(String tradeName) {
+        return companyRepository.getByTradeName(tradeName);
     }
 }

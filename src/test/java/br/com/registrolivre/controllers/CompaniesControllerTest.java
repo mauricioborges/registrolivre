@@ -52,6 +52,19 @@ public class CompaniesControllerTest {
     }
 
     @Test
+    public void shouldReturnAllFoundCompanies() {
+        when(companyService.findByTradeName("tradeName")).thenReturn(foundCompanies());
+        ResponseEntity<Iterable<CompanyRepresentation>> companies = controller.findCompaniesByTradeName("tradeName");
+        List<CompanyRepresentation> expectedCompanies = new ArrayList<>();
+        expectedCompanies.add(new CompanyRepresentation("first cnpj", "first tradeName"));
+        expectedCompanies.add(new CompanyRepresentation("second cnpj", "second tradeName"));
+
+        assertThat(asList(companies.getBody()).size(), is(asList(expectedCompanies).size()));
+        assertThat(companies.getStatusCode(), is(HttpStatus.OK));
+        verify(companyService).findByTradeName("tradeName");
+    }
+
+    @Test
     public void shouldReturnInternalServerError() {
         when(companyService.findAll()).thenThrow(IllegalArgumentException.class);
         ResponseEntity response = controller.getCompanies();
@@ -66,5 +79,17 @@ public class CompaniesControllerTest {
         companies.add(firstCompany);
         companies.add(secondCompany);
         return companies;
+    }
+
+    private List<Company> foundCompanies() {
+        Company firstCompany = new Company("first cnpj", "first tradeName");
+        Company secondCompany = new Company("second cnpj", "second tradeName");
+        Company thirdCompany = new Company("third cnpj", "third tradeName");
+
+        List<Company> foundCompanies = new ArrayList<Company>();
+        foundCompanies.add(firstCompany);
+        foundCompanies.add(secondCompany);
+        foundCompanies.add(thirdCompany);
+        return foundCompanies;
     }
 }
