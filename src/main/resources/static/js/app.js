@@ -3,6 +3,10 @@ var app = angular.module("registro-livre", ["ngRoute","ui.mask", "ngTable", 'eva
 app.config(["$routeProvider",
     function($routeProvider) {
         $routeProvider
+          .when("/", {
+            templateUrl: "partials/search-companies.html",
+            controller: ""
+          })
           .when("/empresas", {
             templateUrl: "partials/companies.html",
             controller: "CompaniesListController"
@@ -10,6 +14,10 @@ app.config(["$routeProvider",
           .when("/cadastro", {
             templateUrl: "partials/new-company.html",
             controller: "NewCompanyController"
+          })
+          .when("/empresas/busca", {
+            templateUrl: "partials/search-companies.html",
+            controller: "SearchCompaniesController"
           })
           .otherwise({
             redirectTo: "/"

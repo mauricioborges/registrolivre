@@ -23,6 +23,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @Log4j
 @NoArgsConstructor
 @Controller
+@RequestMapping(value = "/empresas", method = GET)
 public class CompaniesController {
 
     private CompanyService companyService;
@@ -32,7 +33,7 @@ public class CompaniesController {
         this.companyService = companyService;
     }
 
-    @RequestMapping(value = "/empresas", method = GET)
+    @RequestMapping(value = "", method = GET)
     public
     @ResponseBody
     ResponseEntity<Iterable<CompanyRepresentation>> getCompanies() {
