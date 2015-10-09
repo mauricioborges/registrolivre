@@ -16,7 +16,7 @@ app.config(["$routeProvider",
             controller: "NewCompanyController"
         })
         .when("/empresas/busca", {
-            templateUrl: "partials/companies.html",
+            templateUrl: "partials/results.html",
             controller: "SearchCompaniesController"
         })
         .otherwise({
