@@ -26,16 +26,32 @@ describe('Directive: only-digits-validation', function() {
           expect(element.val()).to.equal(VALID_NUMBER);
       });
 
-      it('should NOT accepts letters', function() {
-          shouldBeEmpty(LETTERS);
+      it('should accepts letters', function() {
+          element.val(LETTERS);
+          element.triggerHandler('input');
+          expect(element.val()).to.equal(LETTERS);
+      });
+
+      it('should accepts digit + letters', function() {
+          element.val(VALID_NUMBER + LETTERS);
+          element.triggerHandler('input');
+          expect(element.val()).to.equal(VALID_NUMBER + LETTERS);
       });
 
       it('should NOT accepts special chars', function() {
           shouldBeEmpty(SPECIAL_CHARS);
       });
 
-      it('should NOT accepts special chars + letters', function() {
-          shouldBeEmpty(SPECIAL_CHARS + LETTERS);
+      it('should accepts ONLY letters when letters and special', function() {
+          element.val(SPECIAL_CHARS + LETTERS);
+          element.triggerHandler('input');
+          expect(element.val()).to.equal(LETTERS);
+      });
+
+      it('should accepts ONLY digits when digits and special', function() {
+          element.val(SPECIAL_CHARS + VALID_NUMBER);
+          element.triggerHandler('input');
+          expect(element.val()).to.equal(VALID_NUMBER);
       });
 
       function shouldBeEmpty(input_text) {

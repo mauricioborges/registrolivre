@@ -5,7 +5,7 @@ app.directive('onlyDigits', function() {
         link: function (scope, element, attr, ctrl) {
             function inputValue(val) {
                 if (val) {
-                    var digits = val.replace(/[^0-9]/g, '');
+                    var digits = val.replace(/\W+/g, '');
 
                     if (digits !== val) {
                         ctrl.$setViewValue(digits);
