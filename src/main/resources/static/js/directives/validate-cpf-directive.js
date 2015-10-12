@@ -16,7 +16,6 @@
         require: 'ngModel',
         link: function (scope, element, attrs, ctrl) {
           element.bind("blur", function () {
-            //remove error-message
             element.parent().removeClass('has-error');
             element.parent().removeClass('ng-invalid alert-danger');
             element.parent().find('.alert-status-invalid').remove();
@@ -25,11 +24,9 @@
               ctrl.$setValidity('validateCpf', true);
               return undefined;
             }
-            //valida o cpf
             ctrl.$setValidity('validateCpf', validaCPF(ctrl.$modelValue));
             scope.$apply();
 
-            //if cpf invalido
             if (ctrl.$dirty && ctrl.$invalid) {
               element.parent().addClass('has-error');
               element.parent().append(' <label class=" alert-status-invalid ' +

@@ -123,14 +123,14 @@
               <div class="form-group has-feedback" id="openingDate-group" ng-class="{'has-error': userForm.openingDate.$dirty && userForm.openingDate.$invalid}" >
                 <label class="control-label">Data de abertura</label>
                   <input date-validation class="form-control" id="openingDate" name="openingDate" ng-model="company.openingDate" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
-                    <span ng-show="openingDateValidation == VALIDATION.INVALID"><label class="control-label">Data invalida</label></span>
+                    <span ng-show="openingDateValidation == VALIDATION.INVALID"><label class="control-label">Data inválida</label></span>
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="issueDate-group" ng-class="{'has-error': userForm.issueDate.$dirty && userForm.issueDate.$invalid}">
                 <label class="control-label">Emissão de documento</label>
                   <input date-validation class="form-control"  id="issueDate" name="issueDate" ng-model="company.issueDate" type="text" ui-mask="?99/99/9999" autocomplete="off" model-view-value="true"/>
-                  <span ng-show="issueDateValidation == VALIDATION.INVALID"><label class=" control-label">Data invalida</label></span>
+                  <span ng-show="issueDateValidation == VALIDATION.INVALID"><label class=" control-label">Data inválida</label></span>
               </div>
             </div>
         </div>
