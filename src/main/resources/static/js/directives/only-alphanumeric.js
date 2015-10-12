@@ -1,4 +1,4 @@
-app.directive('onlyDigits', function() {
+app.directive('onlyAlphanumeric', function() {
     return {
         require: 'ngModel',
         restrict: 'A',

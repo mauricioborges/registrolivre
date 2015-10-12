@@ -1,4 +1,4 @@
-describe('Directive: only-digits-validation', function() {
+describe('Directive: onlyAlphanumeric-validation', function() {
       var element, scope;
       var VALID_NUMBER = '123456789';
       var LETTERS = 'abcdef';
@@ -12,7 +12,7 @@ describe('Directive: only-digits-validation', function() {
 
       beforeEach(inject(function($rootScope, $compile) {
           onlyDigitsHTML = '<input type="text" ng-model="company.number" name="empresa.nomeNumero" ' +
-                           ' id="number" maxlength="9" only-digits />';
+                           ' id="number" maxlength="9" only-alphanumeric />';
 
           scope = $rootScope;
           scope.company = company;
