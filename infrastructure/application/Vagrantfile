@@ -1,7 +1,5 @@
 VAGRANTFILE_API_VERSION = "2"
 
-USER = "registrolivre"
-
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "ubuntu/trusty64"
@@ -17,10 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     box.memory = 524
   end
 
-  config.ssh.username = USER
-
   config.vm.synced_folder "public_keys/", "/home/public_keys", create: true
-  config.vm.synced_folder "../../", "/home/" + USER + "/registrolivre", create: true
+  config.vm.synced_folder "../../", "/home/vagrant/registrolivre", create: true
 
   # Provision
   config.vm.provision :shell, :path => "../scripts/provision/open-jdk8.sh"
