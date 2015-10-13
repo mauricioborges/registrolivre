@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.synced_folder "public_keys/", "/home/public_keys", create: true
+  config.vm.synced_folder "../../", "/home/vagrant/registrolivre", create: true
 
   # Provision
   config.vm.provision :shell, :path => "../scripts/provision/open-jdk8.sh"
