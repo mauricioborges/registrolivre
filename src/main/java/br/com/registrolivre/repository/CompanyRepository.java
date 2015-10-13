@@ -12,6 +12,6 @@ import java.util.List;
 public interface CompanyRepository extends CrudRepository<Company, Long> {
     Company getByCnpj(String cnpj);
 
-    @Query("select company from Company company where company.tradeName like %:tradeName%")
+    @Query("select company from Company company where lower(company.tradeName) like %:tradeName%")
     List<Company> getByTradeName(@Param("tradeName") String tradeName);
 }
