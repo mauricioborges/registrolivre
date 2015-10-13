@@ -46,16 +46,18 @@ public class CompaniesController {
     }
 
     @RequestMapping(value = "/busca", method = GET)
-    ResponseEntity<Iterable<CompanyRepresentation>> findCompaniesByTradeName(@RequestParam(value = "tradeName") String tradeName) {
+    public
+    @ResponseBody
+    ResponseEntity<Iterable<CompanyRepresentation>> findCompaniesByTradeName(@RequestParam(value = "q") String tradeName) {
         try {
-            return ok(findCompanies(tradeName));
+            return ok(companiesByTradeName(tradeName));
         } catch (IllegalArgumentException ex) {
             log.error("Error trying to find one or more companies by trade name", ex);
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
 
-    private List<CompanyRepresentation> findCompanies(String tradeName) {
+    private List<CompanyRepresentation> companiesByTradeName(String tradeName) {
         return newArrayList(companyService.findByTradeName(tradeName))
                 .stream()
                 .map(this::toRepresentation)

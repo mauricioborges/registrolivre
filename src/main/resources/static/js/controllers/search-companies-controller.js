@@ -1,8 +1,10 @@
-app.controller("SearchCompaniesController", ["$scope", "$filter", "companies", function($scope, $filter, companies) {
+app.controller("SearchCompaniesController", ["$scope", "$filter", "$location", "ngTableParams", "companies", function($scope, $filter, $location, ngTableParams, companies) {
+
     function init() {
         $scope.companies = [];
         $scope.hasCompanies = false;
         $scope.companiesNotFoundMessage = "Nenhum registro de empresa encontrado.";
+        $scope.searchCompanies = searchCompanies;
     }
 
     function searchCompanies() {

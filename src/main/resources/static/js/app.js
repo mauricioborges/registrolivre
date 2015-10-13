@@ -3,25 +3,25 @@ var app = angular.module("registro-livre", ["ngRoute","ui.mask", "ngTable", 'eva
 app.config(["$routeProvider",
     function($routeProvider) {
         $routeProvider
-          .when("/", {
+        .when("/", {
             templateUrl: "partials/search-companies.html",
             controller: ""
-          })
-          .when("/empresas", {
+        })
+        .when("/empresas", {
             templateUrl: "partials/companies.html",
             controller: "CompaniesListController"
-          })
-          .when("/cadastro", {
+        })
+        .when("/cadastro", {
             templateUrl: "partials/new-company.html",
             controller: "NewCompanyController"
-          })
-          .when("/empresas/busca", {
-            templateUrl: "partials/search-companies.html",
+        })
+        .when("/empresas/busca", {
+            templateUrl: "partials/companies.html",
             controller: "SearchCompaniesController"
-          })
-          .otherwise({
+        })
+        .otherwise({
             redirectTo: "/"
-          });
-    }]);
+        });
+}]);
 
 
