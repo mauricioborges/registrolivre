@@ -39,6 +39,11 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
 
       element.on("paste", clipboard.handlePaste(element));
 
+      scope.$on('duplicatedCnpj', function() {
+        element.parent().removeClass('has-success');
+        element.parent().addClass('has-error');
+      });
+
       var verifyUniqueCnpj = function(cnpj) {
         scope.verifingCnpj = true;
 
