@@ -1,19 +1,16 @@
 app.directive("fakeFileUploader", [function() {
     function link(scope, element) {
-        if(!scope.data) scope.data = {};
+        if(!scope.data){
+         scope.data = {};
+         }
 
-        function emptyMethod() {};
+        function emptyMethod() {}
 
         var data = scope.data,
             dir = data.dir ? (data.dir + '/') : '',
             maxSizeMB = data.maxSizeMB ? data.maxSizeMB  : 6,
             timestampSeparator = data.timestampSeparator || '$',
-            headersCommon = data.headersCommon || {},
-            headersSigned = data.headersSigned || {},
-            onFileStart = (typeof data.onFileStart === 'function' ? data.onFileStart : emptyMethod),
-            onFileProgress = (typeof data.onFileProgress === 'function' ? data.onFileProgress : emptyMethod),
-            onFileComplete = (typeof data.onFileComplete === 'function' ? data.onFileComplete : emptyMethod),
-            onFileError = (typeof data.onFileError === 'function' ? data.onFileError : emptyMethod);
+            onFileComplete = (typeof data.onFileComplete === 'function' ? data.onFileComplete : emptyMethod);
 
         data.ready = false;
         

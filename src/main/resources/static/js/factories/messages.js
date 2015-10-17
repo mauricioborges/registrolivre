@@ -1,4 +1,4 @@
-app.factory("messages", ["$document", function($document, $templateCache) {
+app.factory("messages", ["$document", function($document) {
 
   function parseHtml(message, type) {
     return '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' +
