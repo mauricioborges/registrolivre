@@ -1,2 +1,5 @@
 src/main/resources/static/js/lib/angular-evaporate
+src/main/resources/static/js/directives/cnpj-validation-directive.js
+src/main/resources/static/js/directives/date-validation-directive.js
+src/main/resources/static/js/directives/validate-cpf-directive.js
 src/test/resources/coverage/
