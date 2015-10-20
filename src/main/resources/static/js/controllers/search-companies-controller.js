@@ -8,8 +8,7 @@ app.controller("SearchCompaniesController", ["$scope", "$filter", "$location", "
     }
 
     function searchCompanies() {
-        $location.search({ "q": $scope.q });
-        $location.path('/empresas/busca');
+        $location.path('/empresas/busca').search({ "q": $scope.q });
     }
 
     function configureTableParams() {
