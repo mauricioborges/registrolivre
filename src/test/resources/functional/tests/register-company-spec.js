@@ -4,7 +4,9 @@ var ListCompany = require('../pageObject/company-list.js');
 var pdf;
 var newCompanyForm = new NewCompanyForm();
 
-beforeEach(function() {    pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
+beforeEach(function() {
+      pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
+      browser.get('http://localhost:8080/#/cadastro');
 });
 
 describe('Register Company', function() {
@@ -15,7 +17,6 @@ describe('Register Company', function() {
       var partnerCPF = browser.params.cpf;
       var listCompany = new ListCompany();
 
-      browser.get('http://localhost:8080/#/cadastro');
       newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
       newCompanyForm.fillPartnerFields(partnerName, partnerCPF);
       newCompanyForm.submit();
@@ -32,7 +33,6 @@ describe('Register Company', function() {
         var companyCNPJ = browser.params.cnpj2;
         var listCompany = new ListCompany();
 
-        browser.get('http://localhost:8080/#/cadastro');
         newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
         newCompanyForm.submit();
 
@@ -44,7 +44,6 @@ describe('Register Company', function() {
     });
 
   it('should clean form', function() {
-      browser.get('http://localhost:8080/#/cadastro');
       newCompanyForm.fillFields('16.724.037/0001-00', 'Gama Company LTDA2', pdf);
       newCompanyForm.clear();
 
@@ -54,7 +53,6 @@ describe('Register Company', function() {
   it('should allow upload the same file after save a company', function() {
       var verifyButton = element(by.id('verify'));
 
-      browser.get('http://localhost:8080/#/cadastro');
       newCompanyForm.fillFields('20.579.862/0001-28', 'Gama Company LTDA3', pdf);
       newCompanyForm.uploadDocument(pdf);
 
