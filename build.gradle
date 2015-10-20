@@ -34,6 +34,15 @@ jacocoTestReport {
         csv.enabled false
         html.destination "build/reports/jacoco/test/html"
     }
+
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/registrolivre/utils**',
+                    '**/registrolivre/configurations**',
+                    ])
+        })
+    }
 }
 
 
@@ -168,7 +177,7 @@ test {
     clean.execute()
     testLogging.showStandardStreams = true
     exclude 'functional/**/*'
-    
+
     onOutput { descriptor, event ->
         logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
     }
