@@ -11,8 +11,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provider "virtualbox" do |box|
-	box.name = "registrolivre"
-    box.memory = 524
+    box.name = "registrolivre"
+    box.memory = 2048
+    box.cpus = 2
   end
 
   config.vm.synced_folder "public_keys/", "/home/public_keys", create: true
