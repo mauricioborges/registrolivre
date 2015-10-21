@@ -13,7 +13,7 @@ app.factory("companies", ["$http", function($http) {
     }
 
     function getCompanyByCnpj(cnpj) {
-        return $http.get("/buscar-por-cnpj", { params:{"cnpj": cnpj } });
+        return $http.get('/buscar-por-cnpj', { params:{'cnpj': cnpj } });
     }
 
     function allFound(tradeName) {
