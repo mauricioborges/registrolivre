@@ -65,7 +65,6 @@ dependencies {
     testCompile('com.h2database:h2')
     testCompile('org.springframework:spring-test')
     testCompile('org.seleniumhq.selenium:selenium-java:2.47.1')
-
 }
 
 flyway{
