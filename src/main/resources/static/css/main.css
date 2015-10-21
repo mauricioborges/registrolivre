@@ -55,15 +55,15 @@ select.form-control {
 	margin-left:60px
 }
 
-#campo-pesquisado{
+#search-input{
 	height:45px;
 }
 
-#campo-pesquisado-navbar{
+#search-input-navbar{
 	width:200px;
 	transition:0.4s ease-in;
 }
-#campo-pesquisado-navbar:focus{
+#search-input-navbar:focus{
 	width: 300px;
 }
 
