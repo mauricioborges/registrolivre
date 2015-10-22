@@ -11,7 +11,7 @@ describe("Controller: SearchCompaniesController", function() {
 
         $controller('SearchCompaniesController', {
             '$scope': $scope,
-             companies: companies
+            companies: companies
         });
     }));
 
@@ -23,7 +23,7 @@ describe("Controller: SearchCompaniesController", function() {
     it("should get all found companies", function() {
         var expectedCompanies = [{id: 1, cnpj: "123456", tradeName: "Company One Ltda"}, {id: 2, cnpj: "654321", tradeName: "Company Two, Inc"}];
 
-        $httpBackend.expectGET('/empresas/busca').respond(expectedCompanies);
+        $httpBackend.when('GET', '/empresas/busca', {'q': 'company'}).respond(200, expectedCompanies);
 
         $httpBackend.flush();
 
@@ -33,7 +33,7 @@ describe("Controller: SearchCompaniesController", function() {
     it("should display message when does not found companies", function () {
         var expectedCompanies = [];
 
-        $httpBackend.expectGET('/empresas/busca').respond(expectedCompanies);
+        $httpBackend.when('GET', '/empresas/busca', {'q': 'company'}).respond(200, expectedCompanies);
 
         $httpBackend.flush();
 
@@ -44,7 +44,7 @@ describe("Controller: SearchCompaniesController", function() {
     it("should not display message when found one or more companies", function () {
         var expectedCompanies = [{id: 1, cnpj: "123456", tradeName: "Company One Ltda"}];
 
-        $httpBackend.expectGET('/empresas/busca').respond(expectedCompanies);
+        $httpBackend.when('GET', '/empresas/busca', {'q': 'company'}).respond(200, expectedCompanies);
 
         $httpBackend.flush();
 
