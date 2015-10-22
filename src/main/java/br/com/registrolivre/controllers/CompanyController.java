@@ -97,8 +97,8 @@ public class CompanyController {
         }
     }
 
-    @RequestMapping(value = "/companies/:id", method = RequestMethod.GET)
-    public ResponseEntity getCompanyById(@RequestParam long companyId) {
+    @RequestMapping(value = "/empresas/{companyId}", method = RequestMethod.GET)
+    public ResponseEntity getCompanyById(@PathVariable long companyId) {
         Optional<Company> company = Optional.ofNullable(companyService.getById(companyId));
         if (!company.isPresent()) {
             return new ResponseEntity<>(NOT_FOUND);
