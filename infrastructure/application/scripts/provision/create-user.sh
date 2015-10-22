@@ -10,4 +10,5 @@ if [ -z "$(getent passwd ${USER})" ]; then
     groupadd -r admin || true
     usermod -a -G admin ${USER}
     sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=(ALL) NOPASSWD:ALL/g' /etc/sudoers
+    sudo chown registrolivre:registrolivre /home/registrolivre
 fi
