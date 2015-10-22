@@ -6,7 +6,7 @@ var newCompanyForm = new NewCompanyForm();
 
 beforeEach(function() {
       pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
-      browser.get('http://localhost:8080/#/cadastro');
+      browser.get('http://localhost:5000/#/cadastro');
 });
 
 describe('Register Company', function() {
@@ -23,7 +23,7 @@ describe('Register Company', function() {
 
       expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');
 
-      browser.get('http://localhost:8080/#/empresas');
+      browser.get('http://localhost:5000/#/empresas');
       expect(listCompany.containsCompanyName(companyName)).toBe(true);
 
   });
@@ -38,7 +38,7 @@ describe('Register Company', function() {
 
         expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');
 
-        browser.get('http://localhost:8080/#/empresas');
+        browser.get('http://localhost:5000/#/empresas');
         expect(listCompany.containsCompanyName(companyName)).toBe(true);
 
     });
@@ -59,4 +59,3 @@ describe('Register Company', function() {
       expect(verifyButton.isDisplayed()).toBe(true);
   });
 });
-

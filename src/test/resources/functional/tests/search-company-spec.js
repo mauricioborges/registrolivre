@@ -10,7 +10,7 @@ beforeEach(function() {
 
 describe('Search company',function(){
     it('Should search a company',function(){
-      browser.get('http://localhost:8080/#/');
+      browser.get('http://localhost:5000/#/');
 
       var companyName = browser.params.name;
       search.fillSearchField(companyName);
