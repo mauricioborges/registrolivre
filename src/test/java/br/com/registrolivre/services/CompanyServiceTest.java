@@ -60,6 +60,17 @@ public class CompanyServiceTest {
         assertThat(resultingCompany, is(company));
     }
 
+    @Test
+    public void shouldReturnCompanyById() {
+        Long ID = 1L;
+
+        when(companyRepository.findOne(ID)).thenReturn(company);
+
+        Company resultingCompany = companyService.getById(ID);
+
+        assertThat(resultingCompany, is(company));
+    }
+
     private List<Company> getCompanies() {
         List<Company> companies = new ArrayList<Company>();
         companies.add(company);

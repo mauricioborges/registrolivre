@@ -33,5 +33,7 @@ public class CompanyService {
         return companyRepository.getByCnpj(cnpj);
     }
 
+    public Company getById(Long id) { return  companyRepository.findOne(id); }
+
     public List<Company> findByTradeName(String tradeName) { return companyRepository.getByTradeName(tradeName); }
 }
