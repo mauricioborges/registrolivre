@@ -96,4 +96,14 @@ public class CompanyController {
             return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
+
+    @RequestMapping(value = "/companies/:id", method = RequestMethod.GET)
+    public ResponseEntity getCompanyById(@RequestParam long companyId) {
+        Optional<Company> company = Optional.ofNullable(companyService.getById(companyId));
+        if (!company.isPresent()) {
+            return new ResponseEntity<>(NOT_FOUND);
+        }
+        CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company.get());
+        return ResponseEntity.ok(companyRepresentation);
+    }
 }

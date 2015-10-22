@@ -71,6 +71,17 @@ public class CompanyControllerTest {
     }
 
     @Test
+    public void shouldGetExistingCompanyById() throws Exception {
+        CompanyRepresentation company = new CompanyRepresentation("cnpj", "company", 1L);
+
+        when(companyService.getById(1L)).thenReturn(new Company.Builder().toModel(company));
+
+        ResponseEntity response = controller.getCompanyById(1L);
+        assertThat(response.getBody(), is(company));
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+    }
+
+    @Test
     public void shouldGetNothingWhenGettingNonExistingCompanyByCNPJ() throws Exception {
         when(companyService.getByCnpj("cnpj")).thenReturn(null);
         ResponseEntity response = controller.getCompanyByCnpj("cnpj");

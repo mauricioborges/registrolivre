@@ -45,6 +45,15 @@ public class CompanyRepresentation {
         this.partners = new HashSet<>();
     }
 
+
+    public CompanyRepresentation(String cnpj, String tradeName, Long id) {
+        this.id = id;
+        this.cnpj = cnpj;
+        this.tradeName = tradeName;
+        this.documents = new HashSet<>();
+        this.partners = new HashSet<>();
+    }
+
     @NoArgsConstructor
     @AllArgsConstructor
     @Value
