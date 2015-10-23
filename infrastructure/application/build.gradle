@@ -1,5 +1,6 @@
 task bringUpLocalAppServer(type: Exec) {
     commandLine "vagrant", "up", "--no-provision"
+    commandLine "sh", "-c", "ssh-keyscan 192.168.33.71 >> ~/.ssh/known_hosts"
 }
 
 task createRegisterKeysLocalAppServer(type: Exec){
@@ -12,6 +13,7 @@ task provisionLocalAppServer(type: Exec) {
 
 task destroyLocalAppServer(type: Exec) {
     commandLine "vagrant", "destroy", "--force"
+    commandLine "sh", "-c", "ssh-keygen -R 192.168.33.71"
 }
 
 task statusLocalAppServer(type: Exec) {
