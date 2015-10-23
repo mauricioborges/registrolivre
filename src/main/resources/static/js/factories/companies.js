@@ -16,6 +16,10 @@ app.factory("companies", ["$http", function($http) {
         return $http.get('/buscar-por-cnpj', { params:{'cnpj': cnpj } });
     }
 
+    function getCompanyById(companyId) {
+        return $http.get('/empresas/:companyId');
+    }
+
     function allFound(tradeName) {
         return $http.get('/empresas/busca', { params: { 'q': tradeName } }).then(function(response) {
             return response.data;
@@ -24,6 +28,7 @@ app.factory("companies", ["$http", function($http) {
 
     return {
         all: all,
+        getCompanyById:getCompanyById,
         newCompany: newCompany,
         getCompanyByCnpj: getCompanyByCnpj,
         allFound: allFound

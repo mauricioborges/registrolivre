@@ -19,9 +19,12 @@ app.config(["$routeProvider",
             templateUrl: "partials/companies.html",
             controller: "SearchCompaniesController"
         })
+        .when("/empresas/:companyId", {
+            templateUrl: "partials/view-company.html",
+            controller: "FindCompanyController"
+        })
         .otherwise({
             redirectTo: "/"
         });
 }]);
-
 
