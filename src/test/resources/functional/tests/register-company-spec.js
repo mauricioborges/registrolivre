@@ -16,11 +16,17 @@ describe('Register Company', function() {
         var partnerName = browser.params.partnerName;
         var partnerCPF = browser.params.cpf;
         var cnpjInvalid = browser.params.cnpjInvalid;
+        var cnpjIncomplete = browser.params.cnpjIncomplete;
         var listCompany = new ListCompany();
 
         newCompanyForm.fillInvalidCNPJ(cnpjInvalid);
         expect(element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed()).toBe(true);
         newCompanyForm.clear();
+
+        newCompanyForm.fillInvalidCNPJ(cnpjIncomplete);
+        expect(element(by.cssContainingText('.control-label', 'Número incompleto')).isDisplayed()).toBe(true);
+        newCompanyForm.clear();
+
 
         newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
         newCompanyForm.fillPartnerFields(partnerName, partnerCPF);
