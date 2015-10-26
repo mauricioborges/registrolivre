@@ -2,19 +2,6 @@ var NewCompanyForm = (function () {
 
     function NewCompanyForm(){}
 
-    NewCompanyForm.prototype.fireEvent =function(obj, evt){
-         var fireOnThis = obj;
-         if( element.createEvent ) {
-           var evObj = element.createEvent('MouseEvents');
-           evObj.initEvent( evt, true, false );
-           fireOnThis.dispatchEvent( evObj );
-         }
-          else if( element.createEventObject ) { //IE
-           var evObj = element.createEventObject();
-           fireOnThis.fireEvent( 'on' + evt, evObj );
-         }
-    }
-
     NewCompanyForm.prototype.fillFields = function(cnpj, tradeName, pdf) {
           this.uploadDocument(pdf);
           element(by.id('cnpj')).sendKeys(cnpj);
@@ -90,12 +77,6 @@ var NewCompanyForm = (function () {
                                         }, 5000);
         return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
     };
-
-//    NewCompanyForm.prototype.isCNPJInvalid = function(){
-//        browser.driver.wait(function () {
-//                                            return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed();
-//                                        }, 5000);
-//    };
 
     NewCompanyForm.prototype.isPDFValid = function(){
         browser.driver.wait(function () {
