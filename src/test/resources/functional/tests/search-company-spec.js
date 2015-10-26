@@ -4,10 +4,6 @@ var Search = require('../pageObject/search.js');
 var search = new Search();
 var listCompany = new ListCompany();
 
-
-beforeEach(function() {
-});
-
 describe('Search company',function(){
     it('Should search a company',function(){
       browser.get('http://localhost:5000/#/');
