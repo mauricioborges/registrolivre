@@ -31,7 +31,7 @@ var NewCompanyForm = (function () {
     NewCompanyForm.prototype.fillInvalidCNPJ = function(cnpj){
         element(by.id('cnpj')).sendKeys(cnpj);
         browser.executeScript('document.getElementById("cnpj").blur()');
-    }
+    };
 
     NewCompanyForm.prototype.clear = function(){
           element(by.id('btn-clear')).click();
