@@ -17,7 +17,7 @@ app.factory("companies", ["$http", function($http) {
     }
 
     function getCompanyById(companyId) {
-        return $http.get('/empresas/:companyId');
+        return $http.get('/empresas/' + companyId);
     }
 
     function allFound(tradeName) {

@@ -50,11 +50,28 @@ describe("Factory: companies", function() {
         var expectedResponse = 200;
 
         $httpBackend.expectGET('/empresas/' + company.id).respond(company);
-          companies.getCompanyById(company.id).then(function(response) {
-              response.data.should.be.deep.equal(company);
-          });
+
+        companies.getCompanyById(company.id).then(function(response) {
+            response.data.should.be.deep.equal(company);
+        });
+
         $httpBackend.flush();
     });
+
+    it("should not find  company by id", function() {
+            var company = {
+              id: "1",
+            };
+
+            var expectedResponse = 200;
+
+            $httpBackend.expectGET('/empresas/' + company.id).respond(company);
+              companies.getCompanyById(company.id).then(function(response) {
+                  response.data.should.be.deep.equal(company);
+              });
+            $httpBackend.flush();
+        });
+
 
     it("should returns a company with an existing cnpj", function() {
         var company = {
