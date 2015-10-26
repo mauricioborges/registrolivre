@@ -1,5 +1,19 @@
 var NewCompanyForm = (function () {
+
     function NewCompanyForm(){}
+
+    NewCompanyForm.prototype.fireEvent =function(obj, evt){
+         var fireOnThis = obj;
+         if( element.createEvent ) {
+           var evObj = element.createEvent('MouseEvents');
+           evObj.initEvent( evt, true, false );
+           fireOnThis.dispatchEvent( evObj );
+         }
+          else if( element.createEventObject ) { //IE
+           var evObj = element.createEventObject();
+           fireOnThis.fireEvent( 'on' + evt, evObj );
+         }
+    }
 
     NewCompanyForm.prototype.fillFields = function(cnpj, tradeName, pdf) {
           this.uploadDocument(pdf);
@@ -26,6 +40,11 @@ var NewCompanyForm = (function () {
         element(by.id('cpf')).sendKeys(cpf);
 
     };
+
+    NewCompanyForm.prototype.fillInvalidCNPJ = function(cnpj){
+        element(by.id('cnpj')).sendKeys(cnpj);
+        browser.executeScript('document.getElementById("cnpj").blur()');
+    }
 
     NewCompanyForm.prototype.clear = function(){
           element(by.id('btn-clear')).click();
@@ -72,12 +91,11 @@ var NewCompanyForm = (function () {
         return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
     };
 
-    NewCompanyForm.prototype.isCNPJValid = function(){
-        browser.driver.wait(function () {
-                                            return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed();
-                                        }, 5000);
-        return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed() === false;
-    };
+//    NewCompanyForm.prototype.isCNPJInvalid = function(){
+//        browser.driver.wait(function () {
+//                                            return element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed();
+//                                        }, 5000);
+//    };
 
     NewCompanyForm.prototype.isPDFValid = function(){
         browser.driver.wait(function () {
