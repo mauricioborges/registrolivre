@@ -28,7 +28,7 @@ app.factory("companies", ["$http", function($http) {
 
     return {
         all: all,
-        getCompanyById:getCompanyById,
+        getCompanyById: getCompanyById,
         newCompany: newCompany,
         getCompanyByCnpj: getCompanyByCnpj,
         allFound: allFound

@@ -6,7 +6,6 @@ app.controller("CompaniesListController", ["$scope", "$filter", "ngTableParams",
         $scope.companiesNotFoundMessage = "Nenhum registro de empresa encontrado.";
     }
 
-spring
     function configureTableParams() {
         $scope.tableParams = new ngTableParams({
             page: 1,
