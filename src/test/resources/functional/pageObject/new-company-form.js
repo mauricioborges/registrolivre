@@ -19,7 +19,7 @@ var NewCompanyForm = function () {
           element(by.id('btn-submit')).click();
     };
 
-    this.addNewPartner = function(partnerName,cpf){
+    this.addNewPartner = function(){
         element(by.id('add-partners')).click();
     };
 
