@@ -3,38 +3,38 @@
         <div class="col-lg-6 col-md-8 col-lg-offset-3 col-md-offset-2">
             <div class="panel panel-default margin-35-0">
                 <div class="panel-heading centralize">
-                    <h2>empresa: {{tradeName}}</h2>
+                    <h2>empresa: {{company.tradeName}}</h2>
                 </div>
                 <div class="panel-body">
 
                     <dl>
                         <dt>CNPJ:</dt>
-                        <span id="cnpj" >{{cnpj}}</span>
+                        <span id="cnpj" >{{company.cnpj}}</span>
                     </dl>
                     <dl>
                         <dt>Nome fantasia:</dt>
-                        <dd>{{tradeName}}</dd>
+                        <dd>{{company.tradeName}}</dd>
                     </dl>
                     <dl>
                         <dt>Razão Social:</dt>
-                        <dd>{{companyName}} </dd>
+                        <dd>{{company.companyName}} </dd>
                     </dl>
 
                     <dl>
                         <dt>Endereço:</dt>
-                        <dd>{{streetName}}</dd>
+                        <dd>{{company.streetName}}</dd>
                     </dl>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <dl>
                                 <dt>Número:</dt>
-                                <dd>{{number}}</dd>
+                                <dd>{{company.number}}</dd>
                             </dl>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <dl class="pull-right-lg">
                                 <dt>Complemento:</dt>
-                                <dd>{{complement}}</dd>
+                                <dd>{{company.complement}}</dd>
                             </dl>
                         </div>
                     </div>
@@ -42,19 +42,19 @@
                         <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                             <dl>
                                 <dt>Cidade:</dt>
-                                <dd>{{city}}</dd>
+                                <dd>{{company.city}}</dd>
                             </dl>
                         </div>
                         <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                             <dl>
                                 <dt>UF:</dt>
-                                <dd>{{state}}</dd>
+                                <dd>{{company.state}}</dd>
                             </dl>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                             <dl class="pull-right-lg">
                                 <dt>CEP:</dt>
-                                <dd>{{cep}}</dd>
+                                <dd>{{company.cep}}</dd>
                             </dl>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             <dl>
                                 <dt>Data de abertura:</dt>
                                 <dd>
-                                    {{openingDate}}
+                                    {{company.openingDate}}
                                 </dd>
                             </dl>
                         </div>
@@ -71,13 +71,13 @@
                             <dl class="pull-right-lg">
                                 <dt>Emissão de documento:</dt>
                                 <dd>
-                                    {{issueDate}}
+                                    {{company.issueDate}}
                                 </dd>
                             </dl>
                         </div>
                     </div>
 
-                    <a class="btn btn-default btn-download btn-download-pull-left" href="{{url}}{{file}}" download>
+                    <a class="btn btn-default btn-download btn-download-pull-left" href="{{company.url}}{{company.file}}" download>
                         <img style="width:12%; float:left;" src="images/favicon.ico" />
                         <label>Download de PDF</label>
                     </a>
