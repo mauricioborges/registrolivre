@@ -1,15 +1,13 @@
-var Search = (function () {
-    function Search(){}
+var Search = function () {
 
-    Search.prototype.fillSearchField = function(company) {
+    this.fillSearchField = function(company) {
           element(by.id("search-input")).sendKeys(company);
     };
-     Search.prototype.submitSearch = function() {
+     this.submitSearch = function() {
           element(by.id("btn-submit")).click();
      };
 
-    return Search;
 
-})();
+};
 
 module.exports = Search;

@@ -1,8 +1,6 @@
-var NewCompanyForm = (function () {
+var NewCompanyForm = function () {
 
-    function NewCompanyForm(){}
-
-    NewCompanyForm.prototype.fillFields = function(cnpj, tradeName, pdf) {
+    this.fillFields = function(cnpj, tradeName, pdf) {
           this.uploadDocument(pdf);
           element(by.id('cnpj')).sendKeys(cnpj);
           element(by.id('tradeName')).sendKeys(tradeName);
@@ -17,27 +15,27 @@ var NewCompanyForm = (function () {
           element(by.id('issueDate')).sendKeys('10/10/2010');
     };
 
-    NewCompanyForm.prototype.submit = function(){
+    this.submit = function(){
           element(by.id('btn-submit')).click();
     };
 
-    NewCompanyForm.prototype.fillPartnerFields = function(partnerName,cpf){
+    this.fillPartnerFields = function(partnerName,cpf){
         element(by.id('add-partners')).click();
         element(by.id('partnerName')).sendKeys(partnerName);
         element(by.id('cpf')).sendKeys(cpf);
 
     };
 
-    NewCompanyForm.prototype.fillInvalidCNPJ = function(cnpj){
+    this.fillInvalidCNPJ = function(cnpj){
         element(by.id('cnpj')).sendKeys(cnpj);
         browser.executeScript('document.getElementById("cnpj").blur()');
     };
 
-    NewCompanyForm.prototype.clear = function(){
+    this.clear = function(){
           element(by.id('btn-clear')).click();
     };
 
-    NewCompanyForm.prototype.setFile = function(pdf){
+    this.setFile = function(pdf){
         var uploader = element(by.id('files'));
 
         browser.executeScript('document.getElementById("files").className = ""');
@@ -45,48 +43,46 @@ var NewCompanyForm = (function () {
         uploader.sendKeys(pdf);
     };
 
-    NewCompanyForm.prototype.uploadDocument = function(pdf){
+    this.uploadDocument = function(pdf){
           var verifyButton = element(by.id('verify'));
-
-          NewCompanyForm.prototype.setFile(pdf);
+          this.setFile(pdf);
 
           browser.driver.wait(function () {
-                                          return verifyButton.isDisplayed();
-                                      }, 5000);
+               return verifyButton.isDisplayed();
+          }, 5000);
     };
 
-    NewCompanyForm.prototype.getProgressBarText = function(){
+    this.getProgressBarText = function(){
           return element(by.id('progressBar')).getText();
     };
 
-    NewCompanyForm.prototype.isSaved = function(){
+    this.isSaved = function(){
           browser.sleep(10000);
           browser.driver.wait(function () {
-                                    return element(by.css('.alert-success')).isDisplayed();
-                                }, 5000);
+                return element(by.css('.alert-success')).isDisplayed();
+          }, 5000);
+
           return element(by.css('.alert-success')).getText();
     };
 
-    NewCompanyForm.prototype.isSubmitButtonEnable = function(){
+    this.isSubmitButtonEnable = function(){
         return element(by.id('btn-submit')).isEnabled();
     };
 
-    NewCompanyForm.prototype.CNPJExists = function(){
+
+    this.CNPJExists = function(){
         browser.driver.wait(function () {
-                                            return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
-                                        }, 5000);
+              return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
+        }, 5000);
         return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
     };
 
-    NewCompanyForm.prototype.isPDFValid = function(){
+    this.isPDFValid = function(){
         browser.driver.wait(function () {
-                                            return element(by.cssContainingText('.control-label', 'Tamanho do arquivo não suportado')).isDisplayed();
-                                        }, 5000);
+              return element(by.cssContainingText('.control-label', 'Tamanho do arquivo não suportado')).isDisplayed();
+        }, 5000);
         return element(by.cssContainingText('.control-label', 'Tamanho do arquivo não suportado')).isDisplayed() === false;
     };
-
-    return NewCompanyForm;
-
-})();
+};
 
 module.exports = NewCompanyForm;

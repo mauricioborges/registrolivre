@@ -1,15 +1,10 @@
-var CompanyList = (function () {
-    function CompanyList(){}
+var CompanyList = function () {
 
-    CompanyList.prototype.containsCompanyName = function(name) {
-
+    this.containsCompanyName = function(name) {
         return element.all(by.cssContainingText(".text-left > span", name)).first().getText().then(function(_name){
             return name === _name;
         });
     };
-
-    return CompanyList;
-
-})();
+};
 
 module.exports = CompanyList;

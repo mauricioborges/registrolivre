@@ -1,12 +1,9 @@
-var NavBar = (function () {
-    function NavBar(){}
+var NavBar = function () {
 
-    NavBar.prototype.clickCompanyList = function() {
+    this.clickCompanyList = function() {
           element(by.css("div.collapse.navbar-mobile.in > ul > li:nth-child(3) > a")).click();
     };
 
-    return NavBar;
-
-})();
+};
 
 module.exports = NavBar;
