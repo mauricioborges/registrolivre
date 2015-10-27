@@ -13,10 +13,10 @@ describe('Register Company', function() {
     newCompanyForm = new NewCompanyForm();
 
     it('should create a new company with partner', function() {
-        var companyName = browser.params.name;
-        var companyCNPJ = browser.params.cnpj;
-        var partnerName = browser.params.partnerName;
-        var partnerCPF = browser.params.cpf;
+        var companyName = browser.params.validCompanyName;
+        var companyCNPJ = browser.params.validCNPJ;
+        var partnerName = browser.params.validPartnerName;
+        var partnerCPF = browser.params.validCPF;
         var cnpjInvalid = browser.params.cnpjInvalid;
         var cnpjIncomplete = browser.params.cnpjIncomplete;
         var listCompany = new ListCompany();
@@ -40,9 +40,9 @@ describe('Register Company', function() {
     });
 
     it('should create a new company without partner', function() {
-        var companyName = browser.params.name2;
-        var existentCNPJ = browser.params.cnpj;
-        var companyCNPJ = browser.params.cnpj2;
+        var companyName = browser.params.otherValidCompanyName;
+        var existentCNPJ = browser.params.validCNPJ;
+        var companyCNPJ = browser.params.otherValidCNPJ;
         var listCompany = new ListCompany();
 
         newCompanyForm.fillInvalidCNPJ(existentCNPJ);

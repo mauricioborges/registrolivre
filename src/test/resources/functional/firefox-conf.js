@@ -6,13 +6,13 @@ exports.config = {
       'browserName': 'firefox'
   },
   params: {
-    cnpj: "52.504.473/0001-20",
-    cnpj2: "32.533.430/0001-65",
+    validCNPJ: "52.504.473/0001-20",
+    otherValidCNPJ: "32.533.430/0001-65",
     cnpjInvalid: "00.000.000/0000-00",
     cnpjIncomplete: "00.000.000",
-    name: "ZYGama Company LTDA2",
-    name2: "Company without partner Firefox",
-    partnerName:"Sócio",
-    cpf:"442.282.005-24"
+    validCompanyName: "ZYGama Company LTDA2",
+    otherValidCompanyName: "Company without partner Firefox",
+    validPartnerName:"Sócio",
+    validCPF:"442.282.005-24"
   }
 };
