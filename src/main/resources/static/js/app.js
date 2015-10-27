@@ -21,7 +21,7 @@ app.config(["$routeProvider",
         })
         .when("/empresas/:companyId", {
             templateUrl: "partials/view-company.html",
-            controller: "FindCompanyController"
+            controller: "CompanyViewController"
         })
         .otherwise({
             redirectTo: "/"
