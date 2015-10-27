@@ -8,7 +8,7 @@ describe('Search company',function(){
     it('Should search a company',function(){
       browser.get('http://localhost:5000/#/');
 
-      var companyName = browser.params.name;
+      var companyName = browser.params.validCompanyName;
       search.fillSearchField(companyName);
       search.submitSearch();
 

@@ -17,6 +17,7 @@ describe('Register Company', function() {
         var companyCNPJ = browser.params.validCNPJ;
         var partnerName = browser.params.validPartnerName;
         var partnerCPF = browser.params.validCPF;
+        var partnerCPFInvalid = browser.params.invalidCPF;
         var cnpjInvalid = browser.params.cnpjInvalid;
         var cnpjIncomplete = browser.params.cnpjIncomplete;
         var listCompany = new ListCompany();
@@ -29,8 +30,27 @@ describe('Register Company', function() {
         expect(element(by.cssContainingText('.control-label', 'Número incompleto')).isDisplayed()).toBe(true);
         newCompanyForm.clear();
 
+        newCompanyForm.addNewPartner();
+        newCompanyForm.fillPartnerName(partnerName);
+        expect(newCompanyForm.isSubmitButtonEnable()).toBe(false);
+        newCompanyForm.clear();
+
+        newCompanyForm.addNewPartner();
+        newCompanyForm.fillPartnerCPF(partnerCPF);
+        expect(newCompanyForm.isSubmitButtonEnable()).toBe(false);
+        newCompanyForm.clear();
+
+        newCompanyForm.addNewPartner();
+        newCompanyForm.fillPartnerCPF(partnerCPFInvalid);
+        expect(element(by.cssContainingText('.control-label', 'CPF Inválido')).isDisplayed()).toBe(true);
+        expect(newCompanyForm.isSubmitButtonEnable()).toBe(false);
+        newCompanyForm.clear();
+
         newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
-        newCompanyForm.fillPartnerFields(partnerName, partnerCPF);
+        newCompanyForm.addNewPartner();
+        newCompanyForm.fillPartnerName(partnerName);
+        newCompanyForm.fillPartnerCPF(partnerCPF);
+        expect(newCompanyForm.isSubmitButtonEnable()).toBe(true);
         newCompanyForm.submit();
 
         expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');

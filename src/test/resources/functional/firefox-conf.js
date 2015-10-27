@@ -13,6 +13,7 @@ exports.config = {
     validCompanyName: "ZYGama Company LTDA2",
     otherValidCompanyName: "Company without partner Firefox",
     validPartnerName:"Sócio",
-    validCPF:"442.282.005-24"
+    validCPF:"442.282.005-24",
+    invalidCPF:"000.000.000-00"
   }
 };

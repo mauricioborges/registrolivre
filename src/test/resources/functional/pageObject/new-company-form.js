@@ -19,11 +19,17 @@ var NewCompanyForm = function () {
           element(by.id('btn-submit')).click();
     };
 
-    this.fillPartnerFields = function(partnerName,cpf){
+    this.addNewPartner = function(partnerName,cpf){
         element(by.id('add-partners')).click();
-        element(by.id('partnerName')).sendKeys(partnerName);
-        element(by.id('cpf')).sendKeys(cpf);
+    };
 
+    this.fillPartnerName = function(partnerName){
+        element(by.id('partnerName')).sendKeys(partnerName);
+    };
+
+    this.fillPartnerCPF = function(cpf){
+        element(by.id('cpf')).sendKeys(cpf);
+        browser.executeScript('document.getElementById("cpf").blur()');
     };
 
     this.fillInvalidCNPJ = function(cnpj){
