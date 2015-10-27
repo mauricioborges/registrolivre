@@ -2,7 +2,7 @@ var NewCompanyForm = require('../pageObject/new-company-form.js');
 var ListCompany = require('../pageObject/company-list.js');
 
 var pdf;
-var newCompanyForm = new NewCompanyForm();
+newCompanyForm = new NewCompanyForm();
 
 beforeEach(function() {
     pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
@@ -10,6 +10,8 @@ beforeEach(function() {
 });
 
 describe('Register Company', function() {
+    newCompanyForm = new NewCompanyForm();
+
     it('should create a new company with partner', function() {
         var companyName = browser.params.name;
         var companyCNPJ = browser.params.cnpj;
@@ -27,7 +29,6 @@ describe('Register Company', function() {
         expect(element(by.cssContainingText('.control-label', 'Número incompleto')).isDisplayed()).toBe(true);
         newCompanyForm.clear();
 
-
         newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
         newCompanyForm.fillPartnerFields(partnerName, partnerCPF);
         newCompanyForm.submit();
@@ -40,8 +41,13 @@ describe('Register Company', function() {
 
     it('should create a new company without partner', function() {
         var companyName = browser.params.name2;
+        var existentCNPJ = browser.params.cnpj;
         var companyCNPJ = browser.params.cnpj2;
         var listCompany = new ListCompany();
+
+        newCompanyForm.fillInvalidCNPJ(existentCNPJ);
+        expect(element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed()).toBe(true);
+        newCompanyForm.clear();
 
         newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
         newCompanyForm.submit();
