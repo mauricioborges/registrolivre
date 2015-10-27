@@ -29,8 +29,6 @@ describe("Controller: CompanyViewController", function() {
 
         $httpBackend.flush();
 
-        console.log($scope.company);
-        console.log(expectedCompany);
         expect($scope.company.id).to.equal(expectedCompany.id);
         expect($scope.company.cnpj).to.equal(expectedCompany.cnpj);
         expect($scope.company.tradeName).to.equal(expectedCompany.tradeName);
