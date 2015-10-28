@@ -33,8 +33,11 @@ describe('Register Company', function() {
         newCompanyForm.clear();
 
         newCompanyForm.fillInvalidOpeningDate(invalidDate);
-        expect(element(by.cssContainingText('.control-label', 'Data inválida')).isDisplayed()).toBe(true);
+        expect(element.all(by.cssContainingText('.control-label', 'Data inválida')).first().isDisplayed()).toBe(true);
         newCompanyForm.clear();
+
+        newCompanyForm.fillInvalidDocumentIssuanceDate(invalidDate);
+        expect(element.all(by.cssContainingText('.control-label', 'Data inválida')).last().isDisplayed()).toBe(true);
 
         newCompanyForm.addNewPartner();
         newCompanyForm.fillPartnerName(partnerName);
