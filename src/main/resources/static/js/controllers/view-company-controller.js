@@ -1,5 +1,5 @@
 app.controller("CompanyViewController", ["$scope", "$filter", "ngTableParams", "companies", "$routeParams", "$location", "$http",
-   function($scope, $filter, ngTableParams, companies, $routeParams, $location, $http) {
+   function($scope, $filter, ngTableParams, companies, $routeParams) {
 
     var companyId = $routeParams.companyId;
 
@@ -16,7 +16,6 @@ app.controller("CompanyViewController", ["$scope", "$filter", "ngTableParams", "
             "state" : response.state,
             "cep" : response.cep,
             "openingDate" : response.openingDate,
-            "cep" : response.cep,
             "file" : response.file,
         };
     });

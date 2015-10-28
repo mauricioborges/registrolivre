@@ -47,7 +47,7 @@ describe("Factory: companies", function() {
           id: "1",
         };
 
-        var expectedResponse = 200;
+
 
         $httpBackend.expectGET('/empresas/' + company.id).respond(company);
 
@@ -63,7 +63,6 @@ describe("Factory: companies", function() {
               id: "1",
             };
 
-            var expectedResponse = 200;
 
             $httpBackend.expectGET('/empresas/' + company.id).respond(company);
               companies.getCompanyById(company.id).then(function(response) {
