@@ -20,6 +20,8 @@ describe('Register Company', function() {
         var invalidPartnerCPF = browser.params.invalidCPF;
         var invalidCNPJ = browser.params.invalidCNPJ;
         var incompleteCNPJ = browser.params.incompleteCNPJ;
+        var validDate = browser.params.validDate;
+        var invalidDate = browser.params.invalidDate;
         var companyList = new ListCompany();
 
         newCompanyForm.fillInvalidCNPJ(invalidCNPJ);
@@ -28,6 +30,10 @@ describe('Register Company', function() {
 
         newCompanyForm.fillInvalidCNPJ(incompleteCNPJ);
         expect(element(by.cssContainingText('.control-label', 'Número incompleto')).isDisplayed()).toBe(true);
+        newCompanyForm.clear();
+
+        newCompanyForm.fillInvalidOpeningDate(invalidDate);
+        expect(element(by.cssContainingText('.control-label', 'Data inválida')).isDisplayed()).toBe(true);
         newCompanyForm.clear();
 
         newCompanyForm.addNewPartner();
@@ -76,7 +82,6 @@ describe('Register Company', function() {
 
         browser.get('http://localhost:5000/#/empresas');
         expect(companyList.containsCompanyName(companyName)).toBe(true);
-
     });
 
     it('should clean form', function() {
