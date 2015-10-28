@@ -54,42 +54,42 @@ var NewCompanyForm = function () {
         uploader.sendKeys(pdf);
     };
 
-    this.uploadDocument = function(pdf){
+    this.uploadDocument = function(pdf) {
           var verifyButton = element(by.id('verify'));
           this.setFile(pdf);
 
-          browser.driver.wait(function () {
+          browser.driver.wait(function() {
                return verifyButton.isDisplayed();
           }, 5000);
     };
 
-    this.getProgressBarText = function(){
+    this.getProgressBarText = function() {
           return element(by.id('progressBar')).getText();
     };
 
-    this.isSaved = function(){
+    this.isSaved = function() {
           browser.sleep(10000);
-          browser.driver.wait(function () {
+          browser.driver.wait(function() {
                 return element(by.css('.alert-success')).isDisplayed();
           }, 5000);
 
           return element(by.css('.alert-success')).getText();
     };
 
-    this.isSubmitButtonEnable = function(){
+    this.isSubmitButtonEnable = function() {
         return element(by.id('btn-submit')).isEnabled();
     };
 
 
-    this.CNPJExists = function(){
-        browser.driver.wait(function () {
+    this.CNPJExists = function() {
+        browser.driver.wait(function() {
               return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
         }, 5000);
         return element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed();
     };
 
-    this.isPDFValid = function(){
-        browser.driver.wait(function () {
+    this.isPDFValid = function() {
+        browser.driver.wait(function() {
               return element(by.cssContainingText('.control-label', 'Tamanho do arquivo não suportado')).isDisplayed();
         }, 5000);
         return element(by.cssContainingText('.control-label', 'Tamanho do arquivo não suportado')).isDisplayed() === false;
