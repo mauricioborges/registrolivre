@@ -44,3 +44,9 @@ body {
 	width:200px;
 	height:230px;
 }
+
+@media(max-width:767px) {
+	h1 {
+		font-size: 327%;
+	}
+}
