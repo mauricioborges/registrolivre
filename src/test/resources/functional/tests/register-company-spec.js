@@ -17,16 +17,16 @@ describe('Register Company', function() {
         var companyCNPJ = browser.params.validCNPJ;
         var partnerName = browser.params.validPartnerName;
         var partnerCPF = browser.params.validCPF;
-        var partnerCPFInvalid = browser.params.invalidCPF;
-        var cnpjInvalid = browser.params.cnpjInvalid;
-        var cnpjIncomplete = browser.params.cnpjIncomplete;
-        var listCompany = new ListCompany();
+        var invalidPartnerCPF = browser.params.invalidCPF;
+        var invalidCNPJ = browser.params.invalidCNPJ;
+        var incompleteCNPJ = browser.params.incompleteCNPJ;
+        var companyList = new ListCompany();
 
-        newCompanyForm.fillInvalidCNPJ(cnpjInvalid);
+        newCompanyForm.fillInvalidCNPJ(invalidCNPJ);
         expect(element(by.cssContainingText('.control-label', 'Número inválido')).isDisplayed()).toBe(true);
         newCompanyForm.clear();
 
-        newCompanyForm.fillInvalidCNPJ(cnpjIncomplete);
+        newCompanyForm.fillInvalidCNPJ(incompleteCNPJ);
         expect(element(by.cssContainingText('.control-label', 'Número incompleto')).isDisplayed()).toBe(true);
         newCompanyForm.clear();
 
@@ -41,7 +41,7 @@ describe('Register Company', function() {
         newCompanyForm.clear();
 
         newCompanyForm.addNewPartner();
-        newCompanyForm.fillPartnerCPF(partnerCPFInvalid);
+        newCompanyForm.fillPartnerCPF(invalidPartnerCPF);
         expect(element(by.cssContainingText('.control-label', 'CPF Inválido')).isDisplayed()).toBe(true);
         expect(newCompanyForm.isSubmitButtonEnable()).toBe(false);
         newCompanyForm.clear();
@@ -56,14 +56,14 @@ describe('Register Company', function() {
         expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');
 
         browser.get('http://localhost:5000/#/empresas');
-        expect(listCompany.containsCompanyName(companyName)).toBe(true);
+        expect(companyList.containsCompanyName(companyName)).toBe(true);
     });
 
     it('should create a new company without partner', function() {
-        var companyName = browser.params.otherValidCompanyName;
+        var companyName = browser.params.anotherValidCompanyName;
         var existentCNPJ = browser.params.validCNPJ;
-        var companyCNPJ = browser.params.otherValidCNPJ;
-        var listCompany = new ListCompany();
+        var companyCNPJ = browser.params.anotherValidCNPJ;
+        var companyList = new ListCompany();
 
         newCompanyForm.fillInvalidCNPJ(existentCNPJ);
         expect(element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed()).toBe(true);
@@ -75,7 +75,7 @@ describe('Register Company', function() {
         expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');
 
         browser.get('http://localhost:5000/#/empresas');
-        expect(listCompany.containsCompanyName(companyName)).toBe(true);
+        expect(companyList.containsCompanyName(companyName)).toBe(true);
 
     });
 
