@@ -15,33 +15,38 @@ var NewCompanyForm = function () {
           element(by.id('issueDate')).sendKeys('10/10/2010');
     };
 
-    this.submit = function(){
+    this.submit = function() {
           element(by.id('btn-submit')).click();
     };
 
-    this.addNewPartner = function(){
+    this.addNewPartner = function() {
         element(by.id('add-partners')).click();
     };
 
-    this.fillPartnerName = function(partnerName){
+    this.fillPartnerName = function(partnerName) {
         element(by.id('partnerName')).sendKeys(partnerName);
     };
 
-    this.fillPartnerCPF = function(cpf){
+    this.fillPartnerCPF = function(cpf) {
         element(by.id('cpf')).sendKeys(cpf);
         browser.executeScript('document.getElementById("cpf").blur()');
     };
 
-    this.fillInvalidCNPJ = function(cnpj){
+    this.fillInvalidCNPJ = function(cnpj) {
         element(by.id('cnpj')).sendKeys(cnpj);
         browser.executeScript('document.getElementById("cnpj").blur()');
     };
 
-    this.clear = function(){
+    this.fillInvalidOpeningDate = function(invalidDate) {
+        element(by.id('openingDate')).sendKeys(invalidDate);
+        browser.executeScript('document.getElementById("openingDate").blur()');
+    };
+
+    this.clear = function() {
           element(by.id('btn-clear')).click();
     };
 
-    this.setFile = function(pdf){
+    this.setFile = function(pdf) {
         var uploader = element(by.id('files'));
 
         browser.executeScript('document.getElementById("files").className = ""');
