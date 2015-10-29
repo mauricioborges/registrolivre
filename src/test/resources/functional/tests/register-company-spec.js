@@ -20,7 +20,6 @@ describe('Register Company', function() {
         var invalidPartnerCPF = browser.params.invalidCPF;
         var invalidCNPJ = browser.params.invalidCNPJ;
         var incompleteCNPJ = browser.params.incompleteCNPJ;
-        var validDate = browser.params.validDate;
         var invalidDate = browser.params.invalidDate;
         var companyList = new ListCompany();
 
