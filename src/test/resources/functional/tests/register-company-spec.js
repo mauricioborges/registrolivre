@@ -37,6 +37,7 @@ describe('Register Company', function() {
 
         newCompanyForm.fillInvalidDocumentIssuanceDate(invalidDate);
         expect(element.all(by.cssContainingText('.control-label', 'Data inválida')).last().isDisplayed()).toBe(true);
+        newCompanyForm.clear();
 
         newCompanyForm.addNewPartner();
         newCompanyForm.fillPartnerName(partnerName);
