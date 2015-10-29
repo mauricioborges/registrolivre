@@ -55,6 +55,13 @@ public class CompanyControllerTest {
     }
 
     @Test
+    public void shouldResponseNotFoundHTTPStatus() throws Exception {
+        when(companyService.getById(89L)).thenReturn(null);
+        ResponseEntity response = controller.getCompanyById(89);
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+    }
+
+    @Test
     public void shouldValidateCNPJ() throws Exception {
         companyRepresentation = new CompanyRepresentation("123 invalid cnpj", "another fancy name");
         controller.save(companyRepresentation);
