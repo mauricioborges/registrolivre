@@ -12,7 +12,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" ng-model="q" name="q" id="search-input" placeholder="Busque por uma empresa aqui" />
                         <span class="input-group-btn">
-                                <button id="btn-submit" class="btn botao-busca botao-busca-home" type="submit" ng-disabled="q.length < 2">
+                                <button id="btn-submit" class="btn botao-busca botao-busca-home" type="submit" ng-disabled="!q || (q.length<2)">
                                     <span class="glyphicon glyphicon-search"></span>
                                 </button>
                         </span>
