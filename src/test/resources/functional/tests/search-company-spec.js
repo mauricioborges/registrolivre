@@ -14,6 +14,7 @@ describe('Search company',function(){
 
       search.fillSearchField("as");
       expect(search.isSearchButtonEnable()).toBe(true);
+      search.cleanSearchField();
 
       search.fillSearchField(companyName);
       search.submitSearch();

@@ -9,8 +9,13 @@ var Search = function () {
     };
 
     this.isSearchButtonEnable = function() {
-          return element(by.id('search-input')).isEnabled();
+          return element(by.id('btn-submit')).isEnabled();
     };
+
+    this.cleanSearchField = function() {
+          browser.executeScript('document.getElementById("search-input").value = ""');
+    };
+
 };
 
 module.exports = Search;
