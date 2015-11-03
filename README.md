@@ -68,8 +68,6 @@ A task para efetuar o deploy da aplicação:
 $ ./gradlew deployLocalAppServer
 ```
 
-Url para acessar a aplicação local: http://192.168.33.71:5000/
+## Wiki Registro Livre
 
-# Aplicação em Produção
-
-Url para acessar a aplicação: http://ec2-54-232-246-149.sa-east-1.compute.amazonaws.com:5000/
+Se você tem alguma dúvida sobre o projeto, não deixe de consultar nossa [Wiki](https://github.com/ThoughtWorksInc/registrolivre/wiki/Registro-Livre----OFFICIAL-WIKI)
