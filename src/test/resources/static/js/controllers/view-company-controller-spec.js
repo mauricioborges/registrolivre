@@ -8,6 +8,7 @@ describe("Controller: CompanyViewController", function() {
         $controller = $injector.get('$controller');
         $httpBackend = $injector.get('$httpBackend');
         companies = $injector.get('companies');
+
         $routeParams = {
             companyId: 1
         };
@@ -24,7 +25,15 @@ describe("Controller: CompanyViewController", function() {
     });
 
     it("should get a company by id", function() {
-        var expectedCompany = {id: 1, cnpj: "123456", tradeName: "Company One Ltda"};
+        var documents = {id:4,company:null,url:"http://ubimob2013.sciencesconf.org/21283/document",issueDate:"10/10/2015"};
+        var expectedCompany = {
+           id :  1,
+           cnpj :"123456",
+           tradeName : "Company One Ltda",
+           documents : documents
+           };
+
+         console.log(expectedCompany);
         $httpBackend.expectGET('/empresas/' + expectedCompany.id).respond(expectedCompany);
 
         $httpBackend.flush();

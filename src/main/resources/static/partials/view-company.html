@@ -6,7 +6,6 @@
                     <h2>empresa: {{company.tradeName}}</h2>
                 </div>
                 <div class="panel-body">
-
                     <dl>
                         <dt>CNPJ:</dt>
                         <span id="cnpj" >{{company.cnpj}}</span>
@@ -39,7 +38,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                             <dl>
                                 <dt>Cidade:</dt>
                                 <dd>{{company.city}}</dd>
@@ -51,15 +50,15 @@
                                 <dd>{{company.state}}</dd>
                             </dl>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div  class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <dl class="pull-right-lg">
                                 <dt>CEP:</dt>
-                                <dd>{{company.cep}}</dd>
+                                <dd >{{company.cep}}</dd>
                             </dl>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                             <dl>
                                 <dt>Data de abertura:</dt>
                                 <dd>
@@ -67,31 +66,20 @@
                                 </dd>
                             </dl>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <dl class="pull-right-lg">
+                        <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12">
+                            <dl>
                                 <dt>Emissão de documento:</dt>
                                 <dd>
-                                    {{company.issueDate}}
+                                    {{mostraNullHTML(company.documents.issueDate)}}
                                 </dd>
                             </dl>
                         </div>
                     </div>
-
                     <a class="btn btn-default btn-download btn-download-pull-left" href="{{company.url}}{{company.file}}" download>
                         <img style="width:12%; float:left;" src="images/favicon.ico" />
                         <label>Download de PDF</label>
                     </a>
-
-
-                    <h3 class="centralize panel-divider padding-6-0 margin-30-0">Estrutura Societária</h3>
-
-
-
-                    <div class="centralize">Sem sócios cadastrados.</div>
-
-
                 </div>
-
                 <div class="panel-footer">
                     <a class="btn btn-default" href="javascript:history.back(1)">Voltar</a>
                     <a href="/atualizar/14" id="btn-submit" class="btn btn-primary pull-right margin-0-6" >Editar</a>
