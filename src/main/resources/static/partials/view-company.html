@@ -3,37 +3,37 @@
         <div class="col-lg-6 col-md-8 col-lg-offset-3 col-md-offset-2">
             <div class="panel panel-default margin-35-0">
                 <div class="panel-heading centralize">
-                    <h2>empresa: {{company.tradeName}}</h2>
+                    <h2>empresa: {{company.tradeName | showHyphen}}</h2>
                 </div>
                 <div class="panel-body">
                     <dl>
                         <dt>CNPJ:</dt>
-                        <span id="cnpj" >{{company.cnpj}}</span>
+                        <span id="cnpj" >{{company.cnpj | showHyphen}}</span>
                     </dl>
                     <dl>
                         <dt>Nome fantasia:</dt>
-                        <dd>{{company.tradeName}}</dd>
+                        <dd>{{company.tradeName | showHyphen}}</dd>
                     </dl>
                     <dl>
                         <dt>Razão Social:</dt>
-                        <dd>{{company.companyName}} </dd>
+                        <dd>{{company.companyName | showHyphen}} </dd>
                     </dl>
 
                     <dl>
                         <dt>Endereço:</dt>
-                        <dd>{{company.streetName}}</dd>
+                        <dd>{{company.streetName | showHyphen}}</dd>
                     </dl>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <dl>
                                 <dt>Número:</dt>
-                                <dd>{{company.number}}</dd>
+                                <dd>{{company.number | showHyphen}}</dd>
                             </dl>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <dl class="pull-right-lg">
                                 <dt>Complemento:</dt>
-                                <dd>{{company.complement}}</dd>
+                                <dd>{{company.complement | showHyphen}}</dd>
                             </dl>
                         </div>
                     </div>
@@ -41,19 +41,19 @@
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                             <dl>
                                 <dt>Cidade:</dt>
-                                <dd>{{company.city}}</dd>
+                                <dd>{{company.city | showHyphen}}</dd>
                             </dl>
                         </div>
                         <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                             <dl>
                                 <dt>UF:</dt>
-                                <dd>{{company.state}}</dd>
+                                <dd>{{company.state | showHyphen}}</dd>
                             </dl>
                         </div>
                         <div  class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <dl class="pull-right-lg">
                                 <dt>CEP:</dt>
-                                <dd >{{company.cep}}</dd>
+                                <dd >{{company.cep | showHyphen}}</dd>
                             </dl>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             <dl>
                                 <dt>Data de abertura:</dt>
                                 <dd>
-                                    {{company.openingDate}}
+                                    {{company.openingDate | showHyphen}}
                                 </dd>
                             </dl>
                         </div>
@@ -70,12 +70,12 @@
                             <dl>
                                 <dt>Emissão de documento:</dt>
                                 <dd>
-                                    {{mostraNullHTML(company.documents.issueDate)}}
+                                    {{company.documents.issueDate | showHyphen}}
                                 </dd>
                             </dl>
                         </div>
                     </div>
-                    <a class="btn btn-default btn-download btn-download-pull-left" href="{{company.url}}{{company.file}}" download>
+                    <a class="btn btn-default btn-download btn-download-pull-left" href="{{company.documents.url}}{{company.file}}" download>
                         <img style="width:12%; float:left;" src="images/favicon.ico" />
                         <label>Download de PDF</label>
                     </a>
