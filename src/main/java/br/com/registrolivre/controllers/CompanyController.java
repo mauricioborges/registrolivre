@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -101,7 +103,11 @@ public class CompanyController {
     public ResponseEntity getCompanyById(@PathVariable long companyId) {
         Optional<Company> company = Optional.ofNullable(companyService.getById(companyId));
         if (!company.isPresent()) {
-            return new ResponseEntity<>(NOT_FOUND);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            String message = "{\"status\": 404, \"title\": \"Empresa não encontrada\"}";
+            return new ResponseEntity<String>(message, headers, NOT_FOUND);
         }
         CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company.get());
         return ResponseEntity.ok(companyRepresentation);

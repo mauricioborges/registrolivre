@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,12 +27,15 @@ public class CompanyControllerTest {
 
     private Company company;
 
+    private Long NOT_FOUND_COMPANY_ID;
+
     @Before
     public void setUp() throws Exception {
         initMocks(this);
         controller = new CompanyController(companyService);
         companyRepresentation = new CompanyRepresentation("79.064.650/0001-50", "fancy name");
         company = new Company.Builder().toModel(companyRepresentation);
+        NOT_FOUND_COMPANY_ID = 99999L;
     }
 
     @Test
@@ -56,9 +60,26 @@ public class CompanyControllerTest {
 
     @Test
     public void shouldResponseNotFoundHTTPStatus() throws Exception {
-        when(companyService.getById(89L)).thenReturn(null);
-        ResponseEntity response = controller.getCompanyById(89);
+        when(companyService.getById(NOT_FOUND_COMPANY_ID)).thenReturn(null);
+        ResponseEntity response = controller.getCompanyById(NOT_FOUND_COMPANY_ID);
         assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+    }
+
+    @Test
+    public void shouldResponseNotFoundCompanyMessageAsJson() throws Exception {
+        when(companyService.getById(NOT_FOUND_COMPANY_ID)).thenReturn(null);
+        ResponseEntity response = controller.getCompanyById(NOT_FOUND_COMPANY_ID);
+
+        assertEquals(
+                "Check if the not found message is in the response body",
+                response.getBody(),
+                "{\"status\": 404, \"title\": \"Empresa não encontrada\"}"
+        );
+        assertEquals(
+                "Check if the content-type is application/json",
+                response.getHeaders().getContentType(),
+                MediaType.APPLICATION_JSON
+        );
     }
 
     @Test
