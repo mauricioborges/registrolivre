@@ -1,4 +1,4 @@
-app.factory("statesAndCities", [function() {
+app.factory('statesAndCities', [function() {
 
     var states = [
         ['AC','Acre'],['AL','Alagoas'],['AM','Amazonas'],['AP','Amapá'],['BA','Bahia'],

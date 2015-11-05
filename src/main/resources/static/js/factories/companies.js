@@ -1,4 +1,4 @@
-app.factory("companies", ["$http", function($http) {
+app.factory('companies', ['$http', function($http) {
 
     function all() {
         return $http.get('/empresas').then(function(response) {

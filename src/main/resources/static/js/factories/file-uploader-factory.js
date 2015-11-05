@@ -1,10 +1,10 @@
-app.factory("fileUploaderFactory", ["$http", function($http) {
+app.factory('fileUploaderFactory', ['$http', function($http) {
   function setFileUploaderOptions($scope, $document) {
     $scope.evaData = {
       // this variable is used like a model for particular directive
       // all parameters here are optional
-      fileButton: $document.find("#btnFile"),
-      filesInput: $document.find("#files"),
+      fileButton: $document.find('#btnFile'),
+      filesInput: $document.find('#files'),
       progressBar: $document.find('#progressBar > div'),
       // every file will get the following link on s3:
       // http://<your_bucket>.s3.amazonaws.com/<this_value>/<upload_datetime>$<filename_with_extension>
@@ -45,7 +45,7 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
       },
 
       animateProgressBar: function (width, progress) {
-        $scope.evaData.progressBar.animate({ width: width }, 500).html(progress + "%");
+        $scope.evaData.progressBar.animate({ width: width }, 500).html(progress + '%');
       },
 
       // custom callbacks for onProgress and onComplete events
@@ -65,7 +65,6 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
       },
 
       onFileError: function (file, message) {
-        console.log('onError || message: %s', message);
         $scope.evaData.enableFileUpload();
       }
     };
@@ -74,9 +73,9 @@ app.factory("fileUploaderFactory", ["$http", function($http) {
   function createFileUploader(onSuccess) {
       return $http.get('/get-file-uploader-options').then(function(response) {
         var evaporateOptions = {
-           aws_url:   'https://s3-' + response.data.awsRegion + '.amazonaws.com',
+           awsUrl:   'https://s3-' + response.data.awsRegion + '.amazonaws.com',
            signerUrl: response.data.signerUrl,
-           aws_key:   response.data.awsKey,
+           awsKey:   response.data.awsKey,
            bucket:    response.data.bucket,
            region:    response.data.awsRegion,
            logging:   true

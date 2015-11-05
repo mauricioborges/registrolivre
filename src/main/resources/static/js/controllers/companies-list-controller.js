@@ -1,13 +1,13 @@
-app.controller("CompaniesListController", ["$scope", "$filter", "ngTableParams", "companies", function($scope, $filter, ngTableParams, companies) {
+app.controller('CompaniesListController', ['$scope', '$filter', 'NgTableParams', 'companies', function($scope, $filter, NgTableParams, companies) {
 
     function init() {
         $scope.companies = [];
         $scope.hasCompanies = false;
-        $scope.companiesNotFoundMessage = "Nenhum registro de empresa encontrado.";
+        $scope.companiesNotFoundMessage = 'Nenhum registro de empresa encontrado.';
     }
 
     function configureTableParams() {
-        $scope.tableParams = new ngTableParams({
+        $scope.TableParams = new NgTableParams({
             page: 1,
             count: 1000,
             sorting: {
@@ -28,7 +28,7 @@ app.controller("CompaniesListController", ["$scope", "$filter", "ngTableParams",
         if (!R.isEmpty(response)) {
             $scope.companies = response;
             $scope.hasCompanies = true;
-            $scope.companiesNotFoundMessage = "";
+            $scope.companiesNotFoundMessage = '';
 
             configureTableParams();
         }

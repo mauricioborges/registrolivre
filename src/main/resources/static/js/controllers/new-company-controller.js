@@ -1,5 +1,5 @@
 
-app.controller("NewCompanyController", ["$scope", "$document", "companies", "messages", "statesAndCities", "fileUploaderFactory", function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory) {
+app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'messages', 'statesAndCities', 'fileUploaderFactory', function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory) {
   fileUploaderFactory.setFileUploaderOptions($scope, $document);
   $scope.VALIDATION = {
     INVALID : 0,
@@ -14,7 +14,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     if($scope.company.partners === undefined){
       $scope.company.partners = [];
     }
-    $scope.company.partners.push({name:"", isActive: true});
+    $scope.company.partners.push({name:'', isActive: true});
   };
 
   $scope.removePartner = function(position){
@@ -38,14 +38,14 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   $scope.createCompany = function(company) {
     var file = $scope.evaData.files[0];
     if (!file) {
-      messages.showDanger("Você deve carregar um arquivo antes de continuar.");
+      messages.showDanger('Você deve carregar um arquivo antes de continuar.');
     }
     company.documents = [{
       url: file.url,
       issueDate: company.issueDate
     }];
     companies.newCompany(company).then(function() {
-          messages.showSuccess("Empresa <strong>"+ company.tradeName +"</strong> foi cadastrada.");
+          messages.showSuccess('Empresa <strong>'+ company.tradeName +'</strong> foi cadastrada.');
           $scope.userForm.$setPristine();
           $scope.resetForm();
           if(document.getElementsByName('userForm') !== undefined && document.getElementsByName('userForm').length > 0){
@@ -54,14 +54,14 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
           $scope.cnpjValidation = $scope.VALIDATION.VALID;
           $scope.verifyDate = $scope.VALIDATION.VALID;
         }, function() {
-           messages.showDanger("Ocorreu um erro no sistema, por favor tente novamente.");
+           messages.showDanger('Ocorreu um erro no sistema, por favor tente novamente.');
         });
     };
 
   $scope.resetForm = function() {
     $scope.company = {};
-    $document.find(".has-feedback").removeClass("has-error has-success");
-    $document.find("#btn-submit").attr("disabled", true);
+    $document.find('.has-feedback').removeClass('has-error has-success');
+    $document.find('#btn-submit').attr('disabled', true);
     $scope.evaData.clearFiles();
   };
 

@@ -1,4 +1,4 @@
-app.directive("fakeFileUploader", [function() {
+app.directive('fakeFileUploader', [function() {
     function link(scope, element) {
         if(!scope.data){
          scope.data = {};
@@ -15,20 +15,19 @@ app.directive("fakeFileUploader", [function() {
         data.ready = false;
         
         element.bind('change', function (event) {
-            console.log(event.target.files);
             data.files = [];
             angular.forEach(event.target.files, function (file) {
                 data.fileMaxSizeLimitError = file.size > maxSizeMB * 1024 * 1024;
                 if (data.fileMaxSizeLimitError) {
                     return;
                 }
-                data.fileTypeNotSupportedError = file.type != 'application/pdf';
+                data.fileTypeNotSupportedError = file.type !== 'application/pdf';
                 if (data.fileTypeNotSupportedError) {
                     return;
                 }
                 file.started = Date.now();
                 file.path_ = dir + file.started + timestampSeparator + file.name;
-                file.url = "http://ubimob2013.sciencesconf.org/21283/document";
+                file.url = 'http://ubimob2013.sciencesconf.org/21283/document';
                 file.startingUpload = true;
                 file.completed = true;
                 onFileComplete(file);
