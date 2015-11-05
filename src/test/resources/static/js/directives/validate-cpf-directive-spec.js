@@ -1,18 +1,18 @@
 describe('Directive: validate-cpf', function() {
     var element, scope;
-    var VALID_CPF = "549.741.127-40";
-    var INVALID_CPF = "100.000.000-00";
+    var VALID_CPF = '549.741.127-40';
+    var INVALID_CPF = '100.000.000-00';
 
-    partner = {
-        cpf: "000.000.000-00",
+    var partner = {
+        cpf: '000.000.000-00',
     };
 
     beforeEach(module('registro-livre'));
     beforeEach(module('validate-cpf'));
     
     beforeEach(inject(function($rootScope, $compile) {
-         validateCPFHTML = '<input type="text" class="form-control" data-ng:model="partner.cpf" '+
-                           'ui-mask="999.999.999-99" name="cpf" id="cpf" validate-cpf />';
+         var validateCPFHTML = '<input type='+'text'+' class='+'form-control'+' data-ng:model='+'partner.cpf'+' '+
+                           'ui-mask='+'999.999.999-99'+' name='+'cpf'+' id='+'cpf'+' validate-cpf />';
 
          scope = $rootScope;
          scope.partner = partner;

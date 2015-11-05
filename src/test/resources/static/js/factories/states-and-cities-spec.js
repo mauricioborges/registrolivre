@@ -1,4 +1,4 @@
-describe("Factory: states-and-cities", function() {
+describe('Factory: states-and-cities', function() {
 
     var statesAndCities;
 
@@ -9,7 +9,7 @@ beforeEach(module('registro-livre'));
     }));
 
 
-    it("should get states when using getStates.", function() {
+    it('should get states when using getStates.', function() {
         var states = [
                 ['AC','Acre'],['AL','Alagoas'],['AM','Amazonas'],['AP','Amapá'],['BA','Bahia'],
                 ['CE','Ceará'],['DF','Distrito Federal'],['ES','Espírito Santo'],['GO','Goiás'],['MA','Maranhão'],['MG','Minas Gerais'],
@@ -21,13 +21,13 @@ beforeEach(module('registro-livre'));
         result.should.be.deep.equal(states);
     });
 
-     it("should get city from DF when using getCities(DF).", function() {
+     it('should get city from DF when using getCities(DF).', function() {
      var citiesFromDF = ['Brasília'];
       var result = statesAndCities.getCitiesByState('DF');
       result.should.be.deep.equal(citiesFromDF);
      });
 
-     it("should get an empty list when using getCities with an invalid state", function() {
+     it('should get an empty list when using getCities with an invalid state', function() {
         var emptyList = [];
         var result = statesAndCities.getCitiesByState('OI');
         result.should.be.deep.equal(emptyList);

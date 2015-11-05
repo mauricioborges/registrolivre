@@ -1,4 +1,4 @@
-describe("Controller: CompanyViewController", function() {
+describe('Controller: CompanyViewController', function() {
     var $rootScope, $scope, $controller, $httpBackend, companies, $routeParams;
 
     beforeEach(module('registro-livre'));
@@ -24,16 +24,15 @@ describe("Controller: CompanyViewController", function() {
         $httpBackend.verifyNoOutstandingExpectation();
     });
 
-    it("should get a company by id", function() {
-        var documents = {id:4,company:null,url:"http://ubimob2013.sciencesconf.org/21283/document",issueDate:"10/10/2015"};
+    it('should get a company by id', function() {
+        var documents = {id:4,company:null,url:'http://ubimob2013.sciencesconf.org/21283/document',issueDate:'10/10/2015'};
         var expectedCompany = {
            id :  1,
-           cnpj :"123456",
-           tradeName : "Company One Ltda",
+           cnpj :'123456',
+           tradeName : 'Company One Ltda',
            documents : documents
            };
 
-         console.log(expectedCompany);
         $httpBackend.expectGET('/empresas/' + expectedCompany.id).respond(expectedCompany);
 
         $httpBackend.flush();

@@ -1,8 +1,9 @@
+/*jshint -W079 */
 var NewCompanyForm = require('../pageObject/new-company-form.js');
 var ListCompany = require('../pageObject/company-list.js');
 
 var pdf;
-newCompanyForm = new NewCompanyForm();
+var newCompanyForm = new NewCompanyForm();
 
 beforeEach(function() {
     pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
@@ -10,8 +11,6 @@ beforeEach(function() {
 });
 
 describe('Register Company', function() {
-    newCompanyForm = new NewCompanyForm();
-
     it('should create a new company with partner', function() {
         var companyName = browser.params.validCompanyName;
         var companyCNPJ = browser.params.validCNPJ;

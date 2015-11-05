@@ -1,4 +1,5 @@
-describe("Factory: file-uploader-factory", function() {
+/*jshint -W020 */
+describe('Factory: file-uploader-factory', function() {
     var fileUploaderFactory;
 
     beforeEach(module('registro-livre'));
@@ -13,9 +14,9 @@ describe("Factory: file-uploader-factory", function() {
         $httpBackend.verifyNoOutstandingExpectation();
     });
 
-    it("should get the configuration options for file uploader component.", function() {
+    it('should get the configuration options for file uploader component.', function() {
         var expectedResponse = { awsRegion:'region', signerUrl:'signerUrl', awsKey:'awsKey', bucket:'bucket' };
-        var expectedConfiguration = { awsUrl: 'https://s3-region.amazonaws.com', signerUrl: "signerUrl", awsKey: "awsKey", bucket: "bucket", region:"region", logging:true };
+        var expectedConfiguration = { awsUrl: 'https://s3-region.amazonaws.com', signerUrl: 'signerUrl', awsKey: 'awsKey', bucket: 'bucket', region:'region', logging:true };
         $httpBackend.expectGET('/get-file-uploader-options').respond(expectedResponse);
 
         var onSuccess = function(result) {

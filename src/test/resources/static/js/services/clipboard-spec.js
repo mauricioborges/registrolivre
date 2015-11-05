@@ -1,14 +1,14 @@
-describe("clipboard", function () {
+describe('clipboard', function () {
   var clipboard;
 
-  beforeEach(module("registro-livre"));
+  beforeEach(module('registro-livre'));
 
   beforeEach(inject(function($injector) {
-    clipboard = $injector.get("clipboard");
+    clipboard = $injector.get('clipboard');
   }));
 
-  describe("#handlePaste", function () {
-    it("updates dom node value with clipboard event data", function () {
+  describe('#handlePaste', function () {
+    it('updates dom node value with clipboard event data', function () {
       var node = {
         val: sinon.spy()
       };
@@ -22,7 +22,7 @@ describe("clipboard", function () {
       };
 
       clipboard.handlePaste(node)(event);
-      expect(node.val).to.have.been.calledWith("text");
+      expect(node.val).to.have.been.calledWith('text');
     });
   });
 });

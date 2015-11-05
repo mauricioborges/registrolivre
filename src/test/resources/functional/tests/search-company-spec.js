@@ -9,10 +9,10 @@ describe('Search company',function(){
       browser.get('http://localhost:5000/#/');
       var companyName = browser.params.validCompanyName;
 
-      search.fillSearchField("");
+      search.fillSearchField('');
       expect(search.isSearchButtonEnable()).toBe(false);
 
-      search.fillSearchField("as");
+      search.fillSearchField('as');
       expect(search.isSearchButtonEnable()).toBe(true);
       search.cleanSearchField();
 

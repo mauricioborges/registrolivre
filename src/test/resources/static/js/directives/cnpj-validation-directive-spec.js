@@ -1,12 +1,12 @@
 describe('Directive: cnpj-validation', function() {
   var element, scope;
-  var validCnpj = "27.853.013/0001-60";
-  company = {
+  var validCnpj = '27.853.013/0001-60';
+  var company = {
     cnpj: '38.366.166/0001-07',
   };
 
   beforeEach(module('registro-livre', function($provide) {
-        $provide.value("companies", {
+        $provide.value('companies', {
             getCompanyByCnpj: function(cnpj) {
                 return {
                    then: function(success, error404) {
@@ -23,13 +23,13 @@ describe('Directive: cnpj-validation', function() {
 
   beforeEach(inject(function($rootScope, $compile) {
      element = angular.element(
-      '<div class="form-group has-feedback " id="cnpj-group" >' +
-         '<label class="control-label">CNPJ <abbr class="red-color" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>' +
-         '<input cnpj-validation class="form-control required" ng-model="company.cnpj"  type="text" name="company.cnpj" id="cnpj"' +
-         'autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required/>' +
-         '<span ng-show="isCnpjDuplicated"><label class="control-label">Já existe empresa com esse CNPJ</label></span>' +
-         '<span ng-show="isCnpjIncomplete"><label class="control-label">Número incompleto</label></span>' +
-         '<span ng-show="isCnpjInvalid"><label class="control-label">Número inválido</label></span>' +
+      '<div class='+'form-group has-feedback '+' id='+'cnpj-group'+' >' +
+         '<label class='+'control-label'+'>CNPJ <abbr class='+'red-color'+' alt='+'Preenchimento obrigatório'+' title='+'Preenchimento obrigatório'+'>*</abbr></label>' +
+         '<input cnpj-validation class='+'form-control required'+' ng-model='+'company.cnpj'+'  type='+'text'+' name='+'company.cnpj'+' id='+'cnpj'  +
+         'autocomplete='+'off'+' ui-mask='+'?99.999.999/9999-99'+' model-view-value='+'true'+' required/>' +
+         '<span ng-show='+'isCnpjDuplicated'+'><label class='+'control-label'+'>Já existe empresa com esse CNPJ</label></span>' +
+         '<span ng-show='+'isCnpjIncomplete'+'><label class='+'control-label'+'>Número incompleto</label></span>' +
+         '<span ng-show='+'isCnpjInvalid'+'><label class='+'control-label'+'>Número inválido</label></span>' +
       '</div>');
     scope = $rootScope;
     scope.company = company;
@@ -40,7 +40,7 @@ describe('Directive: cnpj-validation', function() {
   it('should validate correct cnpj', function() {
 
     var input = element.find('input');
-    scope.company.cnpj = "59.026.733/0001-48";
+    scope.company.cnpj = '59.026.733/0001-48';
     scope.$digest();
     input.triggerHandler('blur');
 
@@ -52,7 +52,7 @@ describe('Directive: cnpj-validation', function() {
   it('should invalidate cnpj with incorrect length', function() {
 
     var input = element.find('input');
-    scope.company.cnpj = "59.026.733/1-48";
+    scope.company.cnpj = '59.026.733/1-48';
     scope.$digest();
     input.triggerHandler('blur');
 
@@ -62,7 +62,7 @@ describe('Directive: cnpj-validation', function() {
   it('should invalidate cnpj with invalid CNPJ', function() {
 
       var input = element.find('input');
-      scope.company.cnpj = "11.111.111/1111-11";
+      scope.company.cnpj = '11.111.111/1111-11';
       scope.$digest();
       input.triggerHandler('blur');
 
@@ -75,39 +75,39 @@ describe('Directive: cnpj-validation', function() {
          var spy = sinon.spy();
          scope.$emit = spy;
          var input = element.find('input');
-         scope.company.cnpj = "11.111.111/11-11";
+         scope.company.cnpj = '11.111.111/11-11';
          scope.$digest();
          input.triggerHandler('blur');
-         spy.should.have.been.calledWith("incompleteCnpj");
+         spy.should.have.been.calledWith('incompleteCnpj');
     });
 
     it('should show invalid message if CNPJ is invalid',function(){
        var spy = sinon.spy();
        scope.$emit = spy;
        var input = element.find('input');
-       scope.company.cnpj = "04.114.710/0001-00";
+       scope.company.cnpj = '04.114.710/0001-00';
        scope.$digest();
        input.triggerHandler('blur');
-       spy.should.have.been.calledWith("invalidCnpj");
+       spy.should.have.been.calledWith('invalidCnpj');
     });
     it('should not show invalid message if CNPJ is valid',function(){
            var spy = sinon.spy();
            scope.$emit = spy;
            var input = element.find('input');
-           scope.company.cnpj = "27.926.046/0001-92";
+           scope.company.cnpj = '27.926.046/0001-92';
            scope.$digest();
            input.triggerHandler('blur');
-           spy.should.have.not.been.calledWith("invalidCnpj");
-           spy.should.have.been.calledWith("validCnpj");
+           spy.should.have.not.been.calledWith('invalidCnpj');
+           spy.should.have.been.calledWith('validCnpj');
     });
     it('should show duplicateCnpj message when CNPJ already exists in DB',function(){
            var spy = sinon.spy();
            scope.$emit = spy;
            var input = element.find('input');
-           scope.company.cnpj = "27.853.013/0001-60";
+           scope.company.cnpj = '27.853.013/0001-60';
            scope.$digest();
            input.triggerHandler('blur');
-           spy.should.have.been.calledWith("duplicatedCnpj");
+           spy.should.have.been.calledWith('duplicatedCnpj');
     });
 
 });

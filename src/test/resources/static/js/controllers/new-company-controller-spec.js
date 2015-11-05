@@ -1,4 +1,4 @@
-describe("Controller: NewCompanyController", function() {
+describe('Controller: NewCompanyController', function() {
  var $rootScope, $scope, $controller, $httpBackend, messages;
     beforeEach(module('registro-livre'));
     beforeEach(inject(function($injector) {
@@ -9,7 +9,7 @@ describe("Controller: NewCompanyController", function() {
         messages = $injector.get('messages');
     }));
 
-    it('should create a new company', inject(function(companies, messages) {
+    it('should create a new company', inject(function(companies) {
         var spy = sinon.spy();
         var newCompany = function() {
             return {
@@ -18,10 +18,10 @@ describe("Controller: NewCompanyController", function() {
         };
 
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: messages});
-        $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
+        $scope.evaData.files = [{ url: 'http://registro-livre-tw.s3.amazonaws.com/example_company.pdf' }];
         var company = {
-          cnpj: "231231",
-          name: "Example Company"
+          cnpj: '231231',
+          name: 'Example Company'
         };
         controller.createCompany(company);
         spy.should.have.been.called.once;
@@ -40,10 +40,10 @@ describe("Controller: NewCompanyController", function() {
 
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showSuccess: showSuccess }});
         $scope.resetForm = resetForm;
-        $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
+        $scope.evaData.files = [{ url: 'http://registro-livre-tw.s3.amazonaws.com/example_company.pdf' }];
         var company = {
-          cnpj: "231231",
-          name: "Example Company"
+          cnpj: '231231',
+          name: 'Example Company'
         };
         var pristineMock = sinon.spy();
         var formMock = {
@@ -67,10 +67,10 @@ describe("Controller: NewCompanyController", function() {
         };
 
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: { showDanger: spy }});
-        $scope.evaData.files = [{ url: "http://registro-livre-tw.s3.amazonaws.com/example_company.pdf" }];
+        $scope.evaData.files = [{ url: 'http://registro-livre-tw.s3.amazonaws.com/example_company.pdf' }];
         var company = {
-          cnpj: "231231",
-          name: "Example Company"
+          cnpj: '231231',
+          name: 'Example Company'
         };
         controller.createCompany(company);
         spy.should.have.been.called.once;
@@ -87,7 +87,7 @@ describe("Controller: NewCompanyController", function() {
 
     it('Should get cities from states-and-cities service', function() {
         var spy = sinon.spy();
-        var state =  "RS";
+        var state =  'RS';
 
         var controller = $controller('NewCompanyController', { $scope: $scope, statesAndCities: { getCitiesByState: spy }});
         $scope.company = {
@@ -97,7 +97,7 @@ describe("Controller: NewCompanyController", function() {
         assert(spy.calledWith(state));
     });
 
-    it("Should clear form and messages when hit reset form button", function() {
+    it('Should clear form and messages when hit reset form button', function() {
         var clearMessages = sinon.spy();
 
         var pristineMock = sinon.spy();
@@ -113,55 +113,55 @@ describe("Controller: NewCompanyController", function() {
         expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.VALID);
     });
 
-    it("Should detect when CNPJ is invalid", function() {
+    it('Should detect when CNPJ is invalid', function() {
         $controller('NewCompanyController', { $scope: $scope });
         $rootScope.$broadcast('invalidCnpj');
         expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.INVALID);
     });
 
-    it("Should detect when CNPJ is incomplete", function() {
+    it('Should detect when CNPJ is incomplete', function() {
         $controller('NewCompanyController', { $scope: $scope });
         $rootScope.$broadcast('incompleteCnpj');
         expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.INCOMPLETE);
     });
 
-    it("Should detect when CNPJ is valid", function() {
+    it('Should detect when CNPJ is valid', function() {
         $controller('NewCompanyController', { $scope: $scope });
         $rootScope.$broadcast('validCnpj');
         expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.VALID);
     });
 
-    it("Should detect when CNPJ is duplicated", function() {
+    it('Should detect when CNPJ is duplicated', function() {
         $controller('NewCompanyController', { $scope: $scope });
-        $rootScope.$broadcast("duplicatedCnpj");
+        $rootScope.$broadcast('duplicatedCnpj');
         expect($scope.cnpjValidation).to.be.equal($scope.VALIDATION.DUPLICATED);
     });
 
-    it("Should detect when issueDate is valid", function() {
+    it('Should detect when issueDate is valid', function() {
        $controller('NewCompanyController', { $scope: $scope });
-       $rootScope.$broadcast("issueDateValid");
+       $rootScope.$broadcast('issueDateValid');
        expect($scope.issueDateValidation).to.be.equal($scope.VALIDATION.VALID);
     });
 
-    it("Should detect when issueDate is invalid", function() {
+    it('Should detect when issueDate is invalid', function() {
         $controller('NewCompanyController', { $scope: $scope });
-        $rootScope.$broadcast("issueDateInvalid");
+        $rootScope.$broadcast('issueDateInvalid');
         expect($scope.issueDateValidation).to.be.equal($scope.VALIDATION.INVALID);
     });
 
-    it("Should detect when openingDate is valid", function() {
+    it('Should detect when openingDate is valid', function() {
        $controller('NewCompanyController', { $scope: $scope });
-       $rootScope.$broadcast("openingDateValid");
+       $rootScope.$broadcast('openingDateValid');
        expect($scope.openingDateValidation).to.be.equal($scope.VALIDATION.VALID);
     });
 
-    it("Should detect when openingDate is invalid", function() {
+    it('Should detect when openingDate is invalid', function() {
         $controller('NewCompanyController', { $scope: $scope });
-        $rootScope.$broadcast("openingDateInvalid");
+        $rootScope.$broadcast('openingDateInvalid');
         expect($scope.openingDateValidation).to.be.equal($scope.VALIDATION.INVALID);
     });
 
-    it("Should not prevent typing when typing a number", function(){
+    it('Should not prevent typing when typing a number', function(){
         var spy = sinon.spy();
         var event = {
             charCode: 49,
@@ -172,7 +172,7 @@ describe("Controller: NewCompanyController", function() {
         expect(spy).not.to.have.been.called;
     });
 
-    it("Should prevent typing when typing anything other than a number", function(){
+    it('Should prevent typing when typing anything other than a number', function(){
         var spy = sinon.spy();
         var event = {
             charCode: 8,
@@ -183,19 +183,19 @@ describe("Controller: NewCompanyController", function() {
             expect(spy).to.have.been.called;
         });
 
-    it("Should have not any partner when load the controller", function(){
+    it('Should have not any partner when load the controller', function(){
         var controller = $controller('NewCompanyController', { $scope: $scope });
 
         expect(false).to.be.equal(controller.hasPartners());
     });
 
-    it("Should have a partner when add a new Partner", function(){
+    it('Should have a partner when add a new Partner', function(){
         var controller = $controller('NewCompanyController', { $scope: $scope });
         controller.addPartner();
         expect(true).to.be.equal(controller.hasPartners());
     });
 
-    it("Should have not a partner when remove the unique partner in controller", function(){
+    it('Should have not a partner when remove the unique partner in controller', function(){
         $scope.company = {partners: [{}]};
         var controller = $controller('NewCompanyController', { $scope: $scope });
 

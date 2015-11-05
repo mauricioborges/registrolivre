@@ -4,15 +4,15 @@ describe('Directive: onlyAlphanumeric-validation', function() {
       var LETTERS = 'abcdef';
       var SPECIAL_CHARS = '#ˆ\'˜';
 
-      company = {
+      var company = {
           number: '349'
       };
 
       beforeEach(module('registro-livre'));
 
       beforeEach(inject(function($rootScope, $compile) {
-          onlyDigitsHTML = '<input type="text" ng-model="company.number" name="empresa.nomeNumero" ' +
-                           ' id="number" maxlength="9" only-alphanumeric />';
+          var onlyDigitsHTML = '<input type='+'text'+' ng-model='+'company.number'+' name='+'empresa.nomeNumero'+' ' +
+                           ' id='+'number'+' maxlength='+'9'+' only-alphanumeric />';
 
           scope = $rootScope;
           scope.company = company;
@@ -54,8 +54,8 @@ describe('Directive: onlyAlphanumeric-validation', function() {
           expect(element.val()).to.equal(VALID_NUMBER);
       });
 
-      function shouldBeEmpty(input_text) {
-          element.val(input_text);
+      function shouldBeEmpty(inputText) {
+          element.val(inputText);
           element.triggerHandler('input');
           expect(element.val()).to.equal('');
       }

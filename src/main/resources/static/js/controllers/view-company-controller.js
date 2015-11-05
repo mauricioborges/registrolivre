@@ -23,7 +23,7 @@ app.filter('showHyphen',
     function () {
         return function (obj) {
            if(obj === null){
-               return "-";
+               return '-';
            }else{
                return obj;
            }
