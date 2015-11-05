@@ -19,7 +19,21 @@
       "beforeEach",
       "moment",
       "alertify",
-      "Fuse"
+      "Fuse",
+      "element",
+      "by",
+      "it",
+      "browser",
+      "newCompanyForm",
+      "inject",
+      "afterEach",
+      "beforeEach",
+      "sinon",
+      "assert",
+      "company",
+      "response",
+      "$httpBackend",
+      "fileUploaderFactory"
     ],
 
     "indent": 2,
@@ -69,10 +83,12 @@
     "validthis": true,
     "nomen": false,
     "white": true,
+    "expr": true,
     "globals": {
         "app": true,
         "R": true,
         "angular": true,
-        "$": true
+        "$": true,
+        "greeting": true
     }
 }
