@@ -7,7 +7,7 @@ app.controller('CompaniesListController', ['$scope', '$filter', 'NgTableParams',
     }
 
     function configureTableParams() {
-        $scope.TableParams = new NgTableParams({
+        $scope.tableParams = new NgTableParams({
             page: 1,
             count: 1000,
             sorting: {
