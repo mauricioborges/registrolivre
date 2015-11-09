@@ -14,6 +14,7 @@ app.controller('CompanyViewController', ['$scope', '$filter', 'ngTableParams', '
             'state' : response.state,
             'cep' : response.cep,
             'openingDate' : response.openingDate,
+            'documents': response.documents[0],
             'file' : response.file,
         };
     });
