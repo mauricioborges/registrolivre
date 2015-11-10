@@ -79,6 +79,29 @@
                         <img style="width:12%; float:left;" src="images/favicon.ico" />
                         <label>Download de PDF</label>
                     </a>
+                    <h3 class="centralize panel-divider padding-6-0 margin-30-0">Estrutura Societária</h3>
+                    <div ng-model="models" >
+                     <div ng-repeat="model in company.partners | filter: models as results" >
+                        <dl>
+                           <dt>Sócio:</dt>
+                           <dd>{{model.name}} </dd>
+                        </dl>
+                        <dl>
+                            <dt>CPF:</dt>
+                            <dd>{{model.cpf}} </dd>
+                        </dl>
+                        <dl>
+                            <dt>Sócio Ativo:</dt>
+                            <dd>{{model.active}} </dd>
+                        </dl>
+
+                        <h3 class="centralize panel-divider padding-6-0 margin-30-0"></h3>
+                     </div>
+                        <div ng-if="results.length == 0">
+                            <div class="centralize">Sem sócios cadastrados.</div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="panel-footer">
                     <a class="btn btn-default" href="javascript:history.back(1)">Voltar</a>
