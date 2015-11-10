@@ -1,3 +1,4 @@
+/* jshint -W079 */
 var NewCompanyForm = require('../pageObject/new-company-form.js');
 var ListCompany = require('../pageObject/company-list.js');
 var ViewCompany = require('../pageObject/view-company.js');
@@ -15,7 +16,7 @@ beforeEach(function() {
 describe('View company', function() {
     it('Should visualize company information', function() {
         var tradeName = browser.params.anotherValidCompanyName;
-        var companyName = "my company name";
+        var companyName = 'my company name';
         newCompanyForm.fillFields(browser.params.anotherValidCNPJ, tradeName, pdf, companyName);
         newCompanyForm.submit();
 

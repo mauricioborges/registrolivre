@@ -7,7 +7,7 @@ var CompanyList = function () {
     };
 
     this.clickCompanyName = function(name){
-        element.all(by.cssContainingText(".text-left > a", name)).first().click();
+        element.all(by.cssContainingText('.text-left > a', name)).first().click();
     };
 };
 
