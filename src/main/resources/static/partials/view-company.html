@@ -1,9 +1,8 @@
-<div class="container content">
-    <div class="row">
+<div class="container">
         <div class="col-lg-6 col-md-8 col-lg-offset-3 col-md-offset-2">
             <div class="panel panel-default margin-35-0">
                 <div class="panel-heading centralize">
-                    <h2>empresa: {{company.tradeName | showHyphen}}</h2>
+                    <h2>{{company.tradeName | showHyphen}}</h2>
                 </div>
                 <div class="panel-body">
                     <dl>
@@ -91,8 +90,13 @@
                             <dd>{{model.cpf}} </dd>
                         </dl>
                         <dl>
-                            <dt>Sócio Ativo:</dt>
-                            <dd>{{model.active}} </dd>
+                            <dt>Status:</dt>
+                            <div ng-if="model.active==true">
+                                <dd>Ativo </dd>
+                            </div>
+                            <div ng-if="model.active!=true">
+                                <dd>Não ativo </dd>
+                            </div>
                         </dl>
 
                         <h3 class="centralize panel-divider padding-6-0 margin-30-0"></h3>
@@ -112,7 +116,5 @@
             </div>
             <!-- col -->
         </div>
-        <!-- row -->
-    </div>
 </div>
 <!-- container -->

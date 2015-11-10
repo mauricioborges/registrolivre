@@ -29,11 +29,6 @@ body {
 	font-weight: 300;
 }
 
-.panel-default>.panel-heading {
-	background-color: transparent;
-	border: 0;
-}
-
 #registrolivre {
 	color: #2c3e50;
 	font-size: 60px;
