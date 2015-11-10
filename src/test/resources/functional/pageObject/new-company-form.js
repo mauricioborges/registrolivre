@@ -1,10 +1,11 @@
 var NewCompanyForm = function () {
 
-    this.fillFields = function(cnpj, tradeName, pdf) {
+    this.fillFields = function(cnpj, tradeName, pdf, companyName) {
         this.uploadDocument(pdf);
         element(by.id('cnpj')).sendKeys(cnpj);
+        console.log(companyName);
         element(by.id('tradeName')).sendKeys(tradeName);
-        element(by.id('name')).sendKeys('Gama Company');
+        element(by.id('name')).sendKeys(companyName);
         element(by.id('address')).sendKeys('Rua Avelino Nascimento');
         element(by.id('number')).sendKeys('222');
         element(by.id('complement')).sendKeys('apart 107');

@@ -5,6 +5,10 @@ var CompanyList = function () {
             return name === _name;
         });
     };
+
+    this.clickCompanyName = function(name){
+        element.all(by.cssContainingText(".text-left > a", name)).first().click();
+    };
 };
 
 module.exports = CompanyList;

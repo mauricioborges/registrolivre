@@ -11,28 +11,28 @@
                     </dl>
                     <dl>
                         <dt>Nome fantasia:</dt>
-                        <dd>{{company.tradeName | showHyphen}}</dd>
+                        <span id="tradeName">{{company.tradeName | showHyphen}}</span>
                     </dl>
                     <dl>
                         <dt>Razão Social:</dt>
-                        <dd>{{company.companyName | showHyphen}} </dd>
+                        <span id="companyName">{{company.companyName | showHyphen}} </span>
                     </dl>
 
                     <dl>
                         <dt>Endereço:</dt>
-                        <dd>{{company.streetName | showHyphen}}</dd>
+                        <span id="address">{{company.streetName | showHyphen}}</span>
                     </dl>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <dl>
                                 <dt>Número:</dt>
-                                <dd>{{company.number | showHyphen}}</dd>
+                                <span id="number">{{company.number | showHyphen}}</span>
                             </dl>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <dl class="pull-right-lg">
                                 <dt>Complemento:</dt>
-                                <dd>{{company.complement | showHyphen}}</dd>
+                                <span id="complement">{{company.complement | showHyphen}}</span>
                             </dl>
                         </div>
                     </div>
@@ -40,19 +40,19 @@
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                             <dl>
                                 <dt>Cidade:</dt>
-                                <dd>{{company.city | showHyphen}}</dd>
+                                <span id="city">{{company.city | showHyphen}}</span>
                             </dl>
                         </div>
                         <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
                             <dl>
                                 <dt>UF:</dt>
-                                <dd>{{company.state | showHyphen}}</dd>
+                                <span id="state">{{company.state | showHyphen}}</span>
                             </dl>
                         </div>
                         <div  class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <dl class="pull-right-lg">
                                 <dt>CEP:</dt>
-                                <dd >{{company.cep | showHyphen}}</dd>
+                                <span id="zip">{{company.cep | showHyphen}}</span>
                             </dl>
                         </div>
                     </div>
@@ -60,17 +60,13 @@
                         <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                             <dl>
                                 <dt>Data de abertura:</dt>
-                                <dd>
-                                    {{company.openingDate | showHyphen}}
-                                </dd>
+                                <span id="openingDate">{{company.openingDate | showHyphen}}</span>
                             </dl>
                         </div>
                         <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12">
                             <dl>
                                 <dt>Emissão de documento:</dt>
-                                <dd>
-                                    {{company.documents.issueDate | showHyphen}}
-                                </dd>
+                                <span id="issueDate">{{company.documents.issueDate | showHyphen}}</span>
                             </dl>
                         </div>
                     </div>

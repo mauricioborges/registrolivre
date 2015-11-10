@@ -19,8 +19,6 @@ describe('Search company',function(){
       search.fillSearchField(companyName);
       search.submitSearch();
 
-      expect(listCompany.containsCompanyName(companyName)).toBe(true);
-
-
+      expect(listCompany.containsCompanyName(companyName)).toBe(true)
     });
 });
