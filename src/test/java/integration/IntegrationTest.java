@@ -46,4 +46,15 @@ public class IntegrationTest extends InMemoryTestBase {
         CompanyRepresentation next = companies.getBody().iterator().next();
         assertEquals(next.getTradeName(), "TradeName");
     }
+
+    @Test
+    public void shouldSearchANewCompany() throws Exception{
+        LocalDate localDate = LocalDate.of(1991, 01, 11);
+        Company company = new Company().withCnpj("68.966.372/0001-00").withTradeName("TradeName").withOpeningDate(localDate);
+        repository.save(company);
+        repository.findOne(company.getId());
+        ResponseEntity<Iterable<CompanyRepresentation>> companies = controller.getCompanies();
+        CompanyRepresentation next = companies.getBody().iterator().next();
+        assertEquals(company.getCompanyName(),next.getCompanyName());
+    }
 }
