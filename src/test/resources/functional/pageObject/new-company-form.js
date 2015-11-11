@@ -1,18 +1,18 @@
 var NewCompanyForm = function () {
 
-    this.fillFields = function(cnpj, tradeName, pdf, companyName) {
+    this.fillFields = function(cnpj, tradeName, pdf, companyName, address, number, complement, state, city, zip, openingDate, issueDate) {
         this.uploadDocument(pdf);
         element(by.id('cnpj')).sendKeys(cnpj);
         element(by.id('tradeName')).sendKeys(tradeName);
         element(by.id('name')).sendKeys(companyName);
-        element(by.id('address')).sendKeys('Rua Avelino Nascimento');
-        element(by.id('number')).sendKeys('222');
-        element(by.id('complement')).sendKeys('apart 107');
-        element(by.css('#state-group select')).element(by.cssContainingText('option', 'MG')).click();
-        element(by.css('#city-group select')).element(by.cssContainingText('option', 'Almenara')).click();
-        element(by.id('zip')).sendKeys('39900-000');
-        element(by.id('openingDate')).sendKeys('10/10/2009');
-        element(by.id('issueDate')).sendKeys('10/10/2010');
+        element(by.id('address')).sendKeys(address);
+        element(by.id('number')).sendKeys(number);
+        element(by.id('complement')).sendKeys(complement);
+        element(by.css('#state-group select')).element(by.cssContainingText('option', state || 'MG')).click();
+        element(by.css('#city-group select')).element(by.cssContainingText('option', city || 'Almenara')).click();
+        element(by.id('zip')).sendKeys(zip);
+        element(by.id('openingDate')).sendKeys(openingDate);
+        element(by.id('issueDate')).sendKeys(issueDate);
     };
 
     this.submit = function() {

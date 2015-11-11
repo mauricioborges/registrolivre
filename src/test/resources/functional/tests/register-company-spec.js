@@ -1,9 +1,11 @@
 /*jshint -W079 */
 var NewCompanyForm = require('../pageObject/new-company-form.js');
 var ListCompany = require('../pageObject/company-list.js');
+var ViewCompany = require('../pageObject/view-company.js');
 
 var pdf;
 var newCompanyForm = new NewCompanyForm();
+var viewCompany = new ViewCompany();
 
 beforeEach(function() {
     pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
@@ -12,7 +14,16 @@ beforeEach(function() {
 
 describe('Register Company', function() {
     it('should create a new company with partner', function() {
-        var companyName = browser.params.validCompanyName;
+        var companyName = 'Brasil LTDA';
+        var address = 'Avelino Nascimento';
+        var number = '222';
+        var complement = 'bloco B';
+        var state = 'MG';
+        var city = 'Almenara';
+        var zip = '39900-000';
+        var openingDate = '10/10/2015';
+        var issueDate = '15/01/2014';
+        var tradeName = browser.params.validCompanyName;
         var companyCNPJ = browser.params.validCNPJ;
         var partnerName = browser.params.validPartnerName;
         var partnerCPF = browser.params.validCPF;
@@ -54,21 +65,36 @@ describe('Register Company', function() {
         expect(newCompanyForm.isSubmitButtonEnable()).toBe(false);
         newCompanyForm.clear();
 
-        newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
+        newCompanyForm.fillFields(companyCNPJ, tradeName, pdf, companyName, address, number, complement, state, city, zip, openingDate, issueDate);
         newCompanyForm.addNewPartner();
         newCompanyForm.fillPartnerName(partnerName);
         newCompanyForm.fillPartnerCPF(partnerCPF);
         expect(newCompanyForm.isSubmitButtonEnable()).toBe(true);
         newCompanyForm.submit();
 
-        expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');
+        expect(newCompanyForm.isSaved()).toContain('Empresa '+ tradeName + ' foi cadastrada.');
 
         browser.get('http://localhost:5000/#/empresas');
-        expect(companyList.containsCompanyName(companyName)).toBe(true);
+        expect(companyList.containsCompanyName(tradeName)).toBe(true);
+
+        companyList.clickCompanyName(tradeName);
+
+        expect(viewCompany.getTradeName()).toEqual(tradeName);
+        expect(viewCompany.getCompanyCnpj()).toEqual(companyCNPJ);
+        expect(viewCompany.getDownload()).toEqual('Download de PDF');
+        expect(viewCompany.getCompanyName()).toEqual(companyName);
+        expect(viewCompany.getStreetName()).toEqual(address);
+        expect(viewCompany.getNumber()).toEqual(number);
+        expect(viewCompany.getComplement()).toEqual(complement);
+        expect(viewCompany.getState()).toEqual(state);
+        expect(viewCompany.getCity()).toEqual(city);
+        expect(viewCompany.getCep()).toEqual(zip);
+        expect(viewCompany.getOpeningDate()).toEqual(openingDate);
+        expect(viewCompany.getIssueDate()).toEqual(issueDate);
     });
 
     it('should create a new company without partner', function() {
-        var companyName = browser.params.anotherValidCompanyName;
+        var tradeName = browser.params.anotherValidCompanyName;
         var existentCNPJ = browser.params.validCNPJ;
         var companyCNPJ = browser.params.anotherValidCNPJ;
         var companyList = new ListCompany();
@@ -77,13 +103,13 @@ describe('Register Company', function() {
         expect(element(by.cssContainingText('.control-label', 'Já existe empresa com esse CNPJ')).isDisplayed()).toBe(true);
         newCompanyForm.clear();
 
-        newCompanyForm.fillFields(companyCNPJ, companyName, pdf);
+        newCompanyForm.fillFields(companyCNPJ, tradeName, pdf);
         newCompanyForm.submit();
 
-        expect(newCompanyForm.isSaved()).toContain('Empresa '+ companyName + ' foi cadastrada.');
+        expect(newCompanyForm.isSaved()).toContain('Empresa '+ tradeName + ' foi cadastrada.');
 
         browser.get('http://localhost:5000/#/empresas');
-        expect(companyList.containsCompanyName(companyName)).toBe(true);
+        expect(companyList.containsCompanyName(tradeName)).toBe(true);
     });
 
     it('should clean form', function() {
