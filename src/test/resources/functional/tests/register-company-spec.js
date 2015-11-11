@@ -91,6 +91,9 @@ describe('Register Company', function() {
         expect(viewCompany.getCep()).toEqual(zip);
         expect(viewCompany.getOpeningDate()).toEqual(openingDate);
         expect(viewCompany.getIssueDate()).toEqual(issueDate);
+        expect(viewCompany.getPartnerName()).toEqual(partnerName);
+        expect(viewCompany.getPartnerCpf()).toEqual(partnerCPF);
+        expect(viewCompany.getActivePartner()).toEqual('Ativo');
     });
 
     it('should create a new company without partner', function() {

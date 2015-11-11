@@ -79,19 +79,19 @@
                      <div ng-repeat="model in company.partners | filter: models as results" >
                         <dl>
                            <dt>Sócio:</dt>
-                           <dd>{{model.name}} </dd>
+                           <span class="partnerName">{{model.name}} </span>
                         </dl>
                         <dl>
                             <dt>CPF:</dt>
-                            <dd>{{model.cpf}} </dd>
+                            <span class="partnerCpf">{{model.cpf}} </span>
                         </dl>
                         <dl>
                             <dt>Status:</dt>
                             <div ng-if="model.active==true">
-                                <dd>Ativo </dd>
+                                <span class="activePartner">Ativo </span>
                             </div>
                             <div ng-if="model.active!=true">
-                                <dd>Não ativo </dd>
+                                <span class="activePartner">Não ativo </span>
                             </div>
                         </dl>
 

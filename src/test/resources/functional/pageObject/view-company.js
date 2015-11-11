@@ -47,6 +47,17 @@ var ViewCompany = function () {
         return element(by.id('issueDate')).getText();
     };
 
+    this.getPartnerName = function() {
+        return element(by.css('.partnerName')).getText();
+    };
+
+    this.getPartnerCpf = function() {
+        return element(by.css('.partnerCpf')).getText();
+    };
+
+    this.getActivePartner = function() {
+         return element(by.css('.activePartner')).getText();
+    };
 };
 
 module.exports = ViewCompany;
