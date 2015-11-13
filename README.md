@@ -37,7 +37,9 @@
 * Pipeline:
  * [GO](http://www.go.cd/)
 
-## Pré-requisitos para instalar a máquina virtual:
+## Pré-requisitos
+
+### Para instalar a máquina virtual:
 * ^ Virtual Box 5.0.4 r102546
 * ^ Vagrant 1.7.3
 * Java 1.8
@@ -45,6 +47,10 @@
 * ^ Gradle 2.4
 
 No Mac OS X, instalando somente o 'node', o npm já é incluso.
+
+### Para rodar os testes
+* jshint
+* xquartz
 
 # Criar Máquina Virtual Local
 
