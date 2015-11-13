@@ -37,8 +37,14 @@ vendor/
 #Ignore coverage report
 src/test/resources/coverage/
 
-
+# Vim
 .profile
 .keys
 
-logback.xml
+logback.xml[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+*.swp
