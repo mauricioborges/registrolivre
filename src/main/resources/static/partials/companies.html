@@ -25,7 +25,7 @@
                         <a href="/#/empresas/{{company.id}}/"  ng-attr-data-toggle="{{ hasLongName ? 'tooltip' : '' }}" title="{{ company.tradeName }}">{{ company.tradeName | limitTo : 60 }}<span ng-show="hasLongName">...</span></a>
                     </td>
                     <td class="text-left" data-title="'Estado'" sortable="'state'">{{company.state}}</td>
-                    <td class="text-left" data-title="'Cidade'" sortable="'city'">{{company.city}}</td>
+                    <td class="text-left" data-title="'Cidade'">{{company.city}}</td>
                     <td>
                         <a ng-disabled="company.documents[0] == undefined" href="{{ company.documents[0].url }}" target="_blank" class="btn btn-primary pull-right">Ver Registro</a>
                     </td>
