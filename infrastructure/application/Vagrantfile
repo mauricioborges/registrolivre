@@ -6,6 +6,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network "private_network", ip: "192.168.33.71"
   config.vm.network "forwarded_port", guest: 8080, host: 5000
+    #  config.ssh.username = "registrolivre"
 
   config.vm.define "registrolivre" do |rl|
   end
@@ -29,11 +30,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.provision :shell, :path => "../scripts/provision/firefox.sh"
   #config.vm.provision :shell, :path => "../scripts/provision/xvfb.sh"
   #config.vm.provision :shell, :path => "../scripts/provision/functional-test-dependencies.sh"
-  #config.vm.provision :shell, :path => "scripts/provision/create-user.sh"
-  #config.vm.provision :shell, :path => "scripts/provision/ssh-user-permission.sh"
-  #config.vm.provision :shell, :path => "scripts/provision/create-folders.sh"
+  config.vm.provision :shell, :path => "scripts/provision/create-user.sh"
+  config.vm.provision :shell, :path => "scripts/provision/ssh-user-permission.sh"
+  config.vm.provision :shell, :path => "scripts/provision/create-folders.sh"
   #config.vm.provision "file", source: "scripts/provision/application-service.sh", destination: "/home/registrolivre/service/application-service.sh"
   #config.vm.provision :shell, :path => "scripts/provision/remove-application-service.sh"
   #config.vm.provision :shell, :path => "scripts/provision/create-application-service.sh"
-  #config.vm.provision :shell, :path => "scripts/provision/local/configure-database-environment-variable.sh"
+  config.vm.provision :shell, :path => "scripts/provision/local/configure-database-environment-variable.sh"
 end
