@@ -1,0 +1,6 @@
+
+#TODO: WHY??
+- apt_repository: repo='ppa:openjdk-r/ppa'
+- apt: name=software-properties-common update_cache=yes
+- apt: name=python-software-properties update_cache=yes
+- apt: name=openjdk-8-jdk update_cache=yes #dpkg_options=--configure,-a

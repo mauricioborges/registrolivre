@@ -19,16 +19,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder "public_keys/", "/home/public_keys", create: true
   config.vm.synced_folder "../../", "/home/registrolivre/registrolivre", create: true
 
+  config.vm.provision "ansible" do |ansible|
+    ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
+    ansible.playbook = "app.yml"
+  end
+
   # Provision
-  config.vm.provision :shell, :path => "../scripts/provision/open-jdk8.sh"
-  config.vm.provision :shell, :path => "../scripts/provision/firefox.sh"
-  config.vm.provision :shell, :path => "../scripts/provision/xvfb.sh"
-  config.vm.provision :shell, :path => "../scripts/provision/functional-test-dependencies.sh"
-  config.vm.provision :shell, :path => "scripts/provision/create-user.sh"
-  config.vm.provision :shell, :path => "scripts/provision/ssh-user-permission.sh"
-  config.vm.provision :shell, :path => "scripts/provision/create-folders.sh"
-  config.vm.provision "file", source: "scripts/provision/application-service.sh", destination: "/home/registrolivre/service/application-service.sh"
-  config.vm.provision :shell, :path => "scripts/provision/remove-application-service.sh"
-  config.vm.provision :shell, :path => "scripts/provision/create-application-service.sh"
-  config.vm.provision :shell, :path => "scripts/provision/local/configure-database-environment-variable.sh"
+  #config.vm.provision :shell, :path => "../scripts/provision/open-jdk8.sh"
+  #config.vm.provision :shell, :path => "../scripts/provision/firefox.sh"
+  #config.vm.provision :shell, :path => "../scripts/provision/xvfb.sh"
+  #config.vm.provision :shell, :path => "../scripts/provision/functional-test-dependencies.sh"
+  #config.vm.provision :shell, :path => "scripts/provision/create-user.sh"
+  #config.vm.provision :shell, :path => "scripts/provision/ssh-user-permission.sh"
+  #config.vm.provision :shell, :path => "scripts/provision/create-folders.sh"
+  #config.vm.provision "file", source: "scripts/provision/application-service.sh", destination: "/home/registrolivre/service/application-service.sh"
+  #config.vm.provision :shell, :path => "scripts/provision/remove-application-service.sh"
+  #config.vm.provision :shell, :path => "scripts/provision/create-application-service.sh"
+  #config.vm.provision :shell, :path => "scripts/provision/local/configure-database-environment-variable.sh"
 end
