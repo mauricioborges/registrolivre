@@ -8,7 +8,7 @@ a {
 
 a:hover, .cursor-pointer{
 	cursor: pointer;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 dl {
