@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: registrolivre
+  sudo: yes
+  vars:
+    user: registrolivre
+  roles:
+    - application
+#    - functional_testing
