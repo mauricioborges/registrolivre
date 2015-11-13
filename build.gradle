@@ -231,6 +231,10 @@ task functionalTest(type: Exec){
     commandLine "sh", "./infrastructure/application/scripts/tests/functional/functional-test.sh"
 }
 
+task functionalTestGo(type: Exec) {
+    commandLine "sh", "./infrastructure/application/scripts/tests/functional/functional-test-go.sh"
+}
+
 task jsHintSourceCode(type: Exec){
     commandLine "jshint", "src/main/resources/static/js/"
 }
