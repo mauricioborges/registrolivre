@@ -1,6 +1,24 @@
+- name: create registrolivre group
+  group: name=registrolivre state=present
+
 - name: create user for execution
   sudo: yes
-  user: name=registrolivre group=admin
+  user: name=registrolivre groups=admin,registrolivre createhome=yes
+
+- name: set home permissions
+  sudo: yes
+  file: path=/home/registrolivre owner=registrolivre group=registrolivre
+
+- name: create application directories
+  sudo: no
+  file: path=/home/registrolivre/{{item}} owner=registrolivre group=registrolivre mode=u=rw,g=r state=present
+  with_items:
+  - app
+  - service
+
+- name: configure admin group to not require password to SUDO
+  sudo: yes
+  lineinfile: "dest=/etc/sudoers state=present regexp='%admin ALL=(ALL) ALL' line='%admin ALL=(ALL) NOPASSWD:ALL'"
 
 - name: add PPA repository for open JDK
   apt_repository: repo='ppa:openjdk-r/ppa'
