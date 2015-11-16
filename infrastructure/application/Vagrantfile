@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.provision :shell, :path => "../scripts/provision/firefox.sh"
   #config.vm.provision :shell, :path => "../scripts/provision/xvfb.sh"
   #config.vm.provision :shell, :path => "../scripts/provision/functional-test-dependencies.sh"
-  #config.vm.provision :shell, :path => "scripts/provision/ssh-user-permission.sh"
+  config.vm.provision :shell, :path => "scripts/provision/ssh-user-permission.sh"
   #config.vm.provision :shell, :path => "scripts/provision/create-folders.sh"
   config.vm.provision :shell, :path => "scripts/provision/local/configure-database-environment-variable.sh"
 end
