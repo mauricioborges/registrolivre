@@ -153,7 +153,7 @@
             </div>
             <div class="form-group" ng-class="{'has-error': userForm.partnerCpf.$dirty && userForm.partnerCpf.$invalid, 'has-success': userForm.partnerCpf.$valid }">
               <label>CPF <abbr class="red-color" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
-              <input type="text" class="form-control required" data-ng:model="partner.cpf" validate-cpf ui-mask="999.999.999-99" name="partnerCpf" id="cpf" required>
+              <input type="text" class="form-control required" data-ng:model="partner.cpf" validate-cpf ui-mask="999.999.999-99" model-view-value="true" name="partnerCpf" id="cpf" required>
             </div>
             <div class="form-group">
               <label>

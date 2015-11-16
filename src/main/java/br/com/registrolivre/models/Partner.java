@@ -4,6 +4,7 @@ import br.com.registrolivre.controllers.representations.PartnerRepresentation;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,6 +32,7 @@ public class Partner implements Serializable {
     @Column(name = "name")
     String name;
 
+    @CPF
     @Column(name = "cpf")
     String cpf;
 
