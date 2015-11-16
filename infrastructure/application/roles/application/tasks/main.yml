@@ -22,8 +22,8 @@
 - name: create registrolivre directory (shouldnt the app do it?)
   file: path=/home/registrolivre/app state=directory owner=registrolivre
 
-- name: do the deploy (UGLY WORKAROUND!!!!!)
-  copy: src=../../../../../build/libs/registrolivre.jar dest=/home/registrolivre/app/registrolivre.jar
+#- name: do the deploy (UGLY WORKAROUND!!!!!)
+#  copy: src=../../../../../build/libs/registrolivre.jar dest=/home/registrolivre/app/registrolivre.jar
 
 - name: enable registrolivre service
   sudo: yes
