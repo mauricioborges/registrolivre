@@ -1,5 +1,5 @@
 task createLocalDatabase(type: Exec) {
-    commandLine "./scripts/local/create-database.sh"
+    commandLine "sh", "./scripts/local/create-database.sh"
 }
 
 task createProductionDatabase(type: Exec) {

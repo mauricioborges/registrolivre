@@ -1,7 +1,6 @@
 #!/bin/sh
 
 set -e
-
 if [ -z "$(which postgres)" ] || [ "$(which postgres)" == 'postgres not found' ]; then
     sudo sh /home/registrolivre/database/apt.postgresql.org.sh
     sudo apt-get install postgresql-9.4 --yes
