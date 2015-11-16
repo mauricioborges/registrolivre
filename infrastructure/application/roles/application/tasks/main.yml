@@ -10,8 +10,8 @@
   file: path=/home/registrolivre owner=registrolivre group=registrolivre
 
 - name: create application directories
-  sudo: no
-  file: path=/home/registrolivre/{{item}} owner=registrolivre group=registrolivre mode=u=rw,g=r state=present
+  sudo: yes
+  file: path=/home/registrolivre/{{item}} owner=registrolivre group=registrolivre state=directory force=true
   with_items:
   - app
   - service
