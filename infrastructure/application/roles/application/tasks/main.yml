@@ -34,14 +34,11 @@
   sudo: yes
   copy: src=../files/app-service.sh dest=/etc/init.d/registrolivre mode=u+rx
 
-- name: create registrolivre .profile (shouldnt the app do it?)
+- name: create registrolivre .profile
   file: path=/home/registrolivre/.profile state=touch owner=registrolivre
 
-- name: create registrolivre directory (shouldnt the app do it?)
+- name: create registrolivre directory
   file: path=/home/registrolivre/app state=directory owner=registrolivre
-
-#- name: do the deploy (UGLY WORKAROUND!!!!!)
-#  copy: src=../../../../../build/libs/registrolivre.jar dest=/home/registrolivre/app/registrolivre.jar
 
 - name: enable registrolivre service
   sudo: yes

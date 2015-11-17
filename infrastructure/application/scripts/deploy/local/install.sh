@@ -5,6 +5,8 @@ set -e
 APP="/home/registrolivre/app"
 ROOT_PATH="./../../"
 
+source ~/.registro-livre-profile
+
 echo "=====> Generate jar"
 ${ROOT_PATH}gradlew :registroLivreJar
 

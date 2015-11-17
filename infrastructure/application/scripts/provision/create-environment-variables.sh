@@ -3,6 +3,12 @@
 set -e
 
 USER="/home/registrolivre"
+
+if [[ -z $REGISTROLIVRE_AWS_SECRET_ACCESS_KEY ]] || [[ -z $REGISTROLIVRE_AWS_ACCESS_KEY_ID ]]; then
+    echo "no AWS keys available"
+    exit 0
+fi
+
 SECRET=$REGISTROLIVRE_AWS_SECRET_ACCESS_KEY
 ID=$REGISTROLIVRE_AWS_ACCESS_KEY_ID
 

@@ -4,6 +4,7 @@ set -e
 
 DATABASE="/home/registrolivre/database"
 
+source ~/.registro-livre-profile
 echo "=====> Creating database"
 ssh -i $REGISTROLIVRE_PRIVATE_KEY registrolivre@$LOCAL_REGISTROLIVRE_IP "rm -rf ${DATABASE}"
 ssh -i $REGISTROLIVRE_PRIVATE_KEY registrolivre@$LOCAL_REGISTROLIVRE_IP "mkdir ${DATABASE}"
