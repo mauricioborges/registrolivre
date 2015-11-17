@@ -14,7 +14,7 @@ app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'mes
     if($scope.company.partners === undefined){
       $scope.company.partners = [];
     }
-    $scope.company.partners.push({name:'', isActive: true});
+    $scope.company.partners.push({name:'', isActive: false});
   };
 
   $scope.removePartner = function(position){

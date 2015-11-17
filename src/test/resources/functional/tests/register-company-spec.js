@@ -93,7 +93,7 @@ describe('Register Company', function() {
         expect(viewCompany.getIssueDate()).toEqual(issueDate);
         expect(viewCompany.getPartnerName()).toEqual(partnerName);
         expect(viewCompany.getPartnerCpf()).toEqual(partnerCPF);
-        expect(viewCompany.getActivePartner()).toEqual('Ativo');
+        expect(viewCompany.getActivePartner()).toEqual('Não ativo');
     });
 
     it('should create a new company without partner', function() {
