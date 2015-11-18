@@ -11,13 +11,15 @@ echo "=====> Generate jar"
 ${ROOT_PATH}gradlew :registroLivreJar
 
 echo "=====> Stopping registrolivre service"
-ssh -i $REGISTROLIVRE_PRIVATE_KEY registrolivre@$LOCAL_REGISTROLIVRE_IP "sudo service registrolivre stop"
+vagrant ssh -c "sudo service registrolivre stop"
 
 echo "=====> Removing registrolivre jar"
-ssh -i $REGISTROLIVRE_PRIVATE_KEY registrolivre@$LOCAL_REGISTROLIVRE_IP "rm -rf ${APP}/registrolivre.jar"
+vagrant ssh -c "rm -rf ${APP}/registrolivre.jar"
 
 echo "=====> Copy jar to app folder"
-scp -i $REGISTROLIVRE_PRIVATE_KEY ${ROOT_PATH}registrolivre.jar registrolivre@$LOCAL_REGISTROLIVRE_IP:${APP}/
+cp ${ROOT_PATH}registrolivre.jar .
+vagrant ssh -c "cp /vagrant/registrolivre.jar ${APP}/"
+rm ./registrolivre.jar
 
 echo "=====> Starting registrolivre service"
-ssh -i $REGISTROLIVRE_PRIVATE_KEY registrolivre@$LOCAL_REGISTROLIVRE_IP "sudo service registrolivre start"
+vagrant ssh -c "sudo service registrolivre start"
