@@ -1,0 +1,10 @@
+reglivre:
+    image: java/registrolivre:latest
+    ports:
+        - "8080:8080"
+    links:
+        - db
+    environment:
+        - REGISTROLIVRE_DATABASE_URL=postgres://registro_livre_user:registro_livre_user@db:5432/registro_livre
+db:
+    image: postgres/registrolivre
