@@ -24,7 +24,8 @@ app.config(['$routeProvider',
             controller: 'CompanyViewController'
         })
         .otherwise({
-            redirectTo: '/'
+            templateUrl: 'partials/error-page.html',
+                        controller: ''
         });
 }]);
 
