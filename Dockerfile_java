@@ -1,0 +1,4 @@
+FROM java:openjdk-8-jdk
+COPY build/libs/registrolivre.jar /usr/registrolivre/
+WORKDIR /usr/registrolivre
+CMD java -jar registrolivre.jar
