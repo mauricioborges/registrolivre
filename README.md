@@ -33,9 +33,28 @@
 * Ferramentas de Automação:
  * [Gradle](https://gradle.org/)
  * [Vagrant](https://www.vagrantup.com/)
+ * [Docker](https://www.docker.com/). Usuário Mac/Windows, consulte o manual do Docker para uso de [docker-machine](https://docs.docker.com/machine/)
 
 * Pipeline:
  * [GO](http://www.go.cd/)
+
+# Build
+
+```
+./gradlew clean build
+```
+
+# Run
+
+```
+docker-compose up
+```
+
+# Test
+
+```
+protractor src/test/resources/...
+```
 
 ## Pré-requisitos
 
