@@ -5,6 +5,7 @@ exports.config = {
     {
         'browserName': 'firefox'
     },
+    baseUrl: 'http://localhost:5000/',
     params: {
         validCNPJ: '52.504.473/0001-20',
         anotherValidCNPJ: '32.533.430/0001-65',

@@ -9,7 +9,7 @@ var viewCompany = new ViewCompany();
 
 beforeEach(function() {
     pdf = require('path').resolve('./src/test/resources/file_uploader_functional_test.pdf');
-    browser.get('http://192.168.99.100:8080/#/cadastro');
+    browser.get('#/cadastro');
 });
 
 describe('Register Company', function() {
@@ -74,7 +74,7 @@ describe('Register Company', function() {
 
         expect(newCompanyForm.isSaved()).toContain('Empresa '+ tradeName + ' foi cadastrada.');
 
-        browser.get('http://192.168.99.100:8080/#/empresas');
+        browser.get('#/empresas');
         expect(companyList.containsCompanyName(tradeName)).toBe(true);
 
         companyList.clickCompanyName(tradeName);
@@ -111,7 +111,7 @@ describe('Register Company', function() {
 
         expect(newCompanyForm.isSaved()).toContain('Empresa '+ tradeName + ' foi cadastrada.');
 
-        browser.get('http://192.168.99.100:8080/#/empresas');
+        browser.get('#/empresas');
         expect(companyList.containsCompanyName(tradeName)).toBe(true);
     });
 

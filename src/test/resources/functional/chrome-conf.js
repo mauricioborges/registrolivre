@@ -5,6 +5,7 @@ exports.config = {
       {
           'browserName': 'chrome'
       },
+      baseUrl:'http://localhost:5000/#',
       params: {
           validCNPJ: '73.193.236/0001-65',
           anotherCNPJ: '74.174.834/0001-50',

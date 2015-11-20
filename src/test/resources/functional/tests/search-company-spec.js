@@ -6,7 +6,7 @@ var listCompany = new ListCompany();
 
 describe('Search company',function(){
     it('Should search a company',function(){
-      browser.get('http://192.168.99.100:8080/#/');
+      browser.get('#/');
       var companyName = browser.params.validCompanyName;
 
       search.fillSearchField('');
