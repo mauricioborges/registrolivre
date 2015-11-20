@@ -4,6 +4,8 @@ reglivre:
         - "8080:8080"
     links:
         - db
+    volumes:
+        - ./build/libs:/usr/registrolivre/
     environment:
         - REGISTROLIVRE_DATABASE_URL=postgres://registro_livre_user:registro_livre_user@db:5432/registro_livre
 db:
