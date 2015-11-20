@@ -56,6 +56,12 @@ docker-compose up
 protractor src/test/resources/...
 ```
 
+or 
+
+```
+docker run --link registrolivre_reglivre_1 --rm -v $(pwd):/project -e PROTRACTOR_CONF="src/test/resources/functional/chrome-conf.js --baseUrl http://registrolivre_reglivre_1:8080/" registrolivre/protractor
+```
+
 ## Pré-requisitos
 
 ### Para instalar a máquina virtual:
