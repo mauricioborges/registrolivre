@@ -1,10 +1,11 @@
-app.controller('SearchCompaniesController', ['$scope', '$filter', '$location', 'NgTableParams', 'companies', function($scope, $filter, $location, NgTableParams, companies) {
+app.controller('SearchCompaniesController', ['$scope', '$filter', '$location', 'NgTableParams', 'companies','$rootScope', function($scope, $filter, $location, NgTableParams, companies, $rootScope) {
 
     function init() {
         $scope.companies = [];
         $scope.hasCompanies = false;
         $scope.companiesNotFoundMessage = 'Nenhum registro de empresa encontrado.';
         $scope.searchCompanies = searchCompanies;
+        $rootScope.showMiniSearch = false;
     }
 
     function searchCompanies() {

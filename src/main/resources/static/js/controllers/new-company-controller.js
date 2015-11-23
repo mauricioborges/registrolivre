@@ -1,4 +1,5 @@
-app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'messages', 'statesAndCities', 'fileUploaderFactory', function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory) {
+app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'messages', 'statesAndCities', 'fileUploaderFactory','$rootScope',
+     function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory, $rootScope) {
   fileUploaderFactory.setFileUploaderOptions($scope, $document);
   $scope.VALIDATION = {
     INVALID : 0,
@@ -7,7 +8,7 @@ app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'mes
     LOADING : 3,
     VALID: 4
   };
-
+  $rootScope.showMiniSearch = true;
   $scope.addPartner = function(){
     $scope.company = $scope.company || {};
     if($scope.company.partners === undefined){

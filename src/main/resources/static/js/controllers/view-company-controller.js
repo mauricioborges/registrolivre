@@ -1,5 +1,6 @@
-app.controller('CompanyViewController', ['$scope', '$filter', 'ngTableParams', 'companies', '$routeParams', '$location', '$http',
-   function($scope, $filter, ngTableParams, companies, $routeParams) {
+app.controller('CompanyViewController', ['$scope', '$filter', 'ngTableParams', 'companies', '$routeParams', '$rootScope',
+   function($scope, $filter, ngTableParams, companies, $routeParams, $rootScope) {
+   $rootScope.showMiniSearch = true;
     var companyId = $routeParams.companyId;
     companies.getCompanyById(companyId).success(function(response) {
         $scope.company = {
