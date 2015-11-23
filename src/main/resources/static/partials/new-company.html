@@ -135,7 +135,7 @@
             </div>
         </div>
 
-          <div class="form-group ui-widget" data-ng:repeat="(position, partner) in company.partners" data-ng:show="hasPartners()">
+          <div class="form-group ui-widget" data-ng:repeat="(position, partner) in company.partners" data-ng:show="hasPartners()" emit-when="{event: 'partnerAdded', condition: $last}">
             <hr />
             <div class="list-group-item-heading centralize">
               <h4>
@@ -162,7 +162,6 @@
               <abbr class="glyphicon glyphicon-info-sign" alt="Sócio ativo" title="Sócio ativo"></abbr>
             </div>
           </div>
-
         </div>
 
         <div class="form-group centralize">
@@ -181,7 +180,6 @@
         </div>
 
       </form>
-
     </div> <!-- panel -->
   </div> <!-- col -->
 </div>

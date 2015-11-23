@@ -1,5 +1,4 @@
-
-app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'messages', 'statesAndCities', 'fileUploaderFactory', function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory) {
+app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'messages', 'statesAndCities', 'fileUploaderFactory', '$window', function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory, $window) {
   fileUploaderFactory.setFileUploaderOptions($scope, $document);
   $scope.VALIDATION = {
     INVALID : 0,
@@ -16,6 +15,12 @@ app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'mes
     }
     $scope.company.partners.push({name:'', isActive: false});
   };
+
+  $scope.$on('partnerAdded', function doneAddingToDom(){
+    var document = $window.document;
+    var el = document.getElementById('footer');
+    el.scrollIntoView();
+  });
 
   $scope.removePartner = function(position){
     if($scope.hasPartners()){
