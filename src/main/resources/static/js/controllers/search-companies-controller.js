@@ -39,4 +39,9 @@ app.controller('SearchCompaniesController', ['$scope', '$filter', '$location', '
             configureTableParams();
         }
     });
+
+    $scope.showCompanyDetail = function(company) {
+          $location.path('/empresas/' + company.id);
+    };
+
 }]);
