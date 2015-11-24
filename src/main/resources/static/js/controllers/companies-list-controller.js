@@ -1,5 +1,4 @@
-app.controller('CompaniesListController', ['$scope', '$filter', 'NgTableParams', 'companies','$rootScope', function($scope, $filter, NgTableParams, companies, $rootScope) {
-
+app.controller('CompaniesListController', ['$scope', '$filter', 'NgTableParams', 'companies', '$rootScope', '$location', function($scope, $filter, NgTableParams, companies, $rootScope, $location) {
     function init() {
         $scope.companies = [];
         $scope.hasCompanies = false;
@@ -34,4 +33,8 @@ app.controller('CompaniesListController', ['$scope', '$filter', 'NgTableParams',
             configureTableParams();
         }
     });
+
+    $scope.showCompanyDetail = function(company) {
+      $location.path('/empresas/' + company.id);
+    };
 }]);

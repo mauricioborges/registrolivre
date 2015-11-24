@@ -20,9 +20,9 @@
                 </tbody>
             </table>
             <table ng-show="hasCompanies" ng-table="tableParams" class="table table-striped table-hover">
-                <tr ng-repeat="company in $data" initialize-tooltip>
+                <tr ng-repeat="company in $data" initialize-tooltip ng-click="showCompanyDetail(company)">
                     <td class="text-left" data-title="'Nome Fantasia'" sortable="'tradeName'" ng-init="hasLongName = company.tradeName.length > 60">
-                        <a href="/#/empresas/{{company.id}}/"  ng-attr-data-toggle="{{ hasLongName ? 'tooltip' : '' }}" title="{{ company.tradeName }}">{{ company.tradeName | limitTo : 60 }}<span ng-show="hasLongName">...</span></a>
+                        <p ng-attr-data-toggle="{{ hasLongName ? 'tooltip' : '' }}" title="{{ company.tradeName }}">{{ company.tradeName | limitTo : 60 }}<span ng-show="hasLongName">...</span></p>
                     </td>
                     <td class="text-left" data-title="'Estado'" sortable="'state'">{{company.state}}</td>
                     <td class="text-left" data-title="'Cidade'">{{company.city}}</td>
