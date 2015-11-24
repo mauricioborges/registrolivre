@@ -11,7 +11,5 @@ app.directive('goSearch', function(companies) {
                                     ' </div>'+
                                  '</form>'
 
-    }
+    };
 });
-
-
