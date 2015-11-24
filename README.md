@@ -29,6 +29,8 @@
   * [Sinon](http://sinonjs.org/)
   * [Chai](http://chaijs.com/)
   * [JSHint](http://jshint.com/)
+  * Protractor 3.0.0
+  * NodeJS V4.2.2+
 
 * Ferramentas de Automação:
  * [Gradle](https://gradle.org/)
@@ -44,9 +46,16 @@
 ./gradlew clean build
 ```
 
-# Run
+# Prepare Docker
 
 ```
+docker-machine start default
+$(eval docker-machine env default)
+```
+
+# Run
+```
+docker env default # get your machine IP here
 docker-compose up
 ```
 
