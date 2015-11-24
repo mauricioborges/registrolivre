@@ -10,3 +10,12 @@ reglivre:
         - REGISTROLIVRE_DATABASE_URL=postgres://registro_livre_user:registro_livre_user@db:5432/registro_livre
 db:
     image: registrolivre/db
+
+functional-tests:
+    image: registrolivre/protractor
+    volumes:
+        - $PWD:/project
+    links:
+        - reglivre
+    environment:
+        - PROTRACTOR_CONF=src/test/resources/functional/firefox-conf.js --baseUrl http://registrolivre_reglivre_1:8080/

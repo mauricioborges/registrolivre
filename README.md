@@ -55,7 +55,10 @@ $(eval docker-machine env default)
 
 # Run
 ```
-docker env default # get your machine IP here
+docker env default # get your machine IP
+docker-compose up
+```
+
 docker-compose up
 ```
 
