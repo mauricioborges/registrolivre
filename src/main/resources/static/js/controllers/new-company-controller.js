@@ -1,5 +1,5 @@
-app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'messages', 'statesAndCities', 'fileUploaderFactory','$rootScope',
-     function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory, $rootScope) {
+app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'messages', 'statesAndCities', 'fileUploaderFactory','$rootScope', '$anchorScroll', '$location',
+     function($scope, $document, companies, messages, statesAndCities, fileUploaderFactory, $rootScope, $anchorScroll, $location) {
   fileUploaderFactory.setFileUploaderOptions($scope, $document);
   $scope.VALIDATION = {
     INVALID : 0,
@@ -52,6 +52,7 @@ app.controller('NewCompanyController', ['$scope', '$document', 'companies', 'mes
     }];
     companies.newCompany(company).then(function() {
           messages.showSuccess('Empresa <strong>'+ company.tradeName +'</strong> foi cadastrada.');
+          $anchorScroll();
           $scope.userForm.$setPristine();
           $scope.resetForm();
           if(document.getElementsByName('userForm') !== undefined && document.getElementsByName('userForm').length > 0){
