@@ -1,12 +1,26 @@
 #!/bin/bash
 
-if [ -n "$MANUAL" ]; then
-  # if manual mode is enabled, just coast making supervisord happy
-  while true; do
-    sleep 60
-  done
-fi
+# starts xvfb
+Xvfb :1 -screen 0 1280x1024x24+32 &
 
+export DISPLAY=":1.0"
+
+cd /project 
+# runs webdriver in background
+webdriver-manager start &
+
+tries=0
+nc -z localhost 4444
+while [ $? -ne 0 ]; do
+    sleep 5
+    echo "try again to start webdriver"
+    tries=$(expr $tries + 1)
+    if [ $tries -eq 3 ];then
+        echo "webdriver server not started"
+        exit 1
+    fi
+    nc -z localhost 4444
+done
 # check if Selenium server is listening @ port 4444
 if nc -z localhost 4444; then
   # install node modules needed by the tests 	
@@ -23,7 +37,6 @@ if nc -z localhost 4444; then
   fi
 
   # shutdown supervisord, and in consequence the whole container
-  supervisorctl shutdown
 else
   # supervisord will execute this script again after services status changes
   # usually a single reload is enough to catch up with Selenium server	
