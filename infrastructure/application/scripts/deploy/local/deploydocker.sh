@@ -1,7 +1,5 @@
 #!/bin/sh
 
-cp ../../
-
 docker-machine --version
 if [ $? -eq 0 ];then
     STATUSDOCKER=`docker-machine status default`

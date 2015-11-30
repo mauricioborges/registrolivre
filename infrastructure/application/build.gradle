@@ -35,7 +35,7 @@ task deployLocalAppServer(type: Exec) {
     commandLine "sh", "scripts/deploy/local/install.sh"
 }
 
-task deployDocker(type: Exec) {
+task deployDocker(type: Exec, dependsOn: parent.registroLivreJar) {
     commandLine "sh", "scripts/deploy/local/deploydocker.sh"
 }
 

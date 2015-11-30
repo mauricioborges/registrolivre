@@ -154,6 +154,7 @@ copyAngular.mustRunAfter(copyLodash)
 assembleJar.mustRunAfter(copyVendorFiles)
 
 clean << {
+    logger.error("################################## LIMPANDO O ARQUIVO JAR ##########################################")
     project.file('registrolivre.jar').delete()
 }
 
@@ -172,8 +173,6 @@ task checkTestCoverage << {
 }
 
 test {
-
-    clean.execute()
     testLogging.showStandardStreams = true
     exclude 'functional/**/*'
 
@@ -194,11 +193,8 @@ test {
 }
 
 task unitTest(type: Test){
-
-    clean.execute()
     exclude 'functional/**/*'
     exclude 'integration/*'
-
 
     testLogging {
         events "passed", "skipped", "failed"
@@ -213,7 +209,6 @@ task unitTest(type: Test){
 }
 
 task integrationTest(type: Test){
-    clean.execute()
     testLogging.showStandardStreams = true
     include 'integration/*'
     exclude 'functional/**/*'
